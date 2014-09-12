@@ -1,0 +1,4 @@
+- R does not have multi-type vectors. You can either do a String or an Integer type. 
+- types: logical, integer, numeric, complex, character, Inf
+	- TRUE, FALSE, NA <- logical, etc.
+- Learn Factor in R
