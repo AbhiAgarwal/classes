@@ -1,0 +1,250 @@
+bg.surv[1,3]
+bg.surv[1,4]
+bg.surv[1,5]
+bg.surv[2,5]
+bg.surv[2,3]
+bg.surv[2,1]
+bg.surv[2,100]
+bg.surv[2,100]
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+rownames(bg.surv)
+rownames(bg.surv[,1])
+rownames(bg.surv[,2])
+rownames(bg.surv)
+rownames(bg.surv[2])
+rownames(bg.surv[3])
+rownames(bg.surv[,2])
+rownames(bg.surv[2])
+rownames(bg.surv[3])
+rownames(bg.surv[100])
+rownames(bg.surv[140])
+rownames(bg.surv[40])
+rownames(bg.surv[39])
+rownames(bg.surv[20])
+rownames(bg.surv[22])
+rownames(bg.surv[23])
+rownames(bg.surv[22])
+rownames(bg.surv[22][2])
+rownames(bg.surv[22][1])
+bg.surv[22]
+bg.surv[22][1]
+bg.surv[22]
+summary(as.matrix( bg.surv[,8:21]))
+heatmap(as.matrix( bg.surv[,8:21]) , scale = "none", col = gray(10:0/11))
+bg.surv[,8:21])
+bg.surv[,8:21]
+bg.surv[,8:21]
+bg.surv[1,8:21]
+bg.surv[1,21]
+bg.surv[1,1:22]
+bg.surv[1,1:23]
+bg.surv[1,1:22]
+bg.surv[1,0:22]
+bg.surv[1,0:22]
+bg.surv[1,2]
+bg.surv[1,1]
+bg.surv[1,3]
+bg.surv[1,4]
+summary(as.matrix( bg.surv[,8:21]))
+bg.surv[,8:21])
+bg.surv[,8:21]
+bg.surv[1,8:21]
+bg.surv[1,1]
+bg.surv[1,1:1]
+bg.surv[1,1:2]
+bg.surv[1,1:3]
+bg.surv[1,2:3]
+bg.surv[1,3:3]
+bg.surv[1,2:2]
+bg.surv[1,2:22]
+bg.surv[1,2:2]
+bg.surv[1,3:3]
+bg.surv[1,4:3]
+bg.surv[1,4:4]
+bg.surv[,8:21])
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+bg.surv
+bg.surv[1,]
+bg.surv[,1]
+bg.surv[0,1]
+bg.surv[,1]
+bg.surv[,2]
+bg.surv[,3]
+bg.surv[1,3]
+bg.surv[,3]
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+bg.surv
+bg.surv[1]
+bg.surv[1, 1:11]
+bg.surv[1, 1:1]
+bg.surv[1, 1:22]
+bg.surv[1, 1:22]
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+bg.surv[1, 1:22]
+bg.surv[1, 2:22]
+bg.surv[1, 4:22]
+bg.surv[1, 5:22]
+bg.surv[1, 5:22]
+bg.surv[1, 5:21]
+cor
+currentPerson()
+currentPerson
+cor(bg.surv[, 5:21])
+bg.surv[i, 5:21]
+bg.surv[1, 5:21]
+cor(bg.surv[, 5:21])
+bg.surv[0, 5:21]
+cor(bg.surv[1, 5:21], bg.surv[2, 5:21])
+cor(bg.surv[1, 5:21], bg.surv[2, 5:21], method = “spearman")
+cor(bg.surv[1, 5:21], bg.surv[2, 5:21])
+cor(bg.surv[1, 5:5], bg.surv[2, 5:5])
+cor(bg.surv[1, 5:21], bg.surv[2, 5:21])
+method = “spearman"
+list(bg.surv[i, 5:21])
+typeof(bg.surv[i, 5:21])
+list(unlist(bg.surv[i, 5:21]))
+typeof(unlist(bg.surv[i, 5:21]))
+typeof(unlist(bg.surv[i, 5:21]))
+(unlist(bg.surv[i, 5:21]))
+cor(unlist(bg.surv[1, 5:21]), unlist(bg.surv[2, 5:21]))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+cor(unlist(bg.surv[1, 5:21]), unlist(bg.surv[2, 5:21]))
+cor(unlist(bg.surv[1, 5:21]), unlist(bg.surv[2, 5:21]))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+min(1,2)
+min(1,2)
+cor(unlist(bg.surv[1, 5:21]), unlist(bg.surv[2, 5:21]))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+BMI<-rnorm(n=1000, m=24.2, sd=2.2)
+B<O
+BMI
+hist(BMI)
+ls()
+stem
+stem(BMI)
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+bg.surv
+bg.surv[20, 1:1]
+bg.surv[21, 1:1]
+bg.surv[15, 1:1]
+bg.surv[16, 1:1]
+bg.surv[16, 1:1]
+bg.surv[23, 1:1]
+bg.surv[23, 1:1]
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+cat("X","y")
+cat("X","y")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+bg.surv
+bg.surv[closetstPersonIndex]
+bg.surv[closetstPersonIndex,1:1]
+bg.surv[closetstPersonIndex,2:1]
+bg.surv[closetstPersonIndex,1:1]
+bg.surv[closetstPersonIndex,1:-1]
+bg.surv[closetstPersonIndex,1:1]
+cat("Closest person to me is ",  str(bg.surv[closetstPersonIndex, 1:1]))
+cat("Closest person to me is ",  str(bg.surv[closetstPersonIndex, 1:1]))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+unlist(currentPerson)
+cor(unlist(currentPerson), unlist(bg.surv[1, 5:21]))
+cor(unlist(currentPerson), unlist(bg.surv[23, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[23, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[1, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[2, 5:21]))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[2, 5:21]))
+closetstPersonIndex
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[17, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[18, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[20, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[24, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[22, 5:21]))
+cor(unlist(bg.surv[23, 5:21]), unlist(bg.surv[17, 5:21]))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+similaritesList
+similaritesList[4]
+similaritesList[4][1]
+similaritesList[4][0]
+similaritesList[4][1]
+hist(similaritesList)
+BMI
+typeof(BMI)
+similaritesList[4][1]
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+hist(similaritesList)
+hist(similaritesList)
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+cat("Closest person to me is",  toString(bg.surv[closetstPersonIndex, 1:1], "at", toString(closetstPerson*100), "%"), "\n")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+cat("Closest person to me is",  toString(bg.surv[closetstPersonIndex, 1:1], toString("at"), toString(closetstPerson*100), "%"), "\n")
+closetstPerson*100
+closetstPerson*100
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+as.numeric(closetstPerson * 100)
+integer(closestPerson * 100)
+integer(closetstPerson)
+integer(closetstPerson*100)
+i <= integer(closetstPerson*100)
+format(closetstPerson)
+format(closetstPerson*100)
+format(round(closetstPerson*100,2))
+format(round(closetstPerson*100,0))
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
+source("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/Agarwal-Homework1.R")
