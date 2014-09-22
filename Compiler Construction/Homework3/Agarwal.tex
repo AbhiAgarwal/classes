@@ -1,0 +1,44 @@
+\documentclass[11pt, oneside]{article} 
+\usepackage{geometry}                		
+\geometry{letterpaper}
+\usepackage{graphicx}	
+\usepackage{amssymb}
+
+\title{Homework 3}
+\author{Abhi Agarwal}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Grammars}
+\subsection{Question 1.1}
+\par Explain why the following statement does not parse with a given grammar.
+\par In the $matchedstmt$ part of the grammar - specifically in the $other$ there is nothing that follows it. In our statement we have a $if$ following the $other$, which is not permitted by the given grammar.
+\par In more detail: $if$ $e$ $then$ would be parsed by the $matchedstmt$ part of grammar, and would follow another $matchedstmt$ after that - meaning that if we have $other$ then it should stop. In this case it doesn't so it would not be able to be parsed.
+
+\subsection{Question 1.2}
+\par Show the grammar converted to right recursion?
+\par \noindent The grammar being:
+\par $lVal \rightarrow id \quad | \quad lVal \quad ( lVal ) \quad | \quad lVal \quad . \quad id$
+\par \noindent Becomes:
+\par $lVal \rightarrow id \quad lVal'$
+\par $lVal' \rightarrow empty \quad | \quad (lVal) \quad lVal' \quad | \quad . \quad id \quad lVal'$
+
+\subsection{Question 1.3}
+\par Compute the FIRST and FOLLOW sets of this grammar.
+\par \noindent FIRST:
+\par It is simpler to start from letter then move towards trail for FIRST.
+\par We will do this by: FIRST of trail is grade, FIRST of grade is letter, etc.
+\par FIRST(letter) is the set of $\left\{ {A, B, C, F}\right\}$
+\par FIRST(sign) is the set of $\left\{ {+, -, \epsilon}\right\}$
+\par If the Production grade $ \rightarrow$  letter sign then add everything from FIRST(letter), but not from FIRST(sign) as we are looking for the FIRST. Therefore FIRST(grade) is the set of $\left\{ {A, B, C, F}\right\}$
+\par The same applies for trail, and so the FIRST(trail) is the set of $\left\{ {A, B, C, F}\right\}$.
+\par \noindent FOLLOW:
+\par For FOLLOW we should move from the top down.
+\par We put \$ in FOLLOW(trail) as it is the start symbol, and is not followed after anything. The set for FOLLOW(trail) is $\left\{ {\$}\right\}$
+\par FOLLOW(grade) is $\left\{ {\$, \textrm{COMMA}}\right\}$
+\par FOLLOW(sign) is $\left\{ {\$, \textrm{COMMA}}\right\}$
+\par FOLLOW(letter) is $\left\{ {\$, -, +, \textrm{COMMA}}\right\}$ - no epsilon
+
+\end{document}

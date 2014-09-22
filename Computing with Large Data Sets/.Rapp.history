@@ -1,0 +1,139 @@
+source("/Users/abhiagarwal/Desktop/NYU/Computing with Large Data Sets/tests/introduction.R")
+run
+hist((1:100)^2)
+ls
+cd
+load(".RData")
+ls
+cd Desk
+# Meredith Raab#
+# Assignment 1#
+# 9/22/14#
+#
+pause <- function ()#
+{#
+    cat("Pause. Press <Enter> to continue...")#
+    readline()#
+    invisible()#
+}#
+#
+doWork("/Users/meri678/Desktop/Data_Sets/big-data-survey-2014-fall-interests.csv")#
+#
+# Sets the data as a matrix if it's not already one. #
+# Loops through the matrix and stores the worst correlation as well as the row.#
+worst.cor<-function(X, whoami = 1, colrng = 1:dim(X)[2], algorithm="pearson") {#
+ 	if(is.matrix(X) == FALSE){#
+ 		X <- as.matrix(X)#
+ 	}#
+#
+ 	worstcor <- 1#
+ 	worstcorrrow <- whoami#
+ 	for(j in 1:nrow(X)){#
+ 		if (j != whoami) {#
+            tmp.cor <- cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng]), method=algorithm)#
+ 		  	if(tmp.cor < worstcor){#
+ 				worstcor <- tmp.cor#
+ 				worstcorrrow <- j#
+ 			}#
+ 		}#
+ 	}#
+#
+ 	cat("I am least correlated with row: ", worstcorrrow, " With a correlation value of: ", worstcor, " (algorithm: ", algorithm, ")\n")#
+#
+ 	return(list(row = worstcorrrow, cor = worstcor))#
+ }#
+#
+# Sets the data as a matrix if it's not already one. #
+# Loops through the matrix and stores the best correlation as well as the row.#
+best.cor<-function(X, whoami = 1, colrng = 1:dim(X)[2], algorithm="pearson"){#
+	if(is.matrix(X) == FALSE){#
+		X <- as.matrix(X)#
+	}#
+#
+	bestcor<- -1#
+	bestcorrrow <- NULL#
+#
+	for(j in 1:nrow(X)){#
+ 		if (j != whoami) {#
+            tmp.cor <- cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng]), method=algorithm)#
+ 		  	if(tmp.cor > bestcor){#
+ 				bestcor <- tmp.cor#
+ 				bestcorrrow <- j#
+ 			}#
+ 		}#
+ 	}#
+ 	cat("I am most correlated with row: ", bestcorrrow, " With a correlation value of: ", bestcor, " (algorithm: ", algorithm, ")\n")#
+#
+	return(list(row= bestcorrrow, cor = bestcor))#
+}#
+#
+# Creates a vector of every correlation of myself to each student #
+# Returns the vector #
+get.cor <- function(X, whoami=1, colrng= 1:dim(X)[2]){#
+	if(is.matrix(X) == FALSE){#
+		X <- as.matrix(X)#
+	}#
+	corVector <- c()#
+	for(j in 1:nrow(X)){#
+        corVector <- c(corVector, cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng])))#
+ 	}#
+ 	return (corVector)#
+}#
+#
+# Tests the functions. Takes the file path as input#
+# PLOT HERE!! #
+doWork <- function(dataFilePath)#
+{#
+	dataSet <- read.csv( file = dataFilePath)#
+#
+	if(is.matrix(dataSet) == FALSE){  #when we convert we get a matrix character#
+		dataSet <- as.matrix(dataSet)#
+	}#
+#
+	# assign labels in column 1 to rownames#
+	rownames( dataSet ) <- dataSet[,1]#
+    #get your row#
+   	myVector <-c()#
+   	myRowNumb <- 0#
+#
+    for(j in 1:nrow(dataSet)){#
+    	if(dataSet[j,1] == 'M.Raab'){#
+    		myVector <- c(as.numeric(dataSet[j,8:21]))#
+    		myRowNumb <- j#
+    	}#
+    }#
+#
+    dataFrame <- as.numeric(dataSet[,8:21]) #take the numeric part of the matrix -- if this is numeric these will work!#
+#
+    #call best/worst functions#
+    worst.cor(dataSet[,8:21], myRowNumb)#
+    worst.cor(dataSet[,8:21], myRowNumb, algorithm="spearman")#
+#
+    best.cor(dataSet[,8:21], myRowNumb)#
+    best.cor(dataSet[,8:21], myRowNumb, algorithm="spearman")#
+#
+ 	#correlations of self to every other student in order of data set names #
+    corVector <- get.cor(dataSet[,8:21], myRowNumb)#
+#
+    #cat(corVector)#
+#
+    #hist(corVector,    # apply the hist function #
+   	#right=FALSE,    # intervals closed on the left #
+   	#main="Self Correlation to Class", # the main title #
+   	#ylab="Correlation",#
+   	#xlab="Student #",#
+   	#breaks=43)   #
+#
+   	#axis(1, at=1:nrow(dataSet), labels=dataSet[,1])    #
+#
+   	hist(corVector, main = "Self Correlation to Class", ylab = "Correlation", xlab = "Student # ", breaks= 42)#
+}
+doWork('/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets/Homework1/big-data-survey-2014-fall-interests.csv')
+getwd()
+setwd("/Users/abhiagarwal/Desktop/Classes/Computing with Large Data Sets")
+getwd()
+et
+get
+get()
+ls()
+help.start()
