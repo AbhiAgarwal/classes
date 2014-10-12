@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  11 OCT 2014 17:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  11 OCT 2014 21:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -228,42 +228,58 @@ Overfull \hbox (36.86443pt too wide) in paragraph at lines 17--18
 Overfull \vbox (112.2642pt too high) has occurred while \output is active []
 
 
-[2 <./IMG_20141011_142752.jpg>] [3]
-<IMG_20141011_151020.jpg, id=17, 3276.24pt x 2457.18pt>
+[2 <./IMG_20141011_142752.jpg>]
+<IMG_20141011_211239.jpg, id=14, 2457.18pt x 3276.24pt>
+File: IMG_20141011_211239.jpg Graphic file (type jpg)
+
+<use IMG_20141011_211239.jpg>
+Package pdftex.def Info: IMG_20141011_211239.jpg used on input line 22.
+(pdftex.def)             Requested size: 466.86905pt x 622.49208pt.
+
+Overfull \hbox (36.86443pt too wide) in paragraph at lines 22--23
+[] 
+ []
+
+
+Overfull \vbox (87.42068pt too high) has occurred while \output is active []
+
+
+[3 <./IMG_20141011_211239.jpg>]
+<IMG_20141011_151020.jpg, id=18, 3276.24pt x 2457.18pt>
 File: IMG_20141011_151020.jpg Graphic file (type jpg)
 
 <use IMG_20141011_151020.jpg>
-Package pdftex.def Info: IMG_20141011_151020.jpg used on input line 27.
+Package pdftex.def Info: IMG_20141011_151020.jpg used on input line 28.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 27--28
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 28--29
 [] 
  []
 
 [4 <./IMG_20141011_151020.jpg>]
-<IMG_20141011_154642.jpg, id=21, 2457.18pt x 3276.24pt>
+<IMG_20141011_154642.jpg, id=22, 2457.18pt x 3276.24pt>
 File: IMG_20141011_154642.jpg Graphic file (type jpg)
 
 <use IMG_20141011_154642.jpg>
-Package pdftex.def Info: IMG_20141011_154642.jpg used on input line 34.
+Package pdftex.def Info: IMG_20141011_154642.jpg used on input line 35.
 (pdftex.def)             Requested size: 368.5611pt x 491.41481pt.
  [5 <./IMG_20141011_154642.jpg>]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 39.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 40.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 39.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 40.
 
-<IMG_20141011_155225.jpg, id=26, 2457.18pt x 3276.24pt>
+<IMG_20141011_155225.jpg, id=27, 2457.18pt x 3276.24pt>
 File: IMG_20141011_155225.jpg Graphic file (type jpg)
 
 <use IMG_20141011_155225.jpg>
-Package pdftex.def Info: IMG_20141011_155225.jpg used on input line 41.
+Package pdftex.def Info: IMG_20141011_155225.jpg used on input line 42.
 (pdftex.def)             Requested size: 442.27332pt x 589.69777pt.
 
-Overfull \hbox (12.26869pt too wide) in paragraph at lines 39--42
+Overfull \hbox (12.26869pt too wide) in paragraph at lines 40--43
 [] 
  []
 
@@ -273,10 +289,10 @@ Overfull \vbox (68.63055pt too high) has occurred while \output is active []
 
 [6 <./IMG_20141011_155225.jpg>] (./Agarwal.aux) ) 
 Here is how much of TeX's memory you used:
- 2297 strings out of 493117
- 32627 string characters out of 6135433
+ 2302 strings out of 493117
+ 32761 string characters out of 6135433
  92423 words of memory out of 5000000
- 5736 multiletter control sequences out of 15000+600000
+ 5740 multiletter control sequences out of 15000+600000
  11044 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,6n,26p,253b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -287,10 +303,10 @@ ist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Agarwal.pdf (6 pages, 5969045 bytes).
+Output written on Agarwal.pdf (6 pages, 7488106 bytes).
 PDF statistics:
- 51 PDF objects out of 1000 (max. 8388607)
+ 52 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
