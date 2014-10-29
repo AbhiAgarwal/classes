@@ -1,107 +1,304 @@
+# Meredith Raab#
+# Assignment 1#
+# 9/22/14#
+#
+# How to run the code:#
+  # call doWork(filepath, 8:21) -- pass in the file path of the data set and #
+  #                             -- the column range is 8:21                               #
+#
+pause <- function ()#
+{#
+    cat("Pause. Press <Enter> to continue...")#
+    readline()#
+    invisible()#
+}#
+#
+# Sets the data as a matrix if it's not already one. #
+# Loops through the matrix and stores the worst correlation as well as the name and row.  #
+worst.cor<-function(X, Y, whoami = 1, colrng = 1:dim(X)[2], algorithm="pearson") {#
+ 	if(is.matrix(X) == FALSE){#
+ 		X <- as.matrix(X)#
+ 	}#
+#
+ 	worstcor <- 1#
+ 	worstcorrrow <- whoami#
+ 	worstCorName <- NULL#
+ 	for(j in 1:nrow(X)){#
+ 		if (j != whoami) {#
+            tmp.cor <- cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng]), method=algorithm)#
+ 		  	if(tmp.cor < worstcor){#
+ 				worstcor <- tmp.cor#
+ 				worstcorrrow <- j#
+ 				worstCorName <- Y[j,1]#
+ 			}#
+ 		}#
+ 	}#
+#
+ 	cat("I am least correlated with: ", worstCorName, "in row: ", worstcorrrow, " With a correlation value of: ", worstcor, " (algorithm: ", algorithm, ")\n")#
+#
+ 	return(list(row = worstcorrrow, cor = worstcor))#
+ }#
+#
+# Sets the data as a matrix if it's not already one. #
+# Loops through the matrix and stores the best correlation as well as the name and row.#
+best.cor<-function(X, Y, whoami = 1, colrng = 1:dim(X)[2], algorithm="pearson"){#
+	if(is.matrix(X) == FALSE){#
+		X <- as.matrix(X)#
+	}#
+#
+	bestcor<- -1#
+	bestcorrrow <- NULL#
+	betCorName <-NULL#
+	for(j in 1:nrow(X)){#
+ 		if (j != whoami) {#
+            tmp.cor <- cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng]), method=algorithm)#
+ 		  	if(tmp.cor > bestcor){#
+ 				bestcor <- tmp.cor#
+ 				bestcorrrow <- j#
+ 				bestCorName <- Y[j,1]#
+ 			}#
+ 		}#
+ 	}#
+#
+ 	cat("I am most correlated with: ", bestCorName, "in row: ", bestcorrrow, " With a correlation value of: ", bestcor, " (algorithm: ", algorithm, ")\n")#
+#
+	return(list(row= bestcorrrow, cor = bestcor))#
+}#
+#
+# Creates a vector of every correlation of myself to each student, excluding myself #
+# Returns the vector #
+get.cor <- function(X, whoami=1, colrng= 1:dim(X)[2]){#
+	if(is.matrix(X) == FALSE){#
+		X <- as.matrix(X)#
+	}#
+	corVector <- c()#
+	for(j in 1:nrow(X)){#
+		if (j!=whoami) {#
+        	corVector <- c(corVector, cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng])))#
+    	}#
+ 	}#
+ 	return (corVector)#
+}#
+#
+# Tests the functions. Takes the file path and the column range as input #
+# For this data set, the column range to be passed is 8:21 (the numeric section of the matrix)#
+doWork <- function(dataFilePath, col_range)#
+{#
+	dataSet <- read.csv( file = dataFilePath)#
+#
+	if(is.matrix(dataSet) == FALSE){  #when we convert we get a matrix character#
+		dataSet <- as.matrix(dataSet)#
+	}#
+#
+	rownames( dataSet ) <- dataSet[,1]#
+#
+   	myVector <-c()#
+   	myRowNumb <- 0#
+#
+    for(j in 1:nrow(dataSet)){#
+    	if(dataSet[j,1] == 'M.Raab'){#
+    		myVector <- c(as.numeric(dataSet[j,col_range]))#
+    		myRowNumb <- j#
+    	}#
+    }#
+#
+    dataFrame <- as.numeric(dataSet[,col_range]) #
+#
+    worst.cor(dataSet[,col_range], dataSet, myRowNumb) # pearson #
+    worst.cor(dataSet[,col_range], dataSet, myRowNumb, algorithm="spearman") #
+    best.cor(dataSet[,col_range], dataSet, myRowNumb) # pearson#
+    best.cor(dataSet[,col_range], dataSet, myRowNumb, algorithm="spearman") #
+#
+ 	#correlations of self to every other student in order of data set names #
+    corVector <- get.cor(dataSet[,col_range], myRowNumb)#
+#
+    #plotted correlations in a histogram #
+   	hist(corVector, main = "Self Correlation to Class", ylab = "Frequency", xlab = "Correlation ", breaks= 42)#
+}
+doWork("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework1/big-data-survey-2014-fall-interests.csv", 8:21)
+``... inquiring into measures where things do not admit of being measured.''
+# Meredith Raab#
+# Assignment 1#
+# 9/22/14#
+#
+# How to run the code:#
+  # call doWork(filepath, 8:21) -- pass in the file path of the data set and #
+  #                             -- the column range is 8:21                               #
+#
+pause <- function ()#
+{#
+    cat("Pause. Press <Enter> to continue...")#
+    readline()#
+    invisible()#
+}#
+#
+# Sets the data as a matrix if it's not already one. #
+# Loops through the matrix and stores the worst correlation as well as the name and row.  #
+worst.cor<-function(X, Y, whoami = 1, colrng = 1:dim(X)[2], algorithm="pearson") {#
+ 	if(is.matrix(X) == FALSE){#
+ 		X <- as.matrix(X)#
+ 	}#
+#
+ 	worstcor <- 1#
+ 	worstcorrrow <- whoami#
+ 	worstCorName <- NULL#
+ 	for(j in 1:nrow(X)){#
+ 		if (j != whoami) {#
+            tmp.cor <- cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng]), method=algorithm)#
+ 		  	if(tmp.cor < worstcor){#
+ 				worstcor <- tmp.cor#
+ 				worstcorrrow <- j#
+ 				worstCorName <- Y[j,1]#
+ 			}#
+ 		}#
+ 	}#
+#
+ 	cat("I am least correlated with: ", worstCorName, "in row: ", worstcorrrow, " With a correlation value of: ", worstcor, " (algorithm: ", algorithm, ")\n")#
+#
+ 	return(list(row = worstcorrrow, cor = worstcor))#
+ }#
+#
+# Sets the data as a matrix if it's not already one. #
+# Loops through the matrix and stores the best correlation as well as the name and row.#
+best.cor<-function(X, Y, whoami = 1, colrng = 1:dim(X)[2], algorithm="pearson"){#
+	if(is.matrix(X) == FALSE){#
+		X <- as.matrix(X)#
+	}#
+#
+	bestcor<- -1#
+	bestcorrrow <- NULL#
+	betCorName <-NULL#
+	for(j in 1:nrow(X)){#
+ 		if (j != whoami) {#
+            tmp.cor <- cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng]), method=algorithm)#
+ 		  	if(tmp.cor > bestcor){#
+ 				bestcor <- tmp.cor#
+ 				bestcorrrow <- j#
+ 				bestCorName <- Y[j,1]#
+ 			}#
+ 		}#
+ 	}#
+#
+ 	cat("I am most correlated with: ", bestCorName, "in row: ", bestcorrrow, " With a correlation value of: ", bestcor, " (algorithm: ", algorithm, ")\n")#
+#
+	return(list(row= bestcorrrow, cor = bestcor))#
+}#
+#
+# Creates a vector of every correlation of myself to each student, excluding myself #
+# Returns the vector #
+get.cor <- function(X, whoami=1, colrng= 1:dim(X)[2]){#
+	if(is.matrix(X) == FALSE){#
+		X <- as.matrix(X)#
+	}#
+	corVector <- c()#
+	for(j in 1:nrow(X)){#
+		if (j!=whoami) {#
+        	corVector <- c(corVector, cor(as.numeric(X[whoami,colrng]), as.numeric(X[j,colrng])))#
+    	}#
+ 	}#
+ 	return (corVector)#
+}#
+#
+# Tests the functions. Takes the file path and the column range as input #
+# For this data set, the column range to be passed is 8:21 (the numeric section of the matrix)#
+doWork <- function(dataFilePath, col_range)#
+{#
+	dataSet <- read.csv( file = dataFilePath)#
+#
+	if(is.matrix(dataSet) == FALSE){  #when we convert we get a matrix character#
+		dataSet <- as.matrix(dataSet)#
+	}#
+#
+	rownames( dataSet ) <- dataSet[,1]#
+#
+   	myVector <-c()#
+   	myRowNumb <- 0#
+#
+    for(j in 1:nrow(dataSet)){#
+    	if(dataSet[j,1] == 'M.Raab'){#
+    		myVector <- c(as.numeric(dataSet[j,col_range]))#
+    		myRowNumb <- j#
+    	}#
+    }#
+#
+    dataFrame <- as.numeric(dataSet[,col_range]) #
+#
+    worst.cor(dataSet[,col_range], dataSet, myRowNumb) # pearson #
+    worst.cor(dataSet[,col_range], dataSet, myRowNumb, algorithm="spearman") #
+    best.cor(dataSet[,col_range], dataSet, myRowNumb) # pearson#
+    best.cor(dataSet[,col_range], dataSet, myRowNumb, algorithm="spearman") #
+#
+ 	#correlations of self to every other student in order of data set names #
+    corVector <- get.cor(dataSet[,col_range], myRowNumb)#
+#
+    #plotted correlations in a histogram #
+   	hist(corVector, main = "Self Correlation to Class", ylab = "Frequency", xlab = "Correlation ", breaks= 42)#
+}
+doWork("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework1/big-data-survey-2014-fall-interests.csv", 8:21)
+load("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.list.rda")
+baa
+baa.anno.list
+rda
+c <- load("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.list.rda")
+c
+c.
+c
+c[1]
+c[1][0]
+c[1][1]
+c[1][2]
 load("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.ratios.rda")
+cd <- load("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.ratios.rda")
+cd
+baa.ratios'
 baa.ratios
-baa.ratios.rda
-baa.ratio
-baa.ratios
-attach("al.rda")#
-ls("file:al.rda")
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.ratios.rda")
-ratios
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.ratios.rda")
-ratios
-len(ratios)
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.trans.rda")
-ratios
-ls
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.trans.rda")
-anno.trans
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.list.rda")
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.list.rda")
+q
+source("Agarwal-Homework2.R")
+annoListDirectory
+print(annoListDirectory)
 anno.list
-d = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt")
-d
-d = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", sep="\n")
-d
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.anno.list.rda")
-attach("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.ratios.rda")
-d
-listOfGenes = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-						 sep = "\n",#
-						 col.names = c("id", "name", "category")#
-						 )
-listOfGenes = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-						 sep = "\n",#
-						 col.names = c("id", "name", "category")#
-						 )
-listOfGenes = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-						 sep = "\n",#
-						 col.names = c("id", "name", "category")#
-						 )
-listOfGenes = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-						 sep = "\n",#
-						 col.names = c("id", "name", "category")#
-						 )
-listOfGenes = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-						 sep = "\n",#
-						 col.names = c("id", "name", "category")#
-						 )
-listOfGenes = read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt",#
-						 sep = "\n"#
-						 )
-listOfGenes
-listOfGenes
-listOfGenes[0]
-listOfGenes[1]
-listOfGenes[2]
-listOfGenes[1]
-listOfGenes[1][0]
-listOfGenes[1][1]
-listOfGenes = as.matrix(read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", sep = "\n"))
-listOfGenes[1][1]
-listOfGenes[1]
-listOfGenes
-listOfGenes[0]
-listOfGenes[1]
-listOfGenes[199]
-listOfGenes[199][0]
-listOfGenes[199][1]
-listOfGenes[199][2]
-listOfGenes[199][1]
-listOfGenes[199][1][1]
-listOfGenes[199][1][4]
-listOfGenes[199][1][0]
-listOfGenes[199]
-listOfGenes = as.matrix(read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-	sep = "\n",#
-	row.names = 1#
-	))
-listOfGenes
-listOfGenes[0]
-listOfGenes[1]
-listOfGenes[0]
-listOfGenes[0][1]
-listOfGenes[0]
-listOfGenes[0]
-listOfGenes = as.matrix(read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-	sep = "\n",#
-	row.names = 1#
-	))
-listOfGenes = as.matrix(read.table("/Users/abhi/Desktop/class/Computing with Large Data Sets/Homework2/baa.TFs.txt", #
-	sep = "\n"#
-	))
-listOfGenes[0]
-listOfGenes[1]
-strsplit(listOfGenes[1], " ")
+anno.list[0]
+anno.list[1]
+anno.list[2]
+anno.list[0]
+anno.list[1]
+anno.list[1][0]
+anno.list[1][1]
+anno.list[1][1][1]
+anno.list[1]
+anno.trans
+anno.trans[0]
+anno.trans[1]
+anno.trans[2]
+anno.trans[3]
+anno.trans[3
+anno.trans[3
+anno.trans[3
+quit
+x
 ratios
-listOfGenes
-run
-load
-load('Agarwal-Homework2.R')
-source("Agarwal-Homework2.R")
-source("Agarwal-Homework2.R")
-source("Agarwal-Homework2.R")
-data(anno)
-data
-data(ratios)
+ratios[1]
+ratios[0]
+ratios[2]
+ratios[3]
+ratios[4]
+ratios[1][1]
+ratios[1][2]
+ratios[1][1]
+ratios[1][1][1]
+ratios[0]
+ratios$name
+ratios$
 ratios
-summary(ratios)
+ratios
+row.names(ratios)
+row.names(ratios)
+t(row.names(ratios))
+t(row.names(ratios))[0]
+t(row.names(ratios))[1]
+t(row.names(ratios))[2]
+t(row.names(ratios))[3]
+t(row.names(ratios))[4]
+t(row.names(ratios))[100]
+t(row.names(ratios))[101]
+t(row.names(ratios))[102]
