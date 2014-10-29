@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  25 OCT 2014 15:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 OCT 2014 01:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -215,10 +215,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: IMG_20141025_154037.jpg Graphic file (type jpg)
 
 <use IMG_20141025_154037.jpg>
-Package pdftex.def Info: IMG_20141025_154037.jpg used on input line 18.
+Package pdftex.def Info: IMG_20141025_154037.jpg used on input line 20.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 18--19
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 20--21
 [] 
  []
 
@@ -226,10 +226,10 @@ Overfull \hbox (61.41019pt too wide) in paragraph at lines 18--19
 File: IMG_20141025_154052.jpg Graphic file (type jpg)
 
 <use IMG_20141025_154052.jpg>
-Package pdftex.def Info: IMG_20141025_154052.jpg used on input line 22.
+Package pdftex.def Info: IMG_20141025_154052.jpg used on input line 23.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 22--23
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 23--24
 [] 
  []
 
@@ -247,25 +247,103 @@ Overfull \hbox (61.41019pt too wide) in paragraph at lines 26--27
 [] 
  []
 
-[2 <./IMG_20141025_154052.jpg>] [3 <./IMG_20141025_154609.jpg>] (./Agarwal.aux)
- ) 
+[2 <./IMG_20141025_154052.jpg>]
+<IMG_20141028_235513.jpg, id=17, 3276.24pt x 2457.18pt>
+File: IMG_20141028_235513.jpg Graphic file (type jpg)
+
+<use IMG_20141028_235513.jpg>
+Package pdftex.def Info: IMG_20141028_235513.jpg used on input line 31.
+(pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
+
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 31--32
+[] 
+ []
+
+[3 <./IMG_20141025_154609.jpg>]
+<IMG_20141028_235505.jpg, id=21, 3276.24pt x 2457.18pt>
+File: IMG_20141028_235505.jpg Graphic file (type jpg)
+
+<use IMG_20141028_235505.jpg>
+Package pdftex.def Info: IMG_20141028_235505.jpg used on input line 34.
+(pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
+
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 34--35
+[] 
+ []
+
+[4 <./IMG_20141028_235513.jpg>]
+<IMG_20141028_235519.jpg, id=25, 3276.24pt x 2457.18pt>
+File: IMG_20141028_235519.jpg Graphic file (type jpg)
+
+<use IMG_20141028_235519.jpg>
+Package pdftex.def Info: IMG_20141028_235519.jpg used on input line 37.
+(pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
+
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 37--38
+[] 
+ []
+
+[5 <./IMG_20141028_235505.jpg>]
+<IMG_20141029_001005.jpg, id=29, 3276.24pt x 2457.18pt>
+File: IMG_20141029_001005.jpg Graphic file (type jpg)
+
+<use IMG_20141029_001005.jpg>
+Package pdftex.def Info: IMG_20141029_001005.jpg used on input line 40.
+(pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
+
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 40--41
+[] 
+ []
+
+[6 <./IMG_20141028_235519.jpg>] [7 <./IMG_20141029_001005.jpg>]
+<IMG_20141029_003207.jpg, id=37, 3276.24pt x 2457.18pt>
+File: IMG_20141029_003207.jpg Graphic file (type jpg)
+
+<use IMG_20141029_003207.jpg>
+Package pdftex.def Info: IMG_20141029_003207.jpg used on input line 49.
+(pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
+
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 49--50
+[] 
+ []
+
+<IMG_20141029_013718.jpg, id=38, 2457.18pt x 3276.24pt>
+File: IMG_20141029_013718.jpg Graphic file (type jpg)
+
+<use IMG_20141029_013718.jpg>
+Package pdftex.def Info: IMG_20141029_013718.jpg used on input line 56.
+(pdftex.def)             Requested size: 368.5611pt x 491.41481pt.
+
+<IMG_20141029_014044.jpg, id=39, 2457.18pt x 3276.24pt>
+File: IMG_20141029_014044.jpg Graphic file (type jpg)
+
+<use IMG_20141029_014044.jpg>
+Package pdftex.def Info: IMG_20141029_014044.jpg used on input line 57.
+(pdftex.def)             Requested size: 368.5611pt x 491.41481pt.
+ [8 <./IMG_20141029_003207.jpg>]
+Overfull \vbox (45.75485pt too high) has occurred while \output is active []
+
+
+[9 <./IMG_20141029_013718.jpg>] [10 <./IMG_20141029_014044.jpg>] (./Agarwal.aux
+) ) 
 Here is how much of TeX's memory you used:
- 2272 strings out of 493117
- 32124 string characters out of 6135433
+ 2312 strings out of 493117
+ 33146 string characters out of 6135433
  92423 words of memory out of 5000000
- 5714 multiletter control sequences out of 15000+600000
- 10104 words of font info for 38 fonts, out of 8000000 for 9000
+ 5747 multiletter control sequences out of 15000+600000
+ 11352 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,6n,26p,239b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></
-usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></us
-r/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Agarwal.pdf (3 pages, 4325271 bytes).
+</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pf
+b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
+/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
+sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
+/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Agarwal.pdf (10 pages, 15655753 bytes).
 PDF statistics:
- 37 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
