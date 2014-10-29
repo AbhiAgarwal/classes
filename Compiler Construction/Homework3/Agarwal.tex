@@ -15,7 +15,7 @@
 \subsection{Question 1.1}
 \par Explain why the following statement does not parse with a given grammar.
 \par In the $matchedstmt$ part of the grammar - specifically in the $other$ there is nothing that follows it. In our statement we have a $if$ following the $other$, which is not permitted by the given grammar.
-\par In more detail: $if$ $e$ $then$ would be parsed by the $matchedstmt$ part of grammar, and would follow another $matchedstmt$ after that - meaning that if we have $other$ then it should stop. In this case it doesn't so it would not be able to be parsed.
+\par In more detail: $if$ $e$ $then$ would be parsed by the $matchedstmt$ part of grammar, and would follow another $matchedstmt$ - it would mean that if we have $other$ then it will stop. In the case of the test grammar it doesn't so it would not be able to be parsed, and therefore is incorrect.
 
 \subsection{Question 1.2}
 \par Show the grammar converted to right recursion?

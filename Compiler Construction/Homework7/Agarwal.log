@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 OCT 2014 01:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  29 OCT 2014 11:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -97,18 +97,18 @@ LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (./Agarwal.aux)
 \openout1 = `Agarwal.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -201,12 +201,12 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for U+msa on input line 13.
+LaTeX Font Info:    Try loading font information for U+msa on input line 12.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 13.
+LaTeX Font Info:    Try loading font information for U+msb on input line 12.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -215,10 +215,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: IMG_20141025_154037.jpg Graphic file (type jpg)
 
 <use IMG_20141025_154037.jpg>
-Package pdftex.def Info: IMG_20141025_154037.jpg used on input line 20.
+Package pdftex.def Info: IMG_20141025_154037.jpg used on input line 19.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 20--21
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 19--20
 [] 
  []
 
@@ -226,10 +226,10 @@ Overfull \hbox (61.41019pt too wide) in paragraph at lines 20--21
 File: IMG_20141025_154052.jpg Graphic file (type jpg)
 
 <use IMG_20141025_154052.jpg>
-Package pdftex.def Info: IMG_20141025_154052.jpg used on input line 23.
+Package pdftex.def Info: IMG_20141025_154052.jpg used on input line 22.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 23--24
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 22--23
 [] 
  []
 
@@ -240,10 +240,10 @@ Overfull \hbox (61.41019pt too wide) in paragraph at lines 23--24
 File: IMG_20141025_154609.jpg Graphic file (type jpg)
 
 <use IMG_20141025_154609.jpg>
-Package pdftex.def Info: IMG_20141025_154609.jpg used on input line 26.
+Package pdftex.def Info: IMG_20141025_154609.jpg used on input line 25.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 26--27
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 25--26
 [] 
  []
 
@@ -255,7 +255,7 @@ File: IMG_20141028_235513.jpg Graphic file (type jpg)
 Package pdftex.def Info: IMG_20141028_235513.jpg used on input line 31.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 31--32
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 30--32
 [] 
  []
 
@@ -283,49 +283,45 @@ Overfull \hbox (61.41019pt too wide) in paragraph at lines 37--38
 [] 
  []
 
-[5 <./IMG_20141028_235505.jpg>]
-<IMG_20141029_001005.jpg, id=29, 3276.24pt x 2457.18pt>
+[5 <./IMG_20141028_235505.jpg>] [6 <./IMG_20141028_235519.jpg>]
+<IMG_20141029_001005.jpg, id=32, 3276.24pt x 2457.18pt>
 File: IMG_20141029_001005.jpg Graphic file (type jpg)
 
 <use IMG_20141029_001005.jpg>
-Package pdftex.def Info: IMG_20141029_001005.jpg used on input line 40.
+Package pdftex.def Info: IMG_20141029_001005.jpg used on input line 43.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 40--41
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 42--44
 [] 
  []
 
-[6 <./IMG_20141028_235519.jpg>] [7 <./IMG_20141029_001005.jpg>]
+[7 <./IMG_20141029_001005.jpg>]
 <IMG_20141029_003207.jpg, id=37, 3276.24pt x 2457.18pt>
 File: IMG_20141029_003207.jpg Graphic file (type jpg)
 
 <use IMG_20141029_003207.jpg>
-Package pdftex.def Info: IMG_20141029_003207.jpg used on input line 49.
+Package pdftex.def Info: IMG_20141029_003207.jpg used on input line 52.
 (pdftex.def)             Requested size: 491.41481pt x 368.5611pt.
 
-Overfull \hbox (61.41019pt too wide) in paragraph at lines 49--50
+Overfull \hbox (61.41019pt too wide) in paragraph at lines 52--53
 [] 
  []
 
-<IMG_20141029_013718.jpg, id=38, 2457.18pt x 3276.24pt>
-File: IMG_20141029_013718.jpg Graphic file (type jpg)
-
-<use IMG_20141029_013718.jpg>
-Package pdftex.def Info: IMG_20141029_013718.jpg used on input line 56.
-(pdftex.def)             Requested size: 368.5611pt x 491.41481pt.
-
-<IMG_20141029_014044.jpg, id=39, 2457.18pt x 3276.24pt>
+[8 <./IMG_20141029_003207.jpg>] [9]
+<IMG_20141029_014044.jpg, id=48, 2457.18pt x 3276.24pt>
 File: IMG_20141029_014044.jpg Graphic file (type jpg)
 
 <use IMG_20141029_014044.jpg>
-Package pdftex.def Info: IMG_20141029_014044.jpg used on input line 57.
+Package pdftex.def Info: IMG_20141029_014044.jpg used on input line 67.
 (pdftex.def)             Requested size: 368.5611pt x 491.41481pt.
- [8 <./IMG_20141029_003207.jpg>]
-Overfull \vbox (45.75485pt too high) has occurred while \output is active []
+ [10 <./IMG_20141029_014044.jpg>]
+<IMG_20141029_013718.jpg, id=52, 2457.18pt x 3276.24pt>
+File: IMG_20141029_013718.jpg Graphic file (type jpg)
 
-
-[9 <./IMG_20141029_013718.jpg>] [10 <./IMG_20141029_014044.jpg>] (./Agarwal.aux
-) ) 
+<use IMG_20141029_013718.jpg>
+Package pdftex.def Info: IMG_20141029_013718.jpg used on input line 71.
+(pdftex.def)             Requested size: 368.5611pt x 491.41481pt.
+ [11 <./IMG_20141029_013718.jpg>] (./Agarwal.aux) ) 
 Here is how much of TeX's memory you used:
  2312 strings out of 493117
  33146 string characters out of 6135433
@@ -334,16 +330,20 @@ Here is how much of TeX's memory you used:
  11352 words of font info for 43 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,6n,26p,239b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pf
-b></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr
-/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Agarwal.pdf (10 pages, 15655753 bytes).
+</usr/local/texlive/2014/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2014/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on Agarwal.pdf (11 pages, 15685769 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 86 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

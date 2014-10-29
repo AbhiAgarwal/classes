@@ -2,7 +2,6 @@
 \usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
 \geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
-								% TeX will automatically convert eps --> pdf in pdflatex		
 \usepackage{amssymb}
 
 \title{Homework 7}
@@ -28,6 +27,7 @@
 \subsection{Question 1.2}
 
 \subsubsection{Syntax Tree}
+\par Please change the word "minus" to an actual minus (-) (My mistake I looked at this later) \\
 \includegraphics[scale=0.15]{IMG_20141028_235513.jpg}
 
 \subsubsection{Quadruples}
@@ -36,7 +36,10 @@
 \subsubsection{Triples}
 \includegraphics[scale=0.15]{IMG_20141028_235519.jpg}
 
+\newpage
+
 \subsubsection{Indirect Triples}
+\par Please change the 35, 36, 37 to 0, 1, 2 instead as that's arbitrary and I misunderstood it on the slides. \\
 \includegraphics[scale=0.15]{IMG_20141029_001005.jpg}
 
 \newpage
@@ -48,12 +51,23 @@
 \subsubsection{Add a translation rule for the following expression production: \\ E $\rightarrow$ E1 * E2}
 \includegraphics[scale=0.15]{IMG_20141029_003207.jpg}
 
+\newpage
+
 \subsection{Question 2.2}
 \subsubsection{Explain how the code is expected to evaluate, assuming parameters are passed call-by-value.}
+\par Taken from the slides: If parameters are passed call-by-value then the contract is: 
+\par $E_1$.code, ..., $E_n$.code are evaluated before results placed into temporary 
+\par $E_1$.addr, ..., $E_n$.addr
+\par \noindent hello
+
+\newpage
 
 \subsection{Question 2.3}
 \subsubsection{S $\rightarrow$ for(S1; B; S2) S3 \\ Extending the code from the book}
-\includegraphics[scale=0.15]{IMG_20141029_013718.jpg} \\
 \includegraphics[scale=0.15]{IMG_20141029_014044.jpg}
+
+\newpage
+
+\includegraphics[scale=0.15]{IMG_20141029_013718.jpg}
 
 \end{document}  
