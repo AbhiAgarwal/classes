@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  3 NOV 2014 13:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  5 NOV 2014 00:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -222,27 +222,42 @@ Overfull \hbox (61.41019pt too wide) in paragraph at lines 17--18
 [] 
  []
 
+<IMG_20141105_001043.jpg, id=2, 2457.18pt x 3276.24pt>
+File: IMG_20141105_001043.jpg Graphic file (type jpg)
+
+<use IMG_20141105_001043.jpg>
+Package pdftex.def Info: IMG_20141105_001043.jpg used on input line 21.
+(pdftex.def)             Requested size: 491.42729pt x 655.2364pt.
+
+Overfull \hbox (61.42267pt too wide) in paragraph at lines 21--22
+[] 
+ []
+
 [1
 
 {/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./IMG_2
-0141031_203503.jpg>] [2] (./Agarwal.aux) ) 
+0141031_203503.jpg>]
+Overfull \vbox (120.16501pt too high) has occurred while \output is active []
+
+
+[2 <./IMG_20141105_001043.jpg>] (./Agarwal.aux) ) 
 Here is how much of TeX's memory you used:
- 2260 strings out of 493117
- 31832 string characters out of 6135433
+ 2265 strings out of 493117
+ 31966 string characters out of 6135433
  92423 words of memory out of 5000000
- 5705 multiletter control sequences out of 15000+600000
+ 5709 multiletter control sequences out of 15000+600000
  9796 words of font info for 37 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  37i,6n,26p,239b,199s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Agarwal.pdf (2 pages, 1839263 bytes).
+</usr/local/texlive/2014/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on Agarwal.pdf (2 pages, 3741085 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
+ 29 PDF objects out of 1000 (max. 8388607)
  18 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
