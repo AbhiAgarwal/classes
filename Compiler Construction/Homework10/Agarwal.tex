@@ -4,11 +4,9 @@
 \usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
 \usepackage{amssymb}
 
-\title{Homework 8}
+\title{Homework 10}
 \author{Abhi Agarwal}
 \date{}
-
-
 
 \begin{document}
 \maketitle
@@ -26,11 +24,27 @@
     \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
     \hline
     Code & R1 & R2 & R3 & a & i & j & k & m & n & p \\ \hline
+    BLOCK: & & & & & & & & & & \\ \hline
     & & & & a & i & j & & & & \\ \hline
+    2: k = 10 * i & & & & & & & & & & \\ \hline
     LDR R1,[R11,\&i] & i & & & a & i, R1 & j & & & & \\ \hline
     MUL R2, R1, \#10 & i & k & & a & i, R1 & j & R2 & & & \\ \hline
+    3: m = k + j & & & & & & & & & & \\ \hline
     LDR R1,[R11,\&j] & j & k & & a & i & j, R1 & R2 & & & \\ \hline
     ADD R3, R2, R1 & j & k & m & a & i & j, R1 & R2 & R3 & & \\ \hline
+    4: n = 8 * m & & & & & & & & & & \\ \hline
+    MUL R3, \#8, R3 & j & k & n & a & i & j, R1 & R2 & & R3 & \\ \hline
+    5: p = n - 88 & & & & & & & & & & \\ \hline
+    SUB R3, R3, \#88 & j & k & p & a & i & j, R1 & R2 & & & R3 \\ \hline
+    6: a = a + p & & & & & & & & & & \\ \hline
+    LDR R1[R11,\&a] & a & k & p & a, R1 & i & j & R2 & & & R3 \\ \hline
+    ADD R1, R1, R3 & a & k & p & a, R1 & i & j & R2 & & & R3 \\ \hline
+    7: j = j + k & & & & & & & & & & \\ \hline
+    LDR R1[R11,\&j] & j & k & p & a & i & j, R1 & R2 & & & R3 \\ \hline
+    ADD R1, R1, R2 & j & k & p & a & i & j, R1 & R2 & & & R3 \\ \hline
+    8: if j $<$= 100 goto 2 & & & & & & & & & & \\ \hline
+    CMPS R1, \#100 & j & k & p & a & i & j, R1 & R2 & & & R3 \\ \hline
+    BLE BLOCK & j & k & p & a & i & j, R1 & R2 & & & R3 \\ \hline
     \end{tabular}
 \end{center}
 
