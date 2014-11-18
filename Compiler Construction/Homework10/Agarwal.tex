@@ -1,0 +1,38 @@
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+\usepackage{amssymb}
+
+\title{Homework 8}
+\author{Abhi Agarwal}
+\date{}
+
+
+
+\begin{document}
+\maketitle
+
+\section{Simple Register Allocation}
+
+\subsection*{Question 1.1} 
+\par We say that j is a local variable and that k,m,n,p are temporaries. Explain why.
+\par j is the only variable that is used or appears throughout different blocks, and therefore needs to be saved so it can be accessed by different portions of the program. It's the only accessed variable that is shared across all blocks - whereas the others are only need within their own blocks. 
+
+\subsection*{Question 1.2}
+\par Generate code with good register allocation for the basic block from lines 2-8 in the example above, following the pattern of the Dragon Book 8.6 and Figure 8.16.
+
+\begin{center}
+    \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
+    \hline
+    Code & R1 & R2 & R3 & a & i & j & k & m & n & p \\ \hline
+    & & & & a & i & j & & & & \\ \hline
+    LDR R1,[R11,\&i] & i & & & a & i, R1 & j & & & & \\ \hline
+    MUL R2, R1, \#10 & i & k & & a & i, R1 & j & R2 & & & \\ \hline
+    LDR R1,[R11,\&j] & j & k & & a & i & j, R1 & R2 & & & \\ \hline
+    ADD R3, R2, R1 & j & k & m & a & i & j, R1 & R2 & R3 & & \\ \hline
+    \end{tabular}
+\end{center}
+
+
+\end{document}  
