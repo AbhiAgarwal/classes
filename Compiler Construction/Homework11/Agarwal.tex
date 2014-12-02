@@ -14,9 +14,43 @@
 \section{Bottom-up parsing}
 
 \subsection*{Question 1.1} 
-\par 
+\par The first few moves for parsing the string (n*n)*n bottom-up look. Write down the remaining moves.
+\begin{center}
+    \begin{tabular}{| l | l | l | l | l | l | l | l | l | l | l |}
+    \hline
+    Stack & Input & Action \\ \hline
+    \$ & (n*n)*n\$ & shift \\ \hline
+    \$( & n*n)*n\$ & shift \\ \hline
+    \$(n & *n)*n\$ & reduce F $\rightarrow$ n \\ \hline
+    \$(F & *n)*n\$ & shift \\ \hline
+    \$(F* & n)*n\$ & shift \\ \hline
+    \$(F*n & )*n\$ & reduce F $\rightarrow$ n \\ \hline
+    \$(F*F & )*n\$ & shift \\ \hline
+    \$(F*F) & *n\$ & reduce (E) $\rightarrow$ (F*F) \\ \hline
+    \$(E)* & n\$ & shift \\ \hline
+    \$(E)*n & \$ & reduce F $\rightarrow$ (E) \\ \hline
+    \$F*F & \$ & reduce n $\rightarrow$ F \\ \hline
+    \$F*E & \$ & reduce E $\rightarrow$ F \\ \hline
+    \$E & \$ & accept \\ \hline
+    \end{tabular}
+\end{center}
 
 \subsection*{Question 1.2} 
-\par 
+\par Compute the ITEMS and CLOSURE sets for the grammar in the previous question.
+\par ITEMS
+\par \textbf{E $\rightarrow$ F * E $|$ F:}
+\par E $\rightarrow$ . F * E $|$ . F
+\par E $\rightarrow$ F . * E $|$ F
+\par E $\rightarrow$ F * . E $|$ F
+\par E $\rightarrow$ F * E . $|$ F
+\par E $\rightarrow$ F * E $|$ F .
+\par \textbf{F $\rightarrow$ (E) $|$ $n$:}
+\par F $\rightarrow$ . (E) $|$ . $n$
+\par F $\rightarrow$ (. E) $|$ $n$
+\par F $\rightarrow$ (E .) $|$ $n$
+\par F $\rightarrow$ (E) . $|$ $n$
+\par F $\rightarrow$ (E) $|$ $n$ .
+
+
 
 \end{document}  
