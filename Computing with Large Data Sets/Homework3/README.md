@@ -1,21 +1,17 @@
-## Word counts dataset
-This dataset contains word counts from 3 twitter collections
+## Homework 3
 
+#### Description of Homework
 
-1. Tweets related to the shooting of Michael Brown in Fergosun: all tweets sent between 2014-10-1 and 2014-11-1 containing one of the keywords (ferguson, mikebrown, justiceformikebrown, blacklivesmatter, blacklifematters, iftheygunnedmedown, fergusonshooting, fergusonriot, nmos14, noangel). 948,847 tweets, 180MB.
+- The assignment is to tell me what is different and what is the same between these vectors: what can we learn about these events from these 4 x 3 vectors.
+- Tell me what is different with three tables/plots or figures of your choice.
+- If you want raw tweets you have to ask the guys and they can give you a small random sample from each topic+time.
 
-2. Tweets sent with geotagging (geo-tagging is optional and most twitter users don't use it), from 10 large US cities (New York, Los Angeles, Chicago, Houston, Philadelphia, Phoenix, Indianapolos, Jacksonville, Columbus, Charlotte), sent between 2014-10-31 and 2014-11-25. 16,755,061 tweets, 2.7GB.
+#### Example questions:
 
-3. Tweets containing the keyword "ebola", sent between 2014-10-1 and 2014-11-1. 13,088,357 tweets, 2.4GB.
-
-For each data set, only words that appear in at least 3 tweets, but no more than 95% of tweets, are counted.
-
-In all 3 cases, only tweets where twitter reports the language is English are counted. Note that the twitter language-decetion isn't leak-proof and some non-english tweets inevitably get counted as well.
-
-Each collection is split into weekly periods and words are counted within each period. The data files are
-
-1. IfTheyGunnedMeDown_frequencies.csv
-2. USTop10Cities_frequencies.csv
-3. Ebola_frequencies.csv
-
-Each file lists the term counts for each term in each period. It contains 1 column listing the term, and one column per weekly period, named by the first day of that period.
+1. what is different about the distribution of word frequencies ?
+2. what are the most enriched or depleted words in each set
+3. could you perform automated sentiment analysis of the word lists (by sampling words from this frequency) and estimate the change in sentiment by week.
+(for example, are americans more worried about ebola or cops shooting their kids)
+4. if you collect tweets today have the word count frequencies changed ?
+5. can you identify dates and places separate from other words and determine relative frequencies of dates
+6. fraction of words that are proper nouns or names change from event to event or by time?
