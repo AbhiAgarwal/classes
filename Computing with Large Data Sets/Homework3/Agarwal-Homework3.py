@@ -1,6 +1,10 @@
-import csv, unicodedata, enchant, re
+import csv, unicodedata, enchant, re, collections, sys
 from textblob import TextBlob
 import string
+
+#### ['term', '2014-10-20', '2014-10-27', '2014-10-06', '2014-10-13']
+
+#### Extra Functions ####
 
 a = re.compile("[A-Za-z]^")
 d = enchant.Dict("en_US")
@@ -59,7 +63,7 @@ def sentimentFunction(reducedList2):
 	ifDescendending = all(earlier >= later for earlier, later in zip(seq, seq[1:]))
 	ifAscending = all(earlier <= later for earlier, later in zip(seq, seq[1:]))
 
-	print sectionOne, sectionTwo, sectionThree, sectionFour
+	#print sectionOne, sectionTwo, sectionThree, sectionFour
 
 	if not ifAscending and not ifDescendending:
 		return 'Sentiment fluctuates over time'
@@ -69,48 +73,77 @@ def sentimentFunction(reducedList2):
 		if ifAscending:
 			return 'Sentiment is ascending over time'
 
-# ['term', '2014-10-20', '2014-10-27', '2014-10-06', '2014-10-13']
-###########
+def mostCommonWords(reducedList1, reducedList2):
+	for z in range(1, 5):
+		currentYear = reducedList1[0][z]
+		print ''
+		print currentYear
+		print ''
+		# Most Frequent Words in different years
+		listOfWords = []
+		for i in reducedList1[1:len(reducedList1)]:
+			for x in range(0, int(i[z])):
+				listOfWords.append(i[0])
 
-print ''
-print 'Ebola'
+		listOfWords2 = []
+		for i in reducedList2[1:len(reducedList2)]:
+			for x in range(0, int(i[z])):
+				listOfWords2.append(i[0])
 
-# Ebola
-ebola = open('Ebola_frequencies.csv')
-csv_ebola = csv.reader(ebola)
-unreducedList = []
-reducedList1, reducedList2 = wordFunction(csv_ebola)
+		listOfWordsCounter = collections.Counter(listOfWords)
+		print 'Most Common Words:', "reducedList1:", listOfWordsCounter.most_common(5)
 
-# Sentimental Analysis
-print 'Reduced List1:', sentimentFunction(reducedList1)
-print 'Reduced List2:', sentimentFunction(reducedList2)
+		listOfWordsCounter2 = collections.Counter(listOfWords2)
+		print 'Most Common Words:', "reducedList2:", listOfWordsCounter2.most_common(5)
 
-###########
+#### Datasets ####
 
-print ''
-print 'If They Gunned Me Down'
+def Ebola():
+	print ''
+	print 'Ebola'
 
-# IfTheyGunnedMeDown_frequencies
-gunned = open('IfTheyGunnedMeDown_frequencies.csv')
-csv_gunned = csv.reader(gunned)
-reducedList1, reducedList2 = wordFunction(csv_gunned)
+	# Ebola
+	ebola = open('Ebola_frequencies.csv')
+	csv_ebola = csv.reader(ebola)
+	unreducedList = []
+	reducedList1, reducedList2 = wordFunction(csv_ebola)
 
-# Sentimental Analysis
-print 'Reduced List1:', sentimentFunction(reducedList1)
-print 'Reduced List2:', sentimentFunction(reducedList2)
+	# Sentimental Analysis
+	print 'Reduced List1:', sentimentFunction(reducedList1)
+	print 'Reduced List2:', sentimentFunction(reducedList2)
 
-###########
+	mostCommonWords(reducedList1, reducedList2)
 
-print ''
-print 'US Top 10 Cities'
+def IfTheyGunnedMeDown():
+	print ''
+	print 'If They Gunned Me Down'
 
-# USTop10Cities_frequencies
-city = open('USTop10Cities_frequencies.csv')
-csv_city = csv.reader(city)
-reducedList1, reducedList2 = wordFunction(csv_city)
+	# IfTheyGunnedMeDown_frequencies
+	gunned = open('IfTheyGunnedMeDown_frequencies.csv')
+	csv_gunned = csv.reader(gunned)
+	reducedList1, reducedList2 = wordFunction(csv_gunned)
 
-# Sentimental Analysis
-print 'Reduced List1:', sentimentFunction(reducedList1)
-print 'Reduced List2:', sentimentFunction(reducedList2)
+	# Sentimental Analysis
+	print 'Reduced List1:', sentimentFunction(reducedList1)
+	print 'Reduced List2:', sentimentFunction(reducedList2)
 
-###########
+	mostCommonWords(reducedList1, reducedList2)
+
+def USTopTenCities():
+	print ''
+	print 'US Top 10 Cities'
+
+	# USTop10Cities_frequencies
+	city = open('USTop10Cities_frequencies.csv')
+	csv_city = csv.reader(city)
+	reducedList1, reducedList2 = wordFunction(csv_city)
+
+	# Sentimental Analysis
+	print 'Reduced List1:', sentimentFunction(reducedList1)
+	print 'Reduced List2:', sentimentFunction(reducedList2)
+
+	mostCommonWords(reducedList1, reducedList2)
+
+	print ''
+
+USTopTenCities()
