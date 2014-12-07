@@ -3,6 +3,7 @@
 \geometry{letterpaper}                   		
 \usepackage{graphicx}				
 \usepackage{amssymb}
+\usepackage{tabularx} % in the preamble
 
 \title{Homework 3}
 \author{Abhi Agarwal}
@@ -12,6 +13,41 @@
 \maketitle
 
 \section*{Three Tables}
+\begin{enumerate}
+\item The first table I have created is to show sentiment analysis across all three datasets. Specifically I am looking at the sentiment analysis result that comes out when I'm using all the english words that are given, and comparing them to all the english words that are given provided they exist in the dictionary. 
+
+\begin{tabularx}{\textwidth}{X|l|l|l|l}
+\textbf{Dataset} & \textbf{2014-10-20} & \textbf{2014-10-27} & \textbf{2014-10-06} & \textbf{2014-10-13} \\
+\hline Ebola with only english words & 0.00194 & 0.000158 & 0.00411 & 0.00120 \\ 
+\hline Ebola with only dictionary words & 0.00999 & 0.000756 & 0.0202 & 0.00671 \\ 
+\hline If They Gunned Me Down with only english words & -0.00201 & -0.0201 & -0.00333 & -0.00106 \\ 
+\hline If They Gunned Me Down with only dictionary words & -0.00399 & -0.0398 & -0.00660 & -0.00211 \\ 
+\hline US Top 10 Cities with only english words & 0.000135 & -0.0000689 & -0.000104 & 0.0000601 \\ 
+\hline US Top 10 Cities with only dictionary words & 0.00162 & -0.000615 & -0.00111 & -0.000861 \\ 
+
+\hline \end{tabularx}
+
+\item The second table
+
+\begin{center}
+    \begin{tabular}{| l | l | l | l |}
+    \hline
+    x & y \\ \hline
+    x & y \\ \hline
+    \end{tabular}
+\end{center}
+
+\item The third table
+
+\begin{center}
+    \begin{tabular}{| l | l | l | l |}
+    \hline
+    x & y \\ \hline
+    x & y \\ \hline
+    \end{tabular}
+\end{center}
+
+\end{enumerate}
 
 \section*{General}
 

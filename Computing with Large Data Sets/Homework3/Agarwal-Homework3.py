@@ -41,7 +41,7 @@ def wordFunction(csvFileDataset):
 			reducedList2.append(i)
 
 	print "Number of words not in english dictionary", notInEnglishDictionary
-	return reducedList2
+	return (reducedList, reducedList2)
 
 def sentimentFunction(reducedList2):
 	sectionOne, sectionTwo, sectionThree, sectionFour = 0.0, 0.0, 0.0, 0.0
@@ -59,26 +59,31 @@ def sentimentFunction(reducedList2):
 	ifDescendending = all(earlier >= later for earlier, later in zip(seq, seq[1:]))
 	ifAscending = all(earlier <= later for earlier, later in zip(seq, seq[1:]))
 
+	print sectionOne, sectionTwo, sectionThree, sectionFour
+
 	if not ifAscending and not ifDescendending:
-		print 'Sentiment fluctuates over time'
+		return 'Sentiment fluctuates over time'
 	else:
 		if ifDescendending:
-			print 'Sentiment is descending over time'
+			return 'Sentiment is descending over time'
 		if ifAscending:
-			print 'Sentiment is ascending over time'
+			return 'Sentiment is ascending over time'
 
 # ['term', '2014-10-20', '2014-10-27', '2014-10-06', '2014-10-13']
 ###########
 
+print ''
 print 'Ebola'
 
 # Ebola
 ebola = open('Ebola_frequencies.csv')
 csv_ebola = csv.reader(ebola)
-reducedList2 = wordFunction(csv_ebola)
+unreducedList = []
+reducedList1, reducedList2 = wordFunction(csv_ebola)
 
 # Sentimental Analysis
-sentimentFunction(reducedList2)
+print 'Reduced List1:', sentimentFunction(reducedList1)
+print 'Reduced List2:', sentimentFunction(reducedList2)
 
 ###########
 
@@ -88,10 +93,11 @@ print 'If They Gunned Me Down'
 # IfTheyGunnedMeDown_frequencies
 gunned = open('IfTheyGunnedMeDown_frequencies.csv')
 csv_gunned = csv.reader(gunned)
-reducedList2 = wordFunction(csv_gunned)
+reducedList1, reducedList2 = wordFunction(csv_gunned)
 
 # Sentimental Analysis
-sentimentFunction(reducedList2)
+print 'Reduced List1:', sentimentFunction(reducedList1)
+print 'Reduced List2:', sentimentFunction(reducedList2)
 
 ###########
 
@@ -101,9 +107,10 @@ print 'US Top 10 Cities'
 # USTop10Cities_frequencies
 city = open('USTop10Cities_frequencies.csv')
 csv_city = csv.reader(city)
-reducedList2 = wordFunction(csv_city)
+reducedList1, reducedList2 = wordFunction(csv_city)
 
 # Sentimental Analysis
-sentimentFunction(reducedList2)
+print 'Reduced List1:', sentimentFunction(reducedList1)
+print 'Reduced List2:', sentimentFunction(reducedList2)
 
 ###########
