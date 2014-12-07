@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  7 DEC 2014 13:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  7 DEC 2014 14:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -237,133 +237,142 @@ Overfull \hbox (27.37506pt too wide) in paragraph at lines 30--31
 [][] 
  []
 
+[1
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\OT1/cmr/m/n/10.95 Ebola with
  []
 
 
-Underfull \hbox (badness 6625) in paragraph at lines 73--73
+Underfull \hbox (badness 6625) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 only en-glish
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\OT1/cmr/m/n/10.95 Ebola with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 only dic-tio-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\OT1/cmr/m/n/10.95 If They
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 Gunned Me
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 Down with
  []
 
 
-Underfull \hbox (badness 6625) in paragraph at lines 73--73
+Underfull \hbox (badness 6625) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 only en-glish
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\OT1/cmr/m/n/10.95 If They
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 Gunned
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 Me Down
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 with only
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 dic-tio-nary
  []
 
 
-Underfull \hbox (badness 4752) in paragraph at lines 73--73
+Underfull \hbox (badness 4752) in paragraph at lines 69--69
 []|\OT1/cmr/m/n/10.95 US Top 10
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 Cities with
  []
 
 
-Underfull \hbox (badness 6625) in paragraph at lines 73--73
+Underfull \hbox (badness 6625) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 only en-glish
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\OT1/cmr/m/n/10.95 US Top
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 10 Cities
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 with only
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \OT1/cmr/m/n/10.95 dic-tio-nary
  []
 
 
-Overfull \hbox (27.37506pt too wide) in paragraph at lines 73--74
+Overfull \hbox (27.37506pt too wide) in paragraph at lines 69--70
 [][] 
  []
 
-[1
+[2]
+Underfull \hbox (badness 4859) in paragraph at lines 83--83
+[]|\OT1/cmr/m/n/10.95 Ebola with only en-glish
+ []
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] (./Agarwal.aux) ) 
+
+Overfull \hbox (27.37506pt too wide) in paragraph at lines 83--84
+[][] 
+ []
+
+[3] [4] [5] (./Agarwal.aux) ) 
 Here is how much of TeX's memory you used:
  2353 strings out of 493117
  32969 string characters out of 6135433
- 111214 words of memory out of 5000000
+ 108214 words of memory out of 5000000
  5793 multiletter control sequences out of 15000+600000
  11045 words of font info for 42 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,12n,26p,518b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2014/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr17.pfb>
-Output written on Agarwal.pdf (3 pages, 67942 bytes).
+ 37i,12n,26p,725b,261s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2014/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr17.pfb>
+Output written on Agarwal.pdf (5 pages, 71235 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 40 PDF objects out of 1000 (max. 8388607)
+ 27 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
