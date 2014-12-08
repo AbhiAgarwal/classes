@@ -20,22 +20,25 @@
 \item The first table I have created is to show sentiment analysis across all three datasets. Specifically I am looking at the sentiment analysis result using a subset of each of the dataset. The first subset is all the words that for each letter of those words it exists in the english alphabet, and then the second subset I'm comparing is all the english words that are given provided they exist in the dictionary. The technique of sentimental analysis was to try and find the sentimental value of a particular word, multiplying it by how many times it occurs, then adding the result. It's a little basic, but it was difficult to figure out how to find the sentimental value for each particular word.
 
 \begin{tabularx}{\textwidth}{X|l|l|l|l}
-\textbf{Dataset} & \textbf{2014-10-20} & \textbf{2014-10-27} & \textbf{2014-10-06} & \textbf{2014-10-13} \\
-\hline Ebola with only english words & 0.00194 & 0.000158 & 0.00411 & 0.00120 \\ 
-\hline Ebola with only dictionary words & 0.00999 & 0.000756 & 0.0202 & 0.00671 \\ 
-\hline If They Gunned Me Down with only english words & -0.00201 & -0.0201 & -0.00333 & -0.00106 \\ 
-\hline If They Gunned Me Down with only dictionary words & -0.00399 & -0.0398 & -0.00660 & -0.00211 \\ 
-\hline US Top 10 Cities with only english words & 0.000135 & -0.0000689 & -0.000104 & 0.0000601 \\ 
-\hline US Top 10 Cities with only dictionary words & 0.00162 & -0.000615 & -0.00111 & -0.000861 \\ 
+\textbf{Dataset} & \specialcell{Sentiment \\analysis\\of words on\\\textbf{2014-10-20}} & \specialcell{Sentiment \\analysis\\of words on\\\textbf{2014-10-27}} & \specialcell{Sentiment \\analysis\\of words on\\\textbf{2014-10-06}} & \specialcell{Sentiment\\ analysis\\of words on\\\textbf{2014-10-13}} \\
+\hline Ebola with only english words & 0.0194 & 0.00158 & 0.0411 & 0.0120 \\ 
+\hline Ebola with only dictionary words & 0.0999 & 0.00756 & 0.202 & 0.0671 \\ 
+\hline If They Gunned Me Down with only english words & -0.0201 & -0.201 & -0.0333 & -0.0106 \\ 
+\hline If They Gunned Me Down with only dictionary words & -0.0399 & -0.398 & -0.0660 & -0.0211 \\ 
+\hline US Top 10 Cities with only english words & 0.000135 & -0.000689 & -0.00104 & 0.000601 \\ 
+\hline US Top 10 Cities with only dictionary words & 0.00162 & -0.00615 & -0.0111 & -0.00861 \\ 
 \hline \end{tabularx}
 
 \par Here we can see interesting results. It's a little clear just looking at each of these particular examples that the words that are only in the dictionary improve the sentimental value in either way (either it improves it more positively or more negatively). I also can't accurately say which one is better as I don't have the tweets themselves. It's interesting to see this result because it shows how much non-dictionary words change the sentimental value of the dataset. It's hard to find a sentimental value for words that don't exist in the dictionary because it's hard to try and find their meaning without the user going through and labeling them.
+\par The scale of the data basically goes from -1 being the most negative to +1 to be the most positive. It's quite interesting to see the results across all the platforms. It seems like the Ebola tweets were barely above average in sentiment so a little more positive than negative. This seems interesting because the conclusions we can make are that some people have a positive view of looking at it from a perspective of being hopeful while others had a negative view of looking at the sorrow. 
+\par For the If They Gunned Me Down it seems like they were both slightly on the more negative end of things, which means that people were more negative. It seems interesting because the sentiment of the title itself comes out to be negative because of the words Gunned and Down. In either of these cases it helps us realize if people were more hopeful or not.
+\par The last one was a little confusing to me and the most interesting. It fluctuated between either being more towards the positive end and more towards the negative end. The data here is basically Tweets from random cities using geo-location. This makes it really hard to kind of understand what the data is about, but this fluctuation between positive and negative could basically come from the fact that the data is so diverse and not concrete on an issue.
+\par Lastly, neither of the results above are either descending or ascending over time, but have a very little variance, which shows that time doesn't necessarily have to do with sentiment. 
 
 \item The second table I concentrated on the most occurring words, and tried to give them some contextual information. I was trying to tag them depending on what they could mean. The first dataset I used was a dataset where all the letters of each word are in the english alphabet, and the second dataset was a dataset where all the english words were in the dictionary. The difference here becomes that we would know how to differentiate between locations/individuals \& words in the dictionary using this - it's simple, but powerful in my opinion. 
-\par The REFERENCE\#1 in the table points to the word emabiggestfansjustinbieber (LaTeX had lots of problems with me putting it into the table). In the table I have put the most occurring words for each of the datasets I described above as rows.
 
 \begin{tabularx}{\textwidth}{X|l|l|l|l}
-\textbf{Dataset} & \textbf{2014-10-20} & \textbf{2014-10-27} & \textbf{2014-10-06} & \textbf{2014-10-13} \\
+\textbf{Dataset} & \specialcell{Most common\\words on \\\textbf{2014-10-20}} & \specialcell{Most common\\words on \\\textbf{2014-10-27}} & \specialcell{Most common\\words on \\\textbf{2014-10-06}} & \specialcell{Most common\\words on\\\textbf{2014-10-13}} \\
 \hline Ebola with only english words & 
 \specialcell{vinson\\klain\\williamsburg} & 
 \specialcell{vinson\\klain\\othertech} & 
@@ -59,8 +62,8 @@
 \hline US Top 10 Cities with only english words & 
 \specialcell{nashsnewvideo\\followmenash\\michaelbrown} & 
 \specialcell{followmecam\\sanayairani\\nashvschad} & 
-\specialcell{REFERENCE\#1\\cmaawards\\helpfindthem} & 
-\specialcell{REFERENCE\#1\\funfearlesslife\\helpfindthem} \\ 
+\specialcell{emabiggestfans\\cmaawards\\helpfindthem} & 
+\specialcell{emabiggestfans\\funfearlesslife\\helpfindthem} \\ 
 \hline US Top 10 Cities with only dictionary words & 
 \specialcell{crewed\\juries\\reclassified} & 
 \specialcell{emulsion\\biopics\\foamed} & 
@@ -68,21 +71,26 @@
 \specialcell{flog\\dozier\\sleepwalkers} \\ 
 \hline \end{tabularx}
 
-\par
+\par The emabiggestfans in the table points to the word emabiggestfansjustinbieber (LaTeX had lots of problems with me putting it into the table). In the table I have put the most occurring words for each of the datasets I described above as rows. The very interesting and clear details we're able to see here is that location/individuals are usually more common than english words, and that's actually very powerful. The fact that more individuals are mentioning ideas/people/concepts from each of these datasets is very powerful (definitely what relates these tweets together obviously). It's also very interesting to see the words that are used in those tweets that are also in the dictionary - such as bridal, faulted, intercepts for tweets related to ebola. It seems very bizarre, but these help give some contextual information about the events themselves as we see the changes in words that occur.
+\par Also very interesting to words like evacuation, reignite, and recount in the If They Gunned Me Down dataset as this actually gives you an understanding of the events without even knowing what the event was about. The word pumpkins also suggests some time frame of when it could have been (thanksgiving), and this is very cool to see because we managed to get both context and some description of the events. 
+\par As always there tweets that have Justin Bieber at that top! This exists mostly in the US Top 10 Cities dataset, which I'm hopeful for - because it should not have been high in the other two datasets (it's unrelated, and shows what people are tweeting/thinking about during these events).
+\par From these events I think it's powerful to get some meaning out of them as removing words and fitting them into dictionary words shows you how many words there were, which were entities - location/individuals, etc. 
+\par This kind of shows that time is powerful when looking at words that people are using, and both context and the background information do change depending on the issues that occur. It was very interesting to see the progression of events that occurred for the US Top 10 Cities as we can see that there were big events with Michael Brown, Nash, some awards show, ema, and issues about life? 
 
-\item The third table
+\item The third table is to look at the most occurring languages within each dataset. This is interesting to look at because we know that the tweets must have fallen through the twitter cracks because it was a mixture of both another language and english. So it'll give us some understanding of the different environments or places tweeting about this particular event. Now that we can get contextual information on location/people it's also interesting to see who the people are / what languages / what cultures are tweet about it. These languages are WITHOUT english, which is at the top for all of these.
 
 \begin{tabularx}{\textwidth}{X|l|l|l|l}
-\textbf{Dataset} & \textbf{2014-10-20} & \textbf{2014-10-27} & \textbf{2014-10-06} & \textbf{2014-10-13} \\
-\hline Ebola with only english words & 0.00194 & 0.000158 & 0.00411 & 0.00120 \\ 
-\hline Ebola with only dictionary words & 0.00999 & 0.000756 & 0.0202 & 0.00671 \\ 
-\hline If They Gunned Me Down with only english words & -0.00201 & -0.0201 & -0.00333 & -0.00106 \\ 
-\hline If They Gunned Me Down with only dictionary words & -0.00399 & -0.0398 & -0.00660 & -0.00211 \\ 
-\hline US Top 10 Cities with only english words & 0.000135 & -0.0000689 & -0.000104 & 0.0000601 \\ 
-\hline US Top 10 Cities with only dictionary words & 0.00162 & -0.000615 & -0.00111 & -0.000861 \\ 
+\textbf{Dataset} & \specialcell{Most Occurring Languages\\across all dates}   \\
+\hline Ebola & 
+\specialcell{Haitian\\Spanish\\French\\Portuguese\\Finnish} \\ 
+\hline If They Gunned Me Down & 
+\specialcell{Haitian\\Portuguese\\German\\Italian\\Swedish} \\ 
+\hline US Top 10 Cities & 
+\specialcell{Haitian\\Spanish\\Finnish\\French\\Italian} \\ 
 \hline \end{tabularx}
-
 \end{enumerate}
+
+\par There are about 30 different languages for the Ebola dataset. I found this interesting because there were an incredible number of languages that I presume were embedded with the english language. I really was hoping to try and translate all these words to see if we could match any of them. This was a little too slow to process as was the language detection algorithm. 
 
 \section*{General}
 
@@ -106,7 +114,7 @@
 \section*{US Top 10 Cities}
 
 \begin{enumerate}
-\item The If They Gunned Me Down dataset contains 111,771 words, and 30,299 of the words are not english at all. Having removed the non-english words, the subset that remains has 75,434 words that are not in the dictionary. Therefore it leaves 6,038 unique words that exist in the english dataset. 
+\item The US Top 10 Cities dataset contains 111,771 words, and 30,299 of the words are not english at all. Having removed the non-english words, the subset that remains has 75,434 words that are not in the dictionary. Therefore it leaves 6,038 unique words that exist in the english dataset. 
 \end{enumerate}
 
 \end{document}  
