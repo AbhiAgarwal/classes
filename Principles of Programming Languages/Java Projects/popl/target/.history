@@ -1,0 +1,12 @@
+compile
+run
+compile
+run
+run Hello
+console
+clear
+compile
+run
+compile
+clen
+clean

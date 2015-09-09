@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>POPL, Fall 2015</title>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax:{inlineMath:[['$$$','$$$']]}});</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<h1>POPL, Fall 2015</h1>
+
+<p>This file provides some information to help you get started with setting up your development environment for the course.</p>
+
+<h2>Important Files</h2>
+
+<pre><code>popl
+├── README.html  (this file)
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── class2 (package for Java source files from Class 2)
+│   │   │       └── JavaGreeter.scala  (a simple Java application)
+│   │   └── scala
+│   │       └── class2 (package for Scala source files from Class 2)
+│   │           ├── ScalaGreeter.scala  (a simple Scala application)
+│   │           └── Worksheet.sc (a simple worksheet)
+│   └── test
+│       └── scala (unit tests for scala code)
+└── lib  (some libraries we will be using)
+</code></pre>
+
+<h2>Scala Development Tools</h2>
+
+<p>The current version of <a href="http://www.scala-lang.org/">Scala</a> is 2.11.7 at the start of Fall 2015.  We standardize to this version.</p>
+
+<h3>Scala IDE Import</h3>
+
+<p>To import the project files into the Scala IDE, go to</p>
+
+<pre><code>File &gt; Import &gt; Existing Projects into Workspace (under General)
+</code></pre>
+
+<p>and then select</p>
+
+<pre><code>Select archive file:
+</code></pre>
+
+<p>and browse to the file <code>popl.zip</code> that you downloaded from the course website.</p>
+
+<h3>Running Applications from inside the Scala IDE</h3>
+
+<p>After you have have imported the project, you can run Scala applications that are compiled from the source files in the project. 
+  To do so, right-click in the package explorer on the source file that defines the application's entry point and choose</p>
+
+<pre><code>Run As &gt; 1 Scala Application</code></pre>
+
+<p>For example, run the file <code>src/main/scala/class1/ScalaGreeter.scala</code> as a Scala application and you will see the message <code>Hello Scala</code> printed in the console.</p>
+
+<p>You can run Java applications in a similar manner. For example, run the file <code>src/main/java/class1/JavaGreeter.scala</code> as a Java application and you will see the message <code>Hello Scala from Java</code> printed in the console.</p>
+</p>
+
+<h3>Command-Line Tools</h3>
+
+<p>While not required if you have installed Scala IDE, you may also want to install sbt (follow the installation instructions provided in the notes for class 2).</p>
+
+<p>For your convenience, an sbt script (<code>build.sbt</code>) is included.  
+  To use sbt, open a terminal window and change to the directory containing the workspace of your Scala IDE. After you have imported <code>popl.zip</code>, 
+  you will find a directory named <code>popl</code> in your workspace directory.
+  Change into that directory. Now you can issue the following commands to compile and run the code in the project by executing</p>
+
+<pre><code>$ sbt run
+</code></pre>
+
+<p>The source files in the <code>popl</code> project provide multiple application entry points. 
+sbt's <code>run</code> command will detect these automatically and prompt you to choose one of them.</p>
+
+<p>It is often convenient to run sbt interactively. Type</p>
+
+<pre><code>$ sbt
+</code></pre>
+
+<p>and then <code>run</code> via</p>
+
+<pre><code>&gt; run</code></pre>
+
+<p>at the sbt prompt.</p>
+
+
+</body>
+</html>
