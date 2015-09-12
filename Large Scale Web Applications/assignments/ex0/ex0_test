@@ -1,0 +1,22 @@
+#!/usr/bin/python
+
+import sys
+
+EXPECTED_TEXT="Hello, World"
+
+class bcolors:
+  GREEN = '\033[92m'
+  RED = '\033[91m'
+  ENDC = '\033[0m'
+
+def main():
+  line = sys.stdin.readline()
+  if line.rstrip() == EXPECTED_TEXT:
+    print bcolors.GREEN + "Pass" + bcolors.ENDC
+  else:
+    print bcolors.RED + "Fail. Expected '%s' but got '%s'" \
+      % (EXPECTED_TEXT, line.rstrip()) + bcolors.ENDC
+
+if __name__ == '__main__':
+  main()
+

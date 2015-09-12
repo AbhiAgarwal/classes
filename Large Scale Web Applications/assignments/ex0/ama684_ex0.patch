@@ -1,0 +1,40 @@
+diff --git a/ex0/README.txt b/ex0/README.txt
+index 6fe5fb0..f414872 100644
+--- a/ex0/README.txt
++++ b/ex0/README.txt
+@@ -23,25 +23,10 @@ and invoke your program. The graders must be able to follow these
+ instructions successfully. Points will be deducted for incomplete, wrong
+ or unclear instructions.
+ 
+-Building your program:
+-----------------------
+-TODO: write here your building instructions.
+-
+-Running your program:
+----------------------
+-TODO: write here your running instructions.
+-
+-Example:
+-Building your program:
+-----------------------
+-$ javac HelloWorld.java
+-
+ Running your program:
+ ---------------------
+-$ java HelloWorld
++$ python helloworld.py (with Python 2.7)
+ 
+ Testing your program:
+ ---------------------
+-Pipe the output of your program to the tester program.
+-Example:
+-% java HelloWorld | ./ex0_test
++$ python helloworld.py | ./ex0_test (with Python 2.7)
+diff --git a/ex0/helloworld.py b/ex0/helloworld.py
+new file mode 100644
+index 0000000..dd89db5
+--- /dev/null
++++ b/ex0/helloworld.py
+@@ -0,0 +1 @@
++print "Hello, World"
+\ No newline at end of file
