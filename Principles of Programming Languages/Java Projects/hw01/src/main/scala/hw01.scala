@@ -1,9 +1,9 @@
-object hw01 extends App {  
+object hw01 extends App {
   /*
    * CSCI-UA.0480-003: Homework 1
-   * <Your Name>
+   * Abhi Agarwal
    * 
-   * Partner: <Your Partner's Name>
+   * Partner: <Bob Gardner
    * Collaborators: <Any Collaborators>
    */
 
@@ -22,7 +22,7 @@ object hw01 extends App {
    * code that does not compile or causes a failing assert.  Simply put in a
    * '???' as needed to get something that compiles without error.
    */
-  
+
   /*
    * Example with a Unit Test
    * 
@@ -52,17 +52,17 @@ object hw01 extends App {
    * unit tests is in a separate file.  For us, we use the convention of writing
    * tests in a file called HWXSpec.scala (i.e., hw01Spec.scala for Homework 1).
    */
-  
+
   def plus(x: Int, y: Int): Int = x + y
   def testPlus1() {
-    assert(plus(1,1) == 2)
+    assert(plus(1, 1) == 2)
     //assert(plus(1,1) == 3) // bad test specification
   }
   testPlus1()
 
   def badplus(x: Int, y: Int): Int = x - y
   def testPlus2(plus: (Int, Int) => Int) {
-    assert(plus(1,1) == 2)
+    assert(plus(1, 1) == 2)
   }
   //testPlus2(badplus)
 
@@ -73,11 +73,11 @@ object hw01 extends App {
   def swap(p: (Int, Int)): (Int, Int) = ???
 
   def repeat(s: String, n: Int): String = ???
-  
+
   def sqrtStep(c: Double, xn: Double): Double = ???
 
   def sqrtN(c: Double, x0: Double, n: Int): Double = ???
-  
+
   def sqrtErr(c: Double, x0: Double, epsilon: Double): Double =
     ???
 
