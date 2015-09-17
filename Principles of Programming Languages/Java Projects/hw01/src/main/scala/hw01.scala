@@ -3,7 +3,7 @@ object hw01 extends App {
    * CSCI-UA.0480-003: Homework 1
    * Abhi Agarwal
    * 
-   * Partner: <Bob Gardner
+   * Partner: Bob Gardner
    * Collaborators: <Any Collaborators>
    */
 
@@ -68,11 +68,14 @@ object hw01 extends App {
 
   /* Exercises */
 
-  def abs(n: Double): Double = ???
+  def abs(n: Double): Double = if (n < 0) -1 * n else n
 
   def swap(p: (Int, Int)): (Int, Int) = ???
 
-  def repeat(s: String, n: Int): String = ???
+  def repeat(s: String, n: Int): String = {
+    if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
+    else s * n
+  }
 
   def sqrtStep(c: Double, xn: Double): Double = ???
 
