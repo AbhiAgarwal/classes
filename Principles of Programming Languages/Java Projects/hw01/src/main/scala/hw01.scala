@@ -79,14 +79,14 @@ object hw01 extends App {
   // }
 
   def repeat(s: String, n: Int): String = {
-    val emptyString = ""
-    if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
-    else if (n == 0) emptyString
     def formString(s_2: String, n_2: Int): String = {
       if (n_2 == 0) s_2
       else formString(s_2 + s, n_2 - 1)
     }
-    formString(s, n - 1)
+    val emptyString = ""
+    if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
+    else if (n == 0) emptyString
+    else formString(s, n - 1)
   }
 
   def sqrtStep(c: Double, xn: Double): Double = {
@@ -94,6 +94,12 @@ object hw01 extends App {
     xn - minus
   }
 
+  // that computes the nth approximation xn from an initial guess x0.
+  // n < 0 => not possible
+  // base case: when n == 0 return x0 (initial guess)
+  // middle case: when n == 1 we are at x_1 = sqrtStep(c, x0) 
+  //  since we sub n as 1 in the equation
+  // last case: recurse as we decrease n
   def sqrtN(c: Double, x0: Double, n: Int): Double = {
     // should throw an exception when n is negative
     if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
@@ -102,6 +108,10 @@ object hw01 extends App {
     else sqrtN(c, sqrtStep(c, x0), n - 1)
   }
 
+  // computes approximations xn until the approximation error is within  (epsilon)
+  // n <= 0.0 (since it's a Double) => not possible
+  // base case: if |x0^2 - c| is less than epsilon then return x0
+  // last case: recurse while adjusting x0 with sqrtStep
   def sqrtErr(c: Double, x0: Double, epsilon: Double): Double = {
     if (epsilon <= 0.00) throw new IllegalArgumentException("Input epsilon must be non-negative")
     else if (abs(x0 * x0 - c) < epsilon) x0

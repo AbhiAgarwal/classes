@@ -32,8 +32,8 @@ class hw01Spec extends FlatSpec {
   }
 
   "repeat" should "evaluate to an empty string when repeated zero times" in {
-    // assert(repeat("abc", 0) === "")
-    // assert(repeat("", 0) === "")
+    assert(repeat("abc", 0) === "")
+    assert(repeat("", 0) === "")
   }
 
   // Check that repeat requires a non-negative repetition amount
