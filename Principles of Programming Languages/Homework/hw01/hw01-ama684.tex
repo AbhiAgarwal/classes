@@ -4,6 +4,8 @@
 \usepackage{graphicx}
 \usepackage{amssymb}
 \newcommand{\forceindent}{\leavevmode{\parindent=1.5em\indent}}
+\newcommand{\forceindentx}{\leavevmode{\parindent=2em\indent}}
+\newcommand{\forceindenty}{\leavevmode{\parindent=1em\indent}}
 \title{Principles of Programming Languages - Homework 1}
 \author{Abhi Agarwal}
 \date{}
@@ -13,17 +15,46 @@
 \section{Problem 1}
 
 \subsection*{(a)}
-\forceindent The use of pi at line 4 is bound at which line?
-\par The use of pi at line 7 is bound at which line?
+\forceindent \textbf{The use of pi at line 4 is bound at which line?} Line 3
+\par \textbf{The use of pi at line 7 is bound at which line?} Line 1
 
 \subsection*{(b)}
-\forceindent The use of x at line 3 is bound at which line?
-\par The use of x at line 6 is bound at which line?
-\par The use of x at line 10 is bound at which line?
-\par The use of x at line 13 is bound at which line?
+\forceindent \textbf{The use of x at line 3 is bound at which line?} Line 2
+\par \textbf{The use of x at line 6 is bound at which line?} Line 5
+\par \textbf{The use of x at line 10 is bound at which line?} Line 5
+\par \textbf{The use of x at line 13 is bound at which line?} Line 1
 
 \section{Problem 2}
-\par
+\forceindent Is the body of g well-typed? Yup!
+\par \textbf{If so, give the return type of g and explain how you determined this type.} The return type of g would be (Int, Int).
+\par \textbf{For this explanation, first, give the types for the names a and b.}
+\par Type of a is an Int. The reasoning stands from:
+
+\par val (a, b) = (1, (x, 3))
+\par \forceindentx a: Int
+\par \forceindentx 1: Int
+\par \forceindentx val a = 1
+\par \forceindentx val \_ = 1 $=> Int$
+
+\par One portion of the return could either be:
+
+\par a + 2 : Int because
+\par  \forceindentx a : Int
+\par \forceindentx 2 : Int
+\par \forceindentx $\_ + \_: (Int, Int) => Int$
+
+\par Or
+
+\par \forceindentx 1 : Int
+
+\par Type of b is a Tuple of (Int, Int). The reasoning stands from:
+
+\par val (a, b) = (1, (x, 3))
+\par \forceindentx b: (Int, Int)
+\par \forceindentx x: Int
+\par \forceindentx 3: Int
+\par \forceindentx (x, 3): (Int, Int)
+\par \forceindentx val b = (x, 3) $=> (Int, Int)$
 
 \section{Problem 3}
 
