@@ -70,19 +70,43 @@ object hw01 extends App {
 
   def abs(n: Double): Double = if (n < 0) -1 * n else n
 
-  def swap(p: (Int, Int)): (Int, Int) = ???
+  def swap(p: (Int, Int)): (Int, Int) = (p._2, p._1)
+
+  // A Scala-simple idiomatic solution could be this (if we don't use tail recursion):
+  // def repeat(s: String, n: Int): String = {
+  //   if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
+  //   else s * n
+  // }
 
   def repeat(s: String, n: Int): String = {
+    val emptyString = ""
     if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
-    else s * n
+    else if (n == 0) emptyString
+    def formString(s_2: String, n_2: Int): String = {
+      if (n_2 == 0) s_2
+      else formString(s_2 + s, n_2 - 1)
+    }
+    formString(s, n - 1)
   }
 
-  def sqrtStep(c: Double, xn: Double): Double = ???
+  def sqrtStep(c: Double, xn: Double): Double = {
+    val minus = ((xn * xn) - c) / (2 * xn)
+    xn - minus
+  }
 
-  def sqrtN(c: Double, x0: Double, n: Int): Double = ???
+  def sqrtN(c: Double, x0: Double, n: Int): Double = {
+    // should throw an exception when n is negative
+    if (n < 0) throw new IllegalArgumentException("Input n must be greater than zero")
+    else if (n == 0) x0
+    else if (n == 1) sqrtStep(c, x0)
+    else sqrtN(c, sqrtStep(c, x0), n - 1)
+  }
 
-  def sqrtErr(c: Double, x0: Double, epsilon: Double): Double =
-    ???
+  def sqrtErr(c: Double, x0: Double, epsilon: Double): Double = {
+    if (epsilon <= 0.00) throw new IllegalArgumentException("Input epsilon must be non-negative")
+    else if (abs(x0 * x0 - c) < epsilon) x0
+    else sqrtErr(c, sqrtStep(c, x0), epsilon)
+  }
 
   def sqrt(c: Double): Double = {
     require(c >= 0)
