@@ -15,46 +15,65 @@
 \section{Problem 1}
 
 \subsection*{(a)}
-\forceindent \textbf{The use of pi at line 4 is bound at which line?} Line 3
-\par \textbf{The use of pi at line 7 is bound at which line?} Line 1
+\forceindent \textbf{The use of pi at line 4 is bound at which line?} Line 3. A variable pi has been declared in the local scope, and so it overwrites the one declared in the global scope. 
+\par \textbf{The use of pi at line 7 is bound at which line?} Line 1. There's no variable pi declared within the local scope so it looks for a declaration of pi within the scope above it - the global scope (lets suppose). In the global scope it finds a variable called pi.
 
 \subsection*{(b)}
-\forceindent \textbf{The use of x at line 3 is bound at which line?} Line 2
-\par \textbf{The use of x at line 6 is bound at which line?} Line 5
-\par \textbf{The use of x at line 10 is bound at which line?} Line 5
-\par \textbf{The use of x at line 13 is bound at which line?} Line 1
+\forceindent \textbf{The use of x at line 3 is bound at which line?} Line 2. The variable is passed into the function as a parameter, and is becomes visible in the local scope for line 3.
+\par \textbf{The use of x at line 6 is bound at which line?} Line 5. The variable x declared on line 5 can be named anything in Scala, and is a new variable that overwrites the x declared on 2 (in the current local scope). It takes on the value of x that is passed into the function, but is a new variable.
+\par \textbf{The use of x at line 10 is bound at which line?} Line 5. No other x is declared in the new scope introduced by the case statement, and so the only x visible to line 10 is on line 5.
+\par \textbf{The use of x at line 13 is bound at which line?} Line 1. This function call lies in the global scope (for our purposes assume it's the global scope) - so it takes the value of x declared in that global scope, which is on line 1. There's no other x visible in the global scope, but the one declared on Line 1.
+
+\newpage
 
 \section{Problem 2}
 \forceindent Is the body of g well-typed? Yup!
 \par \textbf{If so, give the return type of g and explain how you determined this type.} The return type of g would be (Int, Int).
 \par \textbf{For this explanation, first, give the types for the names a and b.}
-\par Type of a is an Int. The reasoning stands from:
 
-\par val (a, b) = (1, (x, 3))
-\par \forceindentx a: Int
-\par \forceindentx 1: Int
-\par \forceindentx val a = 1
-\par \forceindentx val \_ = 1 $=> Int$
+\begin{verbatim}
+Type of a is an Int. The reasoning stands from:
 
-\par One portion of the return could either be:
+val (a, b) = (1, (x, 3))
+    a: Int
+    1: Int
+    val a, b = 1, (x, 3)
+    val a = 1
+    val b = (x, 3)
+    val _ = 1 => Int
 
-\par a + 2 : Int because
-\par  \forceindentx a : Int
-\par \forceindentx 2 : Int
-\par \forceindentx $\_ + \_: (Int, Int) => Int$
+Type of b is a Tuple of (Int, Int). The reasoning stands from:
 
-\par Or
+(a, b) = (1, (x, 3))
+    b: (Int, Int)
+    x: Int
+    val a, b = 1, (x, 3)
+    val b = (x, 3)
+    3: Int
+    (x, 3): (Int, Int)
+    val _ = (x, 3) => (Int, Int)
 
-\par \forceindentx 1 : Int
+The return statement would either be (b, 1) or (b, a + 2). 
+If the return statement is (b, 1) then the return type would 
+be ((Int, Int), Int) since
 
-\par Type of b is a Tuple of (Int, Int). The reasoning stands from:
+b: (Int, Int)
+1: Int
+(b, 1) => ((Int, Int), Int)
 
-\par val (a, b) = (1, (x, 3))
-\par \forceindentx b: (Int, Int)
-\par \forceindentx x: Int
-\par \forceindentx 3: Int
-\par \forceindentx (x, 3): (Int, Int)
-\par \forceindentx val b = (x, 3) $=> (Int, Int)$
+If the return statement is (b, a + 2) the return type 
+would be ((Int, Int), Int) since:
+
+a + 2 : Int because
+    a : Int
+    2 : Int
+    _ + _: (Int, Int) => Int
+b : (Int, Int) 
+(b, a + 2) => ((Int, Int), Int)
+
+Since the return types of both of the return statements are the 
+same we can conclude that the return statement would be ((Int, Int), Int).
+\end{verbatim}
 
 \section{Problem 3}
 
