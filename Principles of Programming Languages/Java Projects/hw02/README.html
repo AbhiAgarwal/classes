@@ -1,0 +1,280 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Homework 1</title>
+<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax:{inlineMath:[['$$$','$$$']]}});</script><script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<h1>Homework 2</h1>
+
+<p>Refer to the homework handout hw02.pdf for details about the assignment.  This file provides some information to help you get started with setting up your development environment for the homework assignments.</p>
+
+<h2>Important Files</h2>
+
+<pre><code>hw2
+├── README.html  (this file)
+├── src
+│   ├── main
+│   │   ├── java
+│   │   └── scala
+│   │       ├── hw02.scala  (implementation template to submit)
+│   │       └── js
+│   │           ├── hw02
+│   │           │   ├── ast.scala  (JakartaScript AST classes)
+│   │           │   ├── parse.scala (Parser for JakartaScript)
+│   │           │   └── print.scala (Pretty printer for JakartaScript)
+│   │           └── util
+│   │               ├── JsApp.scala (main application class)
+│   │               └── JsEception.scala (interpreter-specific exceptions)
+│   └── test
+│       ├── java
+│       └── scala
+│           └── hw02Spec.scala  (ScalaTest unit tests)
+└── testjs  (some JakartaScript test cases)
+    ├── test01_arith.js
+    └── test02_divbyzero.js
+</code></pre>
+
+<h2>Scala Development Tools</h2>
+
+<p>The current version of <a href="http://www.scala-lang.org/">Scala</a> is 2.11.5 at the start of Spring 2015.  We standardize to this version.</p>
+
+<h3>Eclipse Import</h3>
+
+<p>To import the Homework 2 project files into Eclipse, go to</p>
+
+<pre><code>File &gt; Import &gt; Existing Projects into Workspace (under General)
+</code></pre>
+
+<p>and then select</p>
+
+<pre><code>Select archive file:
+</code></pre>
+
+<p>and browse to the hw02.zip that you downloaded from the course website.</p>
+
+<h3>Command-Line Tools</h3>
+
+<p>While not required if you have installed Scala IDE, you may also want to install the command-line Scala compiler and tools.  If you would like to build the project on the command-line, you should install <a href="http://www.scala-sbt.org/">sbt</a>.  Scala and sbt is available in many OS-specific package managers.</p>
+
+<p>For your convenience, an sbt script (build.sbt) is included.  You can issue the following commands to compile, run and test your code:</p>
+
+<pre><code>$ sbt run
+</code></pre>
+
+<p>runs your project (after compiling).</p>
+
+<pre><code>$ sbt clean
+</code></pre>
+
+<p>deletes the previous compilation.</p>
+
+<p>It is often convenient to run sbt interactively</p>
+
+<pre><code>$ sbt
+</code></pre>
+
+<p>and then run via</p>
+
+<pre><code>&gt; run
+</code></pre>
+
+<p>at the sbt prompt.</p>
+
+<h3>Scala Interpreter</h3>
+
+<p>From the command-line, you can start the scala interpreter using the command</p>
+
+<pre><code>$ scala
+</code></pre>
+
+<p>and can import the functions in your homework in the following way</p>
+
+<pre><code>scala&gt; import main.scala.hw02._
+</code></pre>
+
+<p>Note that you will need to run the scala interpreter in the same directory as the compiled version (hw02/bin/).</p>
+
+<p>In Scala IDE, you can start a Scala interpreter with the project files available by selecting</p>
+
+<pre><code>Window &gt; Show View &gt; Scala Interpreter
+</code></pre>
+
+<h2>ScalaTest</h2>
+
+<p>We will be using the <a href="http://www.scalatest.org/">ScalaTest</a> framework for unit testing.  Using this framework, we practice test-driven development (TDD), a standard practice in industry.</p>
+
+<p>You do not need to explicitly download ScalaTest.</p>
+
+<p>We provide some unit tests in hw02Spec.scala to drive your implementation.  To run tests, right-click on the file and select</p>
+
+<pre><code>Run As &gt; ScalaTest - File
+</code></pre>
+
+<p>You can also run tests via</p>
+
+<pre><code>$ sbt test
+</code></pre>
+
+<h2>JakartaScript Interpreter</h2>
+
+<p>You can run your JakartaScript interpreter with a file (e.g., tests in testjs/) in Eclipse by right-clicking on hw02.scala by setting up a Run Configuration:</p>
+
+<pre><code>Run As &gt; Run Configuration ...
+</code></pre>
+
+<p>For quick experimentation, it is more convenient to use the Scala Interpreter window.</p>
+
+</body>
+</html>
