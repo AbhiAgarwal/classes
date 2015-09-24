@@ -80,10 +80,11 @@ object hw02 extends js.util.JsApp {
   def deleteMin(t: BSTree): (BSTree, Int) = {
     /*
       * Deletes the smallest data element in the search tree.
-      * It returns both the updated tree and the data value of 
+      * It returns both the updated tree and the data value of
         the deleted node.
-      *   1. 
+      *   1. Traverse to the less-most node
           2. Return an instance of BSTree and minimum value
+            - New instance with new updated left with the same data and right.
     */
     require(t != Empty)
     (t: @unchecked) match {
@@ -91,11 +92,57 @@ object hw02 extends js.util.JsApp {
       case Node(left, data, right) =>
         val (left1, min) = deleteMin(left)
         // Returns a tuple
-        ???
+        (Node(left1, data, right), min)
     }
   }
 
-  def delete(t: BSTree, n: Int): BSTree = ???
+  def delete(t: BSTree, n: Int): BSTree = {
+    /*
+      * Removes the First node with data value equal to n.
+      * If no such node exists, the tree should be returned unmodified.
+      * Cases:
+        1. N equals data -> method to delete current node and return true
+        2. N less than data -> traverse left
+        3. N greater than or equal to data -> traverse right
+
+      * Designing a function deleteCurrentNode that takes a Tree and outputs
+        a new Tree.
+    */
+
+    def deleteCurrentNode(tree: BSTree): BSTree = {
+      /*
+        * Case 1: Empty tree
+        * Case 2:
+        * Case 3:
+        * Case 4:
+        * Case 5:
+      */
+      tree match {
+        // Case 1
+        case Empty => Empty
+        // Case 2
+        // Case 3
+        // Case 4
+        // Case 5
+      }
+
+    }
+
+    t match {
+      case Empty => Empty
+      case Node(left, data, right) => {
+        // Separate cases:
+        // If the current element that we are at is the element
+        // we want to delete:
+        if (n == data) deleteCurrentNode(t)
+        // If n is less than data then traverse left:
+        else if (n < data) Node(delete(left, n), data, right)
+        // If n is greater or equal than data then traverse right:
+        else Node(left, data, delete(right, n))
+      }
+    }
+
+  }
 
   /* JakartaScript */
 
