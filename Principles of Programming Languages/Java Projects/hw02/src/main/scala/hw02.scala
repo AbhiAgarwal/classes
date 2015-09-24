@@ -90,9 +90,8 @@ object hw02 extends js.util.JsApp {
     (t: @unchecked) match {
       case Node(Empty, data, right) => (right, data)
       case Node(left, data, right) =>
-        val (left1, min) = deleteMin(left)
         // Returns a tuple
-        (Node(left1, data, right), min)
+        val (left1, min) = deleteMin(left); (Node(left1, data, right), min)
     }
   }
 
@@ -101,33 +100,42 @@ object hw02 extends js.util.JsApp {
       * Removes the First node with data value equal to n.
       * If no such node exists, the tree should be returned unmodified.
       * Cases:
-        1. N equals data -> method to delete current node and return true
-        2. N less than data -> traverse left
-        3. N greater than or equal to data -> traverse right
+      *   1. N equals data -> method to delete current node and return true
+          2. N less than data -> traverse left
+          3. N greater than or equal to data -> traverse right
 
       * Designing a function deleteCurrentNode that takes a Tree and outputs
         a new Tree.
     */
 
+    // A way to delete the current node
     def deleteCurrentNode(tree: BSTree): BSTree = {
       /*
         * Case 1: Empty tree
-        * Case 2:
-        * Case 3:
-        * Case 4:
-        * Case 5:
+        * Case 2: Reached a leaf
+        * Case 3: Traverse left
+        * Case 4: Traverse right
+        * Case 5: Part that removes the element
+        *   1. Delete minimum right element
+            2. Get new right and left element
+            3. Return a new Node with a new left, data, and right
       */
       tree match {
         // Case 1
         case Empty => Empty
         // Case 2
+        case Node(Empty, data, Empty) => Empty
         // Case 3
+        case Node(left, data, Empty) => left
         // Case 4
+        case Node(Empty, data, right) => right
         // Case 5
+        case Node(left, data, right) =>
+          val (rt, l) = deleteMin(right); Node(left, l, rt)
       }
-
     }
 
+    // Searches through the Binary Search tree
     t match {
       case Empty => Empty
       case Node(left, data, right) => {
@@ -147,7 +155,47 @@ object hw02 extends js.util.JsApp {
   /* JakartaScript */
 
   def eval(e: Expr): Double = e match {
-    case Num(n) => ???
+    /*
+      * in file ast.scala
+      * sealed abstract class Expr extends Positional
+      * sealed abstract class Val extends Expr
+      * case class Num(n: Double) extends Val
+      * Num(n) n
+    */
+    case Num(n) => n
+    /* 
+      * case class UnOp(op: Uop, e1: Expr) extends Expr
+      * UnOp(uop,e1) uop e1
+      * case object UMinus extends Uop, Uminus -
+    */
+    case UnOp(UMinus, e) => -eval(e)
+    /*
+      * case class BinOp(op: Bop, e1: Expr, e2: Expr) extends Expr
+      * BinOp(bop,e1,e2) e1 bop e2
+      * sealed abstract class Bop
+      * case object Plus extends Bop
+      * Plus +
+    */
+    case BinOp(Plus, e1, e2) => eval(e1) + eval(e2)
+    /*
+      * case object Minus extends Bop
+      * Minus -
+    */
+    case BinOp(Minus, e1, e2) => eval(e1) - eval(e2)
+
+    /*
+      * case object Times extends Bop
+      * Times *
+    */
+    case BinOp(Times, e1, e2) => eval(e1) * eval(e2)
+
+    /*
+      * case object Div extends Bop
+      * Div /
+    */
+    case BinOp(Div, e1, e2) => eval(e1) / eval(e2)
+
+    // Base case
     case _ => ???
   }
 
