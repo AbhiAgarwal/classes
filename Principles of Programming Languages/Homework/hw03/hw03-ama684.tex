@@ -3,6 +3,8 @@
 \geometry{letterpaper}
 \usepackage{graphicx}
 \usepackage{amssymb}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
 \newcommand{\forceindent}{\leavevmode{\parindent=1.5em\indent}}
 \newcommand{\forceindentx}{\leavevmode{\parindent=2em\indent}}
 \newcommand{\forceindenty}{\leavevmode{\parindent=1em\indent}}
@@ -13,5 +15,80 @@
 \begin{document}
 \maketitle
 \section{Problem 1}
+\subsection*{(a)}
+
+\forceindent \par $\cdot : N \times N \to N$
+\par $\oldemptyset \cdot y = y$
+\par $y \cdot \{x\} = y + \{y \cdot x\}$
+
+\subsection*{(b)}
+
+\forceindent \par $\forall x \in N : \{x\} = x + \{\oldemptyset\} $
+\par 1. Prove that $\oldemptyset$ satisfies A.
+\par x = \{$\oldemptyset$\}
+\par \{\{$\oldemptyset$\}\} = \{$\oldemptyset$\} + \{$\oldemptyset$\}
+\par 2. Prove that for all $x \in N$ that satisfy A, \{x\} satisfies A.
+\par x = \{$x$\}
+\par \{\{$x$\}\} = \{$x$\} + \{$\oldemptyset$\}
+
+\subsection*{(c)}
+\forceindent \par $filter : \mathbb Z \times List \to List$
+\par $filter(nil) = nil$
+\par $filter(<hd, tl>) = append(hd, filter(n, tl))$ $if$ $hd >= n$
+\par $filter(<hd, tl>) = filter(n, tl)$ otherwise
+
+\subsection*{(d)}
+\par Provided in $.scala$ file.
+
+\subsection*{(e)}
+\par 
+
+\section{Problem 2}
+\subsection*{(a)}
+\forceindent \par \textbf{string values to numerical values}
+\par 1. `1'/ 1 (== 1)
+\par 2. `1' - `3' (== -2)
+\par 3. `1' $>>>$ 2 (== 0)
+\par \textbf{Boolean values to numerical values}
+\par 4. true * 2 (== 2)
+\par 5. true * null (== 0)
+\par 6. true / true (== 1)
+\par 7. true \& false (== 0)
+\par \textbf{string values to Boolean values}
+\par 8. $!$`true' (== false)
+\par 9. `true' $<=$ `false' (== false)
+\par \textbf{numerical values to Boolean values}
+\par 10. $!$0 (== true)
+\par \textbf{Infer general rules that describe how the considered implicit type conversions work}
+\par When you're doing web-development you usually get inputs that are string, but should be either numerical or boolean values. There's a precedence of everything depending on the operator. 
+\par When there's a minus it does an implicit cast of both of the sides to be a number. Then it tries to give you a numerical value out. If you do `1` - 1 you would get 0. If you do `x` - `x` you would get NaN. This case also applies for division, multiplication, modulus. In this way it's really easy to do String or Boolean to numerical values using minus, multiplication, division, and modulus.
+\par Then there are certain operators that allow us to go from either String or numerical values to Boolean values. There's the $!$, and $<=$, $>=$, etc. All of the comparison or value comparison operators. When you have these operators it converts both sides to true or false.
+\par Therefore, depending on the operator or the class of operators we are considering - Node.JS converts both of the sides to being the same type.
+
+\subsection*{(b)}
+\forceindent \par \textbf{Expressions that involve the + operator}
+\par 1. `x' + 1 (== `x1') and 1 + `x' (== `1x')
+\par 2. +`3.65' (== 3.65)
+\par 3. 1 + 1 + `1' (== `21')
+\par 4. $\{\} + \{\}$ (== `[object Object][object Object]')
+\par 5. $[] + \{\}$ (== `[object Object]') and $\{\}$ + [] (== 0)
+\par 6. $[] + []$ (== `') or  $[0] + []$ (== `0')
+\par \textbf{Infer a general rule that describes how + is interpreted in Javascript}
+\par It seems like you can add only numbers and strings. An object is converted to either a number or a string (depending on which side it is on). Arrays are just converted into strings with all of their elements as strings with commas separating them. 
+\par If either of the left or right side of the plus symbol is a string then the other side is automatically casted into a string. If they are both numbers then it adds the numbers together. When two strings are added they are just concatenated together. 
+\par If you look at example 5 above, if the left side is an array then it automatically becomes a string. This makes it a concatenation. If the left side is an object then it automatically becomes a number. Given the example $\{\}$ + `x' becomes NaN, and $\{\}$ + `1' becomes 1.
+
+\subsection*{(c)}
+\forceindent \par \textbf{Expressions that involve the \&\& and $||$ operator}
+\par 1. 1 \&\& true (== true)
+\par 2. `hello' \&\& false (== false)
+\par 3. true \&\& 1 (== 1) and true $||$ 1 (== true)
+\par 4. false $||$ `hello' (== `hello')
+\par 5. \{\} $||$ \{\} (== \{\}) and [] $||$ []
+\par 6. [] \&\& \{\} is possible (== \{\}), but \{\} \&\& [] is not.
+\par \textbf{Infer a general rule that describes how the \&\& and $||$ operators are interpreted in Javascript}
+\par false \&\& anything is always false. true $||$ anything is always true. 
+\par If there are strings or numbers before the $||$ then it is returned as a string or a number. If true is on the left side of $||$ then it returns true. If there is false on the left side of $||$ then it returns anything on the right hand side.
+\par If there are strings or numbers before the \&\& then it returns the variable on the right hand side of the \&\&. If true is on the left side of the \&\& then it returns anything on the right hand side. If there's false on the left hand side of \&\& then it returns false.
 
 \end{document}
