@@ -115,6 +115,11 @@ object hw04 extends js.util.JsApp {
     def eToVal(e: Expr): Val = eval(env, e)
     e match {
       /* Base Cases */
+      //case Num(a) => e
+      //case Bool(a) => e
+      //case Str(a) => e
+      case Var(a) => get(env, a)
+      //case Undefined => Undefined
       case v: Val =>  v
       
       /* Inductive Cases */
