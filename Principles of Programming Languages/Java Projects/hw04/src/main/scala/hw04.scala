@@ -1,12 +1,12 @@
 object hw04 extends js.util.JsApp {
   import js.hw04.ast._
   import js.hw04._
-  
+
   /*
    * CSCI-UA.0480-003: Homework 4
-   * <Your Name>
+   * Abhi Agarwal
    * 
-   * Partner: <Your Partner's Name>
+   * Partner: Bob Gardner
    * Collaborators: <Any Collaborators>
    */
 
@@ -30,13 +30,13 @@ object hw04 extends js.util.JsApp {
    */
 
   /* JakartaScript */
-  
+
   // Value environments
   type Env = Map[String, Val]
   def emp: Env = Map()
   def get(env: Env, x: String): Val = env(x)
   def extend(env: Env, x: String, v: Val): Env = env + (x -> v)
-  
+
   /* Some useful Scala methods for working with Scala values include:
    * - Double.NaN
    * - s.toDouble (for s: String)
@@ -46,25 +46,66 @@ object hw04 extends js.util.JsApp {
    * - s format n (for s: String [a format string like for printf], n: Double)
    */
 
+  /*
+   * All types to convert:
+   * - Num(n: Double)
+   * - Bool(b: Boolean)
+   * - Str(s: String)
+   * Error:
+   * - Undefined
+   */
+
   def toNum(v: Val): Double = {
     (v: @unchecked) match {
-      case Num(n) => n
-      case _ => ???
+      // Num(n: Double)
+      case Num(a) => a
+      // Bool(b: Boolean) => Num. Bool -> False => 0, Bool -> True => 1.
+      case Bool(false) => 0
+      case Bool(true) => 1
+      // Str(s: String) => Double.
+      case Str(a) => {
+        // Using s.toDouble (for s: String). Try catch to see if it's possible.
+        try { 
+          a.toDouble
+        } catch {
+          // Don't throw an exception. Just exit out of the try catch.
+          case e: NumberFormatException =>
+        }
+        // If the conversion is not possible then return Double.NaN.
+        Double.NaN
+      }
+      // Undefined. Returns Double.NaN.
+      case Undefined => Double.NaN
     }
   }
   
   def toBool(v: Val): Boolean = {
     (v: @unchecked) match {
-      case Bool(b) => b
-      case _ => ???
+      // Bool(b: Boolean)
+      case Bool(a) => a
+      // Num(n: Double). If n == 0 => false, n != 0 => true.
+      case Num(0) => false
+      case Num(a) => true
+      // Str(s: String). If s == EmptyString or "" => false.
+      // S == NonEmpty => true
+      case Str("") => false
+      case Str(a) => true
+      // Undefined. Returns false.
+      case Undefined => false
     }
   }
   
   def toStr(v: Val): String = {
     (v: @unchecked) match {
-      case Str(s) => s
+      // Str(s: String)
+      case Str(a) => a
+      // Num(n: Double)
+      case Num(a) => a.toString
+      // Bool(b: Boolean)
+      case Bool(false) => "false"
+      case Bool(true) => "true"
+      // Undefined. Returns "undefined"
       case Undefined => "undefined"
-      case _ => ???
     }
   }
 
@@ -92,7 +133,7 @@ object hw04 extends js.util.JsApp {
 
 
   /* Interface to run your interpreter from the command line.  You can ignore the code below. */ 
-  
+
   def processFile(file: java.io.File) {
     if (debug) {
       println("============================================================")
