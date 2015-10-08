@@ -47,6 +47,20 @@ class ArithmeticSpec extends FlatSpec {
     assert(e3 === Num(3))
   }
 
+  "Plus" should "add one String and one number values and return a string" in {
+    val e1 = Str("a")
+    val e2 = Num(2)
+    val e3 = eval(BinOp(Plus, e1, e2))
+    assert(e3 === Str("a2.0"))
+  }
+
+  "Plus" should "add one number and one string values and return a string" in {
+    val e1 = Num(2)
+    val e2 = Str("a")
+    val e3 = eval(BinOp(Plus, e1, e2))
+    assert(e3 === Str("a2.0"))
+  }
+
   "Minus" should "subtract two number values and return a number" in {
     val e1 = Num(3)
     val e2 = Num(1)

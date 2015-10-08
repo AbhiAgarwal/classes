@@ -115,15 +115,150 @@ object hw04 extends js.util.JsApp {
     def eToVal(e: Expr): Val = eval(env, e)
     e match {
       /* Base Cases */
-      //case Num(a) => e
-      //case Bool(a) => e
-      //case Str(a) => e
-      case Var(a) => get(env, a)
-      //case Undefined => Undefined
+      // sealed abstract class Val extends Expr
       case v: Val =>  v
+      // case class Var(x: String) extends Expr
+      case Var(a) => get(env, a)
       
       /* Inductive Cases */
+      // case class Print(e: Expr) extends Expr
       case Print(e) => println(eToVal(e).prettyVal); Undefined
+
+      // case class ConstDecl(x: String, ed: Expr, eb: Expr) extends Expr
+      case ConstDecl(x, ed, eb) => {
+        val newExprVal = eToVal(ed)
+        val extendedEnv = extend(env, x, newExprVal)
+        eval(extendedEnv, eb)
+      }
+
+      // case class UnOp(uop: Uop, e: Expr) extends Expr
+      // case object UMinus extends Uop −
+      case UnOp(UMinus, e) => {
+        val newExprVal = eToVal(e)
+        val numValue = toNum(newExprVal)
+        Num(-1 * numValue)
+      }
+
+      // case object Not extends Uop !
+      case UnOp(Not, e) => {
+        val newExprVal = toBool(eToVal(e))
+        Bool(!newExprVal)
+      }
+
+      // case class BinOp(bop: Bop, e1: Expr, e2: Expr) extends Expr
+      // case object Plus extends Bop +
+      case BinOp(Plus, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        // Many cases. Can either be StrStr, NumNum, NumStr, StrNum
+        // Match cases
+        (newExprValE1, newExprValE2) match {
+          case (Str(a), b) => {
+            val strValue = toStr(b)
+            val strValueReturn = Str("%s%s" format (a, strValue))
+            Str(toStr(strValueReturn))
+          }
+          case (a, Str(b)) => {
+            val strValue = toStr(a)
+            val strValueReturn = Str("%s%s" format (strValue, b))
+            Str(toStr(strValueReturn))
+          }
+          // Base case
+          case (_) => {
+            val numValue = toNum(newExprValE1) + toNum(newExprValE2)
+            Num(numValue)
+          }
+        }
+      }
+
+      // case object Minus extends Bop −
+      case BinOp(Minus, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        // Single case:
+        val numValue = newExprValE1 - newExprValE2
+        Num(numValue)
+      }
+
+      // case object Times extends Bop ∗
+      case BinOp(Times, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        // Single case:
+        val numValue = newExprValE1 * newExprValE2
+        Num(numValue)
+      }
+
+      // case object Div extends Bop /
+      case BinOp(Div, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        // Single case:
+        val numValue = newExprValE1 / newExprValE2
+        Num(numValue)
+      }
+
+      // case object Eq extends Bop ===
+      case BinOp(Eq, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        val boolValue = newExprValE1 == newExprValE2
+        Bool(boolValue)
+      }
+
+      // case object Ne extends Bop !==
+      case BinOp(Ne, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        val boolValue = newExprValE1 != newExprValE2
+        Bool(boolValue)
+      }
+
+      // case object Lt extends Bop <
+      case BinOp(Lt, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        val boolValue = newExprValE1 < newExprValE2
+        Bool(boolValue)
+      }
+
+      // case object Le extends Bop <=
+      case BinOp(Le, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        val boolValue = newExprValE1 <= newExprValE2
+        Bool(boolValue)
+      }
+
+      // case object Gt extends Bop >
+      case BinOp(Gt, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        val boolValue = newExprValE1 > newExprValE2
+        Bool(boolValue)
+      }
+
+      // case object Ge extends Bop >=
+      case BinOp(Ge, e1, e2) => {
+        val newExprValE1 = toNum(eToVal(e1))
+        val newExprValE2 = toNum(eToVal(e2))
+        val boolValue = newExprValE1 >= newExprValE2
+        Bool(boolValue)
+      }
+
+      // case object And extends Bop &&
+      // case object Or extends Bop ||
+      // case object Seq extends Bop , ;
+
+      // case class If(e1: Expr, e2: Expr, e3: Expr) extends Expr
+      case If(e1, e2, e3) => {
+        val newExprValE1 = toBool(eToVal(e1))
+        if (newExprValE1) {
+          eToVal(e2)
+        } else {
+          eToVal(e3)
+        }
+      }
 
       case _ => ???
     }
