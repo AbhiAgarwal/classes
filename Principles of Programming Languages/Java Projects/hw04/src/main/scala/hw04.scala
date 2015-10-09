@@ -247,8 +247,47 @@ object hw04 extends js.util.JsApp {
       }
 
       // case object And extends Bop &&
+      case BinOp(And, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        (newExprValE1, newExprValE2) match {
+            case (Bool(a), Bool(b)) => {
+                val newExpr1 = toBool(newExprValE1)
+                val newExpr2 = toBool(newExprValE2)
+                if (newExpr1 == true && newExpr2 == true) Bool(true)
+                else Bool(false)
+            }
+            case (Num(0), b) => {
+                Num(0)
+            }
+            case (_) => {
+                newExprValE2
+            }
+        }
+      }
+
       // case object Or extends Bop ||
+    case BinOp(Or, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        (newExprValE1, newExprValE2) match {
+            case (Bool(a), b) => {
+                val newExpr1 = toBool(newExprValE1)
+                if (newExpr1 == true) Bool(true)
+                else newExprValE2
+            }
+            case (_) => {
+                newExprValE1
+            }
+        }
+    }
+
       // case object Seq extends Bop , ;
+      case BinOp(Seq, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        newExprValE2
+      }
 
       // case class If(e1: Expr, e2: Expr, e3: Expr) extends Expr
       case If(e1, e2, e3) => {

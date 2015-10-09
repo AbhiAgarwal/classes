@@ -58,7 +58,7 @@ class ArithmeticSpec extends FlatSpec {
     val e1 = Num(2)
     val e2 = Str("a")
     val e3 = eval(BinOp(Plus, e1, e2))
-    assert(e3 === Str("a2.0"))
+    assert(e3 === Str("2.0a"))
   }
 
   "Minus" should "subtract two number values and return a number" in {
