@@ -65,7 +65,7 @@ object hw04 extends js.util.JsApp {
       // Str(s: String) => Double.
       case Str(a) => {
         // Using s.toDouble (for s: String). Try catch to see if it's possible.
-        try { 
+        try {
           a.toDouble
         } catch {
           // Don't throw an exception. Just exit out of the try catch.
@@ -78,7 +78,7 @@ object hw04 extends js.util.JsApp {
       case Undefined => Double.NaN
     }
   }
-  
+
   def toBool(v: Val): Boolean = {
     (v: @unchecked) match {
       // Bool(b: Boolean)
@@ -94,7 +94,7 @@ object hw04 extends js.util.JsApp {
       case Undefined => false
     }
   }
-  
+
   def toStr(v: Val): String = {
     (v: @unchecked) match {
       // Str(s: String)
@@ -109,20 +109,20 @@ object hw04 extends js.util.JsApp {
     }
   }
 
-  
   def eval(env: Env, e: Expr): Val = {
     /* Some helper functions for convenience. */
     def eToVal(e: Expr): Val = eval(env, e)
     e match {
       /* Base Cases */
       // sealed abstract class Val extends Expr
-      case v: Val =>  v
+      case v: Val => v
       // case class Var(x: String) extends Expr
       case Var(a) => get(env, a)
-      
+
       /* Inductive Cases */
       // case class Print(e: Expr) extends Expr
-      case Print(e) => println(eToVal(e).prettyVal); Undefined
+      case Print(e) =>
+        println(eToVal(e).prettyVal); Undefined
 
       // case class ConstDecl(x: String, ed: Expr, eb: Expr) extends Expr
       case ConstDecl(x, ed, eb) => {
@@ -251,36 +251,36 @@ object hw04 extends js.util.JsApp {
         val newExprValE1 = eToVal(e1)
         val newExprValE2 = eToVal(e2)
         (newExprValE1, newExprValE2) match {
-            case (Bool(a), Bool(b)) => {
-                val newExpr1 = toBool(newExprValE1)
-                val newExpr2 = toBool(newExprValE2)
-                if (newExpr1 == true && newExpr2 == true) Bool(true)
-                else Bool(false)
-            }
-            case (Num(0), b) => {
-                Num(0)
-            }
-            case (_) => {
-                newExprValE2
-            }
+          case (Bool(a), Bool(b)) => {
+            val newExpr1 = toBool(newExprValE1)
+            val newExpr2 = toBool(newExprValE2)
+            if (newExpr1 == true && newExpr2 == true) Bool(true)
+            else Bool(false)
+          }
+          case (Num(0), b) => {
+            Num(0)
+          }
+          case (_) => {
+            newExprValE2
+          }
         }
       }
 
       // case object Or extends Bop ||
-    case BinOp(Or, e1, e2) => {
+      case BinOp(Or, e1, e2) => {
         val newExprValE1 = eToVal(e1)
         val newExprValE2 = eToVal(e2)
         (newExprValE1, newExprValE2) match {
-            case (Bool(a), b) => {
-                val newExpr1 = toBool(newExprValE1)
-                if (newExpr1 == true) Bool(true)
-                else newExprValE2
-            }
-            case (_) => {
-                newExprValE1
-            }
+          case (Bool(a), b) => {
+            val newExpr1 = toBool(newExprValE1)
+            if (newExpr1 == true) Bool(true)
+            else newExprValE2
+          }
+          case (_) => {
+            newExprValE1
+          }
         }
-    }
+      }
 
       // case object Seq extends Bop , ;
       case BinOp(Seq, e1, e2) => {
@@ -302,7 +302,7 @@ object hw04 extends js.util.JsApp {
       case _ => ???
     }
   }
-  
+
   // Interface to run your interpreter starting from an empty environment.
   def eval(e: Expr): Expr = eval(emp, e)
 
@@ -310,8 +310,7 @@ object hw04 extends js.util.JsApp {
   // for unit testing.
   def eval(s: String): Val = eval(emp, parse.fromString(s))
 
-
-  /* Interface to run your interpreter from the command line.  You can ignore the code below. */ 
+  /* Interface to run your interpreter from the command line.  You can ignore the code below. */
 
   def processFile(file: java.io.File) {
     if (debug) {
@@ -319,16 +318,16 @@ object hw04 extends js.util.JsApp {
       println("File: " + file.getName)
       println("Parsing ...")
     }
-    
+
     val expr = handle(fail()) {
       parse.fromFile(file)
     }
-      
+
     if (debug) {
       println("Parsed expression:")
       println(expr)
-    }  
-    
+    }
+
     handle() {
       val v = eval(expr)
       println(v.prettyVal)
