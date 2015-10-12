@@ -5,4 +5,4 @@ All the coding work from my classes at NYU for Fall 2013 (Done), Spring 2014 (Do
 
 Class work with C++, Java, Bash, Scala, Hacs built ontop of [CRSX](http://crsx.org/), R, Python, Arduino, Node.JS, Javascript, and Matlab.
 
-List of classes are [here](https://github.com/AbhiAgarwal/gallatin).
+List of classes are [here](https://github.com/AbhiAgarwal/gallatin#classes).
