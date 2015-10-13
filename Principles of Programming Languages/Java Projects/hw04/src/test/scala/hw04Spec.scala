@@ -141,6 +141,13 @@ class ComparisonSpec extends FlatSpec {
     assert(e3 === Bool(false))
   } 
 
+  "Lt" should "return false if Hello is less than Apple" in {
+    val e1 = Str("Hello")
+    val e2 = Str("Apple")
+    val e3 = eval(BinOp(Lt, e1, e2))
+    assert(e3 === Bool(false))
+  } 
+
   "Le" should "return true if the first expression is less than the second" in {
     val e1 = Num(5)
     val e2 = Num(7)
@@ -181,6 +188,13 @@ class ComparisonSpec extends FlatSpec {
     val e2 = Num(5)
     val e3 = eval(BinOp(Gt, e1, e2))
     assert(e3 === Bool(false))
+  } 
+
+  "Gt" should "return true if Hello is greater than than Apple" in {
+    val e1 = Str("Hello")
+    val e2 = Str("Apple")
+    val e3 = eval(BinOp(Gt, e1, e2))
+    assert(e3 === Bool(true))
   } 
 
   "Ge" should "return true if the first expression is greater than the second" in {

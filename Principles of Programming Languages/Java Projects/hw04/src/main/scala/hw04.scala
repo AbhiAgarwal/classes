@@ -136,17 +136,12 @@ object hw04 extends js.util.JsApp {
 
       // case class UnOp(uop: Uop, e: Expr) extends Expr
       // case object UMinus extends Uop −
-      case UnOp(UMinus, e) => {
-        val newExprVal = eToVal(e)
-        val numValue = toNum(newExprVal)
-        Num(-1 * numValue)
-      }
+      case UnOp(UMinus, e) =>
+        val newExprVal = eToVal(e); Num(-1 * toNum(newExprVal))
 
       // case object Not extends Uop !
-      case UnOp(Not, e) => {
-        val newExprVal = toBool(eToVal(e))
-        Bool(!newExprVal)
-      }
+      case UnOp(Not, e) =>
+        val newExprVal = toBool(eToVal(e)); Bool(!newExprVal)
 
       // case class BinOp(bop: Bop, e1: Expr, e2: Expr) extends Expr
       // case object Plus extends Bop +
@@ -157,20 +152,15 @@ object hw04 extends js.util.JsApp {
         // Match cases
         (newExprValE1, newExprValE2) match {
           case (Str(a), b) => {
-            val strValue = toStr(b)
-            val strValueReturn = Str("%s%s" format (a, strValue))
+            val strValueReturn = Str("%s%s" format (a, toStr(b)))
             Str(toStr(strValueReturn))
           }
           case (a, Str(b)) => {
-            val strValue = toStr(a)
-            val strValueReturn = Str("%s%s" format (strValue, b))
+            val strValueReturn = Str("%s%s" format (toStr(a), b))
             Str(toStr(strValueReturn))
           }
           // Base case
-          case (_) => {
-            val numValue = toNum(newExprValE1) + toNum(newExprValE2)
-            Num(numValue)
-          }
+          case _ => Num(toNum(newExprValE1) + toNum(newExprValE2))
         }
       }
 
@@ -178,97 +168,87 @@ object hw04 extends js.util.JsApp {
       case BinOp(Minus, e1, e2) => {
         val newExprValE1 = toNum(eToVal(e1))
         val newExprValE2 = toNum(eToVal(e2))
-        // Single case:
-        val numValue = newExprValE1 - newExprValE2
-        Num(numValue)
+        Num(newExprValE1 - newExprValE2)
       }
 
       // case object Times extends Bop ∗
       case BinOp(Times, e1, e2) => {
         val newExprValE1 = toNum(eToVal(e1))
         val newExprValE2 = toNum(eToVal(e2))
-        // Single case:
-        val numValue = newExprValE1 * newExprValE2
-        Num(numValue)
+        Num(newExprValE1 * newExprValE2)
       }
 
       // case object Div extends Bop /
       case BinOp(Div, e1, e2) => {
         val newExprValE1 = toNum(eToVal(e1))
         val newExprValE2 = toNum(eToVal(e2))
-        // Single case:
-        val numValue = newExprValE1 / newExprValE2
-        Num(numValue)
+        Num(newExprValE1 / newExprValE2)
       }
 
       // case object Eq extends Bop ===
       case BinOp(Eq, e1, e2) => {
         val newExprValE1 = eToVal(e1)
         val newExprValE2 = eToVal(e2)
-        val boolValue = newExprValE1 == newExprValE2
-        Bool(boolValue)
+        Bool(newExprValE1 == newExprValE2)
       }
 
       // case object Ne extends Bop !==
       case BinOp(Ne, e1, e2) => {
         val newExprValE1 = eToVal(e1)
         val newExprValE2 = eToVal(e2)
-        val boolValue = newExprValE1 != newExprValE2
-        Bool(boolValue)
+        Bool(newExprValE1 != newExprValE2)
       }
 
       // case object Lt extends Bop <
       // String case
       case BinOp(Lt, e1, e2) => {
-        val newExprValE1 = toNum(eToVal(e1))
-        val newExprValE2 = toNum(eToVal(e2))
-        val boolValue = newExprValE1 < newExprValE2
-        Bool(boolValue)
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        (newExprValE1, newExprValE2) match {
+          case (Str(a), Str(b)) =>
+            val boolValue = a < b; Bool(boolValue)
+          case _ => Bool(toNum(newExprValE1) < toNum(newExprValE2))
+        }
       }
 
       // case object Le extends Bop <=
       case BinOp(Le, e1, e2) => {
-        val newExprValE1 = toNum(eToVal(e1))
-        val newExprValE2 = toNum(eToVal(e2))
-        val boolValue = newExprValE1 <= newExprValE2
-        Bool(boolValue)
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        (newExprValE1, newExprValE2) match {
+          case (Str(a), Str(b)) =>
+            val boolValue = a <= b; Bool(boolValue)
+          case _ => Bool(toNum(newExprValE1) <= toNum(newExprValE2))
+        }
       }
 
       // case object Gt extends Bop >
       case BinOp(Gt, e1, e2) => {
-        val newExprValE1 = toNum(eToVal(e1))
-        val newExprValE2 = toNum(eToVal(e2))
-        val boolValue = newExprValE1 > newExprValE2
-        Bool(boolValue)
+        val newExprValE1 = eToVal(e1)
+        val newExprValE2 = eToVal(e2)
+        (newExprValE1, newExprValE2) match {
+          case (Str(a), Str(b)) =>
+            val boolValue = a > b; Bool(boolValue)
+          case _ => Bool(toNum(newExprValE1) > toNum(newExprValE2))
+        }
       }
 
       // case object Ge extends Bop >=
       case BinOp(Ge, e1, e2) => {
-        val newExprValE1 = toNum(eToVal(e1))
-        val newExprValE2 = toNum(eToVal(e2))
-        val boolValue = newExprValE1 >= newExprValE2
-        Bool(boolValue)
-      }
-
-      // case object And extends Bop &&
-      // If the first element is false-ey.
-      case BinOp(And, e1, e2) => {
         val newExprValE1 = eToVal(e1)
         val newExprValE2 = eToVal(e2)
         (newExprValE1, newExprValE2) match {
-          case (Bool(a), Bool(b)) => {
-            val newExpr1 = toBool(newExprValE1)
-            val newExpr2 = toBool(newExprValE2)
-            if (newExpr1 == true && newExpr2 == true) Bool(true)
-            else Bool(false)
-          }
-          case (Num(0), b) => {
-            Num(0)
-          }
-          case (_) => {
-            newExprValE2
-          }
+          case (Str(a), Str(b)) =>
+            val boolValue = a >= b; Bool(boolValue)
+          case _ => Bool(toNum(newExprValE1) >= toNum(newExprValE2))
         }
+      }
+
+      // case object And extends Bop &&
+      case BinOp(And, e1, e2) => {
+        val newExprValE1 = eToVal(e1)
+        if (toBool(newExprValE1)) eToVal(e2)
+        else newExprValE1
       }
 
       // case object Or extends Bop ||
@@ -281,27 +261,19 @@ object hw04 extends js.util.JsApp {
             if (newExpr1 == true) Bool(true)
             else newExprValE2
           }
-          case (_) => {
-            newExprValE1
-          }
+          case _ => newExprValE1
         }
       }
 
       // case object Seq extends Bop , ;
-      case BinOp(Seq, e1, e2) => {
-        val newExprValE1 = eToVal(e1)
-        val newExprValE2 = eToVal(e2)
-        newExprValE2
-      }
+      case BinOp(Seq, e1, e2) =>
+        eToVal(e1); eToVal(e2)
 
       // case class If(e1: Expr, e2: Expr, e3: Expr) extends Expr
       case If(e1, e2, e3) => {
         val newExprValE1 = toBool(eToVal(e1))
-        if (newExprValE1) {
-          eToVal(e2)
-        } else {
-          eToVal(e3)
-        }
+        if (newExprValE1) eToVal(e2)
+        else eToVal(e3)
       }
 
       case _ => ???
