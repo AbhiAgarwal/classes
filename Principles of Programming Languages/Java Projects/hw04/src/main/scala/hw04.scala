@@ -76,6 +76,7 @@ object hw04 extends js.util.JsApp {
       }
       // Undefined. Returns Double.NaN.
       case Undefined => Double.NaN
+      case _ => Double.NaN
     }
   }
 
@@ -92,6 +93,7 @@ object hw04 extends js.util.JsApp {
       case Str(a) => true
       // Undefined. Returns false.
       case Undefined => false
+      case _ => false
     }
   }
 
@@ -100,6 +102,7 @@ object hw04 extends js.util.JsApp {
       // Str(s: String)
       case Str(a) => a
       // Num(n: Double)
+      // Handle single digit and Double digit case
       case Num(a) => a.toString
       // Bool(b: Boolean)
       case Bool(false) => "false"
@@ -215,6 +218,7 @@ object hw04 extends js.util.JsApp {
       }
 
       // case object Lt extends Bop <
+      // String case
       case BinOp(Lt, e1, e2) => {
         val newExprValE1 = toNum(eToVal(e1))
         val newExprValE2 = toNum(eToVal(e2))
@@ -247,6 +251,7 @@ object hw04 extends js.util.JsApp {
       }
 
       // case object And extends Bop &&
+      // If the first element is false-ey.
       case BinOp(And, e1, e2) => {
         val newExprValE1 = eToVal(e1)
         val newExprValE2 = eToVal(e2)
