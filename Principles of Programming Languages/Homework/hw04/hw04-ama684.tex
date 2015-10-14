@@ -17,7 +17,7 @@
 \maketitle
 \section{Problem 1}
 \subsection*{(i) $e_1 = x + 2$}
-\forceindent \par (a) $x_1 + 2$
+\forceindent \par (a) $\overline{x_1} + 2$
 \par (b) $fv (e) = \{x_1\}$
 \par (c)
 	$\langle$
@@ -31,7 +31,7 @@
 	$\rangle$
 
 \subsection*{(ii) $e_2 = const$ $x = 2;$ $ x * y$}
-\forceindent \par (a) $const$ $x_1 = 2;$ $ x_1 * y_1$
+\forceindent \par (a) $const$ $\overline{x_1} = 2;$ $ \overline{x_1} * \overline{y_1}$
 \par (b) $fv (e) = \{y_1\}$
 \par (c)
 	$\langle$
@@ -41,13 +41,13 @@
 		$\langle$
 			\uline{3},
 			$\langle$\uline{2}, $x_1$$\rangle$
-			$\langle$\uline{2}$\rangle$,
+			\uline{2},
 			$\langle$\uline{2}, y$\rangle$
 		$\rangle$
 	$\rangle$
 
 \subsection*{(iii) $e_3 = const$ $y = y;$ $const$ $y = y;$ $y$}
-\forceindent \par (a) $const$ $y_2 = y_1;$ $const$ $y_3 = y_2;$ $y_3$
+\forceindent \par (a) $const$ $\overline{y_2} = \overline{y_1};$ $const$ $\overline{y_3} = \overline{y_2};$ $\overline{y_3}$
 \par (b) $fv (e) = \{y_1\}$
 \par (c)
 	$\langle$ 
@@ -62,7 +62,7 @@
 	$\rangle$
 
 \subsection*{(iv) $e_4 = const$ $x$ $= (const$ $z= 3;$ $z + x$); $z + x$}
-\forceindent \par (a) $const$ $x_2$ $= (const$ $z_1 = 3;$ $z_1 + x_1$); $z_2 + x_2$
+\forceindent \par (a) $const$ $\overline{x_2}$ $= (const$ $\overline{z_1} = 3;$ $\overline{z_1} + \overline{x_1}$); $\overline{z_2} + \overline{x_2}$
 \par (b) $fv (e) = \{x_1, z_2\}$
 \par (c)
 	$\langle$
@@ -88,7 +88,7 @@
 			$\rangle$,
 			$\langle$
 				\uline{2}, x
-			$\rangle$,
+			$\rangle$
 		$\rangle$
 	$\rangle$
 
