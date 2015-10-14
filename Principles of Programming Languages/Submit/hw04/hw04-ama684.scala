@@ -66,7 +66,7 @@ object hw04 extends js.util.JsApp {
       case Str(a) => {
         // Using s.toDouble (for s: String). Try catch to see if it's possible.
         try {
-          a.toDouble
+          return a.toDouble
         } catch {
           // Don't throw an exception. Just exit out of the try catch.
           case e: NumberFormatException =>
@@ -103,7 +103,10 @@ object hw04 extends js.util.JsApp {
       case Str(a) => a
       // Num(n: Double)
       // Handle single digit and Double digit case
-      case Num(a) => a.toString
+      case Num(a) => {
+        if (a % 1 == 0) a.toInt.toString
+        else a.toString
+      }
       // Bool(b: Boolean)
       case Bool(false) => "false"
       case Bool(true) => "true"
@@ -276,7 +279,7 @@ object hw04 extends js.util.JsApp {
         else eToVal(e3)
       }
 
-      case _ => ???
+      case _ => Undefined
     }
   }
 
