@@ -1,4 +1,5 @@
 \documentclass[11pt, oneside]{article}
+\usepackage[landscape]{geometry}
 \usepackage{geometry}
 \geometry{letterpaper}
 \usepackage{graphicx}
@@ -17,10 +18,126 @@
 \maketitle
 \section{Problem 1}
 \subsection*{(a)}
-\forceindent \par
+\forceindent \par (i) 
+$
+\frac{
+	\frac{
+		\frac{
+		}
+		{
+			\{x \rightarrow 3, y \rightarrow -2\} \vdash 3 \Downarrow 3
+		} EvalVal
+		\frac{
+			x \in dom(\{x \rightarrow 3, y \rightarrow -2\})
+		}
+		{
+			\{x \rightarrow 3, y \rightarrow -2\} \vdash x \Downarrow 3
+		} EvalVar
+	}
+	{
+		\{x \rightarrow 3, y \rightarrow -2\} \vdash x * 3 \Downarrow 9
+	} EvalTimes
+	\frac{
+	}{
+		(\{x \rightarrow 3, y \rightarrow -2\}) \vdash 2 \Downarrow 2
+	} EvalVal
+	{
+	}
+}{
+	\{x \rightarrow 3, y \rightarrow -2\} \vdash 3 * x + 2 \Downarrow 11
+} EvalPlus
+$
+
+\par (ii)
+$
+\frac{
+	\frac{
+		\frac {
+			\frac {
+			}
+			{
+				\{x \rightarrow 3, y \rightarrow -2\} \vdash 2 \Downarrow 2
+			} EvalVal
+			\frac {
+				y \in dom(\{x \rightarrow 3, y \rightarrow -2\})
+			}
+			{
+				\{x \rightarrow 3, y \rightarrow -2\} \vdash y \Downarrow -2
+			} EvalVar
+		}
+		{
+			\{x \rightarrow 3, y \rightarrow -2\} \vdash 2 + y \Downarrow 0
+		} EvalPlus
+	}
+	{
+		\{x \rightarrow 3, y \rightarrow -2\} \vdash const b = 0 \Downarrow 0
+	} EvalConstDecl \thinspace
+	false = toBool(0) \thinspace
+	\frac{
+		y \in dom(\{x \rightarrow 3, y \rightarrow -2\})
+	}
+	{
+		\{x \rightarrow 3, y \rightarrow -2\} \vdash y \Downarrow -2
+	} EvalVar \thinspace
+}{
+	\{x \rightarrow 3, y \rightarrow -2\} \vdash b ? x : y \Downarrow -2
+} EvalIfThen
+$
 
 \subsection*{(b)}
-\forceindent \par
+\forceindent \par (i)
+$
+\frac{
+	\frac{
+		toBool(1) = true
+	}
+	{
+		\{\emptyset\} \vdash 1 \&\& 5 \rightarrow 5
+	} DoAndTrue \thinspace \thinspace
+	v = toNum(3) + toNum(5)
+}{
+	\{\emptyset\} \vdash 3 + (1 \&\& 5) \rightarrow v
+} DoPlus
+$
+
+\vspace{1.5\baselineskip}
+
+\par \underline{3} + (1 \&\& 5) 
+
+\vspace{1.5\baselineskip}
+
+\par (ii)
+$
+\frac{
+	\frac {
+		v_0 = toNum(2) + toNum(1)
+	}
+	{
+		\{\emptyset\} \vdash 2 + 1 \rightarrow 3
+	} DoPlus
+	\frac {
+	}
+	{
+		\{v_0 = 3\} \vdash const \thinspace x = 3
+	} DoConstDecl
+	\frac {
+		v_1 = toNum(x) * toNum(0)
+	}
+	{
+		\{v_0 = 3, x = 3\} \vdash x * 0 \rightarrow 0
+	} DoTimes
+	\frac {
+		toBool(v_1) = false
+	}
+	{
+		\{v_0 = 3, x = 3, v_1 = 0\} \vdash ? x : x + x \rightarrow x + x
+	} DoIfElse
+	\thinspace
+	v_2 = toNum(3) + toNum(3)
+}{
+	\{v_0 = 3, x = 3, v_1 = 0\} \vdash x + x \rightarrow v_2
+} DoPlus
+$
 
 \subsection*{(c)}
 \forceindent \par
@@ -33,21 +150,21 @@
 
 \section{Problem 2}
 \subsection*{(a)}
-\forceindent \par
+\forceindent \par $e_1 = (3 * y) + 4$
 
 \subsection*{(b)}
-\forceindent \par
+\forceindent \par $e_1 = (x * y) + 4$
 
 \subsection*{(c)}
-\forceindent \par
+\forceindent \par $e_2 = const \thinspace y = y; \thinspace 3 + y$
 
 \subsection*{(d)}
-\forceindent \par
+\forceindent \par $e_2 = const \thinspace y = 2; x + y$
 
 \subsection*{(e)}
-\forceindent \par
+\forceindent \par $e_3 = const \thinspace x = (function (y) (x(y))); x(y(2))$
 
 \subsection*{(f)}
-\forceindent \par
+\forceindent \par $e_3 = const \thinspace x = (function (y) ((y(x))(y))); x(y)$
 
 \end{document}  
