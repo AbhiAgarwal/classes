@@ -35,15 +35,17 @@ $
 		}
 		{
 			\{x \rightarrow 3, y \rightarrow -2\} \vdash x \Downarrow 3
-		} EvalVar
+		} EvalVar \thinspace \thinspace
+		9 = 3 * 3
 	}
 	{
 		\{x \rightarrow 3, y \rightarrow -2\} \vdash x * 3 \Downarrow 9
-	} EvalTimes
+	} EvalTimes \thinspace
 	\frac{
 	}{
 		(\{x \rightarrow 3, y \rightarrow -2\}) \vdash 2 \Downarrow 2
-	} EvalVal
+	} EvalVal \thinspace \thinspace
+	11 = 9 + 2
 	{
 	}
 }{
@@ -66,7 +68,8 @@ $
 			}
 			{
 				\{x \rightarrow 3, y \rightarrow -2\} \vdash y \Downarrow -2
-			} EvalVar
+			} EvalVar \thinspace \thinspace
+			0 = 2 + -2
 		}
 		{
 			\{x \rightarrow 3, y \rightarrow -2\} \vdash 2 + y \Downarrow 0
@@ -88,70 +91,68 @@ $
 $
 
 \subsection*{(b)}
-\forceindent \par (i)
-$
-\frac{
-	\frac{
-		toBool(1) = true
-	}
-	{
-		\{\emptyset\} \vdash 1 \&\& 5 \rightarrow 5
-	} DoAndTrue \thinspace \thinspace
-	v = toNum(3) + toNum(5)
-}{
-	\{\emptyset\} \vdash 3 + (1 \&\& 5) \rightarrow v
-} DoPlus
-$
+%$
+%\frac{
+%	\frac{
+%		toBool(1) = true
+%	}
+%	{
+%		\{\emptyset\} \vdash 1 \&\& 5 \rightarrow 5
+%	} DoAndTrue \thinspace \thinspace
+%	v = toNum(3) + toNum(5)
+%}{
+%	\{\emptyset\} \vdash 3 + (1 \&\& 5) \rightarrow v
+%} DoPlus
+%$
 
-\vspace{1.5\baselineskip}
+%\vspace{1.5\baselineskip}
 
-\par 3 + \underline{(1 \&\& 5)} $\xrightarrow{a}$ \underline{3 + (1 \&\& 5)} $\xrightarrow{b}$ 3 + 5 $\xrightarrow{c}$ 8
-\par $a$: SearchConstDecl2, DoAndTrue
-\par $b$: SearchConstDecl3, DoPlus
+\forceindent \par (i) 3 + \underline{(1 \&\& 5)} $\xrightarrow{a}$ \underline{3 + 5} $\xrightarrow{b}$ 8 $\xrightarrow{c}$ 8
+\par $a$: SearchBop1, DoAndTrue
+\par $b$: SearchBop2, DoPlus
 \par $c$: DoConstDecl
 
 \vspace{1.5\baselineskip}
 
-\par (ii)
-$
-\frac{
-	\frac {
-		v_0 = toNum(2) + toNum(1)
-	}
-	{
-		\{\emptyset\} \vdash 2 + 1 \rightarrow 3
-	} DoPlus
-	\frac {
-	}
-	{
-		\{v_0 = 3\} \vdash const \thinspace x = 3
-	} DoConstDecl
-	\frac {
-		v_1 = toNum(x) * toNum(0)
-	}
-	{
-		\{v_0 = 3, x = 3\} \vdash x * 0 \rightarrow 0
-	} DoTimes
-	\frac {
-		toBool(v_1) = false
-	}
-	{
-		\{v_0 = 3, x = 3, v_1 = 0\} \vdash ? x : x + x \rightarrow x + x
-	} DoIfElse
-	\thinspace
-	v_2 = toNum(3) + toNum(3)
-}{
-	\{v_0 = 3, x = 3, v_1 = 0\} \vdash x + x \rightarrow v_2
-} DoPlus
-$
+%$
+%\frac{
+%	\frac {
+%		v_0 = toNum(2) + toNum(1)
+%	}
+%	{
+%		\{\emptyset\} \vdash 2 + 1 \rightarrow 3
+%	} DoPlus
+%	\frac {
+%	}
+%	{
+%		\{v_0 = 3\} \vdash const \thinspace x = 3
+%	} DoConstDecl
+%	\frac {
+%		v_1 = toNum(x) * toNum(0)
+%	}
+%	{
+%		\{v_0 = 3, x = 3\} \vdash x * 0 \rightarrow 0
+%	} DoTimes
+%	\frac {
+%		toBool(v_1) = false
+%	}
+%	{
+%		\{v_0 = 3, x = 3, v_1 = 0\} \vdash ? x : x + x \rightarrow x + x
+%	} DoIfElse
+%	\thinspace
+%	v_2 = toNum(3) + toNum(3)
+%}{
+%	\{v_0 = 3, x = 3, v_1 = 0\} \vdash x + x \rightarrow v_2
+%} DoPlus
+%$
 
-\vspace{1.5\baselineskip}
+%\vspace{1.5\baselineskip}
 
-\par const x = \underline{2 + 1}; x * 0 ? x : x + x $\xrightarrow{a}$ const x = 3; \underline{x} * 0 ? x : x + x $\xrightarrow{c}$ const x = 3; \underline{0} ? x : x + x $\xrightarrow{d}$ const x = 3; \underline{x + x} $\xrightarrow{e}$ 6
+\par (ii) const x = \underline{2 + 1}; x * 0 ? x : x + x $\xrightarrow{a}$ const x = 3; \underline{x} * 0 ? x : x + x $\xrightarrow{c}$ const x = 3; \underline{0} ? x : x + x $\xrightarrow{d}$ const x = 3; \underline{3 + 3} $\xrightarrow{e}$ 6
 \par $a$: SearchConstDecl1, DoPlus
 \par $b$: SearchConstDecl2, DoVar
-\par $c$: SearchIf
-\par $d$: SearchConstDecl3, DoPlus
+\par $c$: SearchIf, DoTimes
+\par $d$: SearchConstDecl1, DoPlus
 \par $e$: DoConstDecl
 
 \subsection*{(c)}
