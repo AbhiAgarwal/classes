@@ -240,24 +240,16 @@ $
 \par The fourth application is the using occurrence of y in the definition of function f on line 3. This occurrence was bound to the value 3 in the call to the anonymous function that is returned by calling g on line 3. 
 
 \section{Problem 2}
-\subsection*{(a)}
-\forceindent \par $e_1 = (3 * y) + 4$
+\subsection*{(a)} $e_1 = (3 * y) + 4$
 
-\subsection*{(b)}
-\forceindent \par $e_1 = (x * y) + 4$
+\subsection*{(b)} $e_1 = (x * y) + 4$
 
-\subsection*{(c)}
-\forceindent \par $e_2 = const \thinspace y = y; \thinspace 3 + y$
+\subsection*{(c)} $e_2 = const \thinspace y = y; \thinspace 3 + y$
 
-\subsection*{(d)}
-\forceindent \par $e_2 = const \thinspace y = 3; x + y$
+\subsection*{(d)} $e_2 = const \thinspace y = 3; x + y$
 
-\subsection*{(e)}
-\forceindent \par 
-% $e_3 = const \thinspace x = (function (y) (x(y))); x(y(2))$
+\subsection*{(e)} $e_3 = const \thinspace x = (function (z) (x(z))); x(y(2))$
 
-\subsection*{(f)}
-\forceindent \par 
-% $e_3 = const \thinspace x = (function (y) ((y(x))(y))); x(y)$
+\subsection*{(f)} $e_3 = const \thinspace x = (function (z) (y(x(z)))); x(y)$
 
 \end{document}  
