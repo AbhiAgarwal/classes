@@ -251,9 +251,9 @@ $
 
 \par (ii) This program evaluates to 6. During evaluation, the EvalVar rule is applied four times as follows:
 \par The first application is the using occurrence of y in the definition of function f on line 3. In this case, y was bound to the value 3 in the call to f on line 4.
-\par The second application is the using occurrence of x in the definition of the function g on line 2. This occurrence was bound to the value 3 in the call to g on line 3.
-\par The third application is the using occurrence of y in the definition of the function g on line 2. This occurrence was bound to the value that will be passed into the function by the function call in line 3. The function call to g returns a function, and that function is called on line 3 using the value 3. So the occurrence was bound to the value 3 in the call to the anonymous function on line 3.
-\par The fourth application is the using occurrence of y in the definition of function f on line 3. This occurrence was bound to the value 3 in the call to the anonymous function that is returned by calling g on line 3. 
+\par The second application is the using occurrence of y in the definition of the function f on line 3. This occurrence was bound to the value 3 in the call to f on line 4.
+\par The second application is the using occurrence of x in the definition of the inner function on line 2. This occurrence was bound to the value 3 in the call to g on line 3.
+\par The third application is the using occurrence of y in the definition of the inner function g on line 2. This occurrence was bound to the value 3 in the call to the anonymous function that was returned from g on line 3.
 
 \section{Problem 2}
 \subsection*{(a)} $e_1 = (3 * y) + 4$
