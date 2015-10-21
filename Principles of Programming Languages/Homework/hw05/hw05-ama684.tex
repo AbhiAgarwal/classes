@@ -107,10 +107,9 @@ $
 
 %\vspace{1.5\baselineskip}
 
-\forceindent \par (i) 3 + \underline{(1 \&\& 5)} $\xrightarrow{a}$ \underline{3 + 5} $\xrightarrow{b}$ 8 $\xrightarrow{c}$ 8
-\par $a$: SearchBop1, DoAndTrue
-\par $b$: SearchBop2, DoPlus
-\par $c$: DoConstDecl
+\forceindent \par (i) 3 + \underline{(1 \&\& 5)} $\xrightarrow{a}$ \underline{3 + 5} $\xrightarrow{b}$ 8
+\par $a$: SearchBop2, DoAndTrue
+\par $b$: DoPlus
 
 \vspace{1.5\baselineskip}
 
@@ -148,12 +147,24 @@ $
 
 %\vspace{1.5\baselineskip}
 
-\par (ii) const x = \underline{2 + 1}; x * 0 ? x : x + x $\xrightarrow{a}$ const x = 3; \underline{x} * 0 ? x : x + x $\xrightarrow{c}$ const x = 3; \underline{0} ? x : x + x $\xrightarrow{d}$ const x = 3; \underline{3 + 3} $\xrightarrow{e}$ 6
+\par (ii) const x =
+ \underline{2 + 1}; x * 0 ? x : x + x $\xrightarrow{a}$ 
+ const x = 3; \underline{x} * 0 ? x : x + x $\xrightarrow{b}$
+ const x = 3; \underline{3 * 0} ? x : x + x $\xrightarrow{c}$
+ const x = 3; \underline{0 ? x : x + x} $\xrightarrow{d}$
+ const x = 3; \underline{x} + x $\xrightarrow{e}$
+ const x = 3; 3 + \underline{x} $\xrightarrow{f}$
+  const x = 3; 3 + 3 $\xrightarrow{g}$
+ const x = 3; \underline{3 + 3} $\xrightarrow{h}$
+ 6
 \par $a$: SearchConstDecl1, DoPlus
 \par $b$: SearchConstDecl2, DoVar
-\par $c$: SearchIf, DoTimes
-\par $d$: SearchConstDecl1, DoPlus
-\par $e$: DoConstDecl
+\par $c$: SearchConstDecl2, DoTimes
+\par $d$: SearchConstDecl2, DoIfFalse
+\par $e$: SearchConstDecl2, DoVar
+\par $f$: SearchConstDecl2, DoVar
+\par $g$: SearchConstDecl1, DoPlus
+\par $h$: DoConstDecl
 
 \subsection*{(c)}
 \forceindent \par 
@@ -198,7 +209,7 @@ $
 $
 
 \par Small-step SOS
-\par SearchComma1
+\par SearchSeq1
 $
 \frac{
 	env \vdash e_1 \rightarrow e_1'
@@ -207,7 +218,7 @@ $
 	env \vdash e_1, e_2 \rightarrow e_1', e_2
 }
 $
-\par SearchComma2
+\par SearchSeq2
 $
 \frac{
 	env \vdash e_2' \rightarrow e_2'
@@ -219,13 +230,12 @@ $
 \par DoReturnValue
 $
 \frac{
-	v = v_2
 }
 {
 	env \vdash v_1, v_2 = v
 }
 $
-\par Order for right-to-left evaluation: SearchComma1, SearchComma2, DoReturnValue
+\par Order for right-to-left evaluation: SearchSeq1, SearchSeq2, DoReturnValue
 
 \subsection*{(e)}
 \forceindent \par (i) This program evaluates to 5. During evaluation, the EvalVar is applied three times as follows:
