@@ -1,6 +1,5 @@
 \documentclass[11pt, oneside]{article}
-\usepackage[landscape]{geometry}
-\usepackage{geometry}
+\usepackage[landscape, margin=0.15in]{geometry}
 \geometry{letterpaper}
 \usepackage{graphicx}
 \usepackage{amssymb}
@@ -57,7 +56,6 @@ $
 $
 \frac{
 	\frac{
-		\frac {
 			\frac {
 			}
 			{
@@ -73,20 +71,28 @@ $
 		}
 		{
 			\{x \rightarrow 3, y \rightarrow -2\} \vdash 2 + y \Downarrow 0
-		} EvalPlus
-	}
-	{
-		\{x \rightarrow 3, y \rightarrow -2\} \vdash const b = 0 \Downarrow 0
-	} EvalConstDecl \thinspace
-	false = toBool(0) \thinspace
+		} EvalPlus \thinspace
+	env' = env [b \rightarrow 0] \thinspace
 	\frac{
-		y \in dom(\{x \rightarrow 3, y \rightarrow -2\})
+		\frac{
+			b \in dom(\{x \rightarrow 3, y \rightarrow -2, b \rightarrow 0\})
+		}
+		{
+			env' \vdash b \Downarrow 0
+		} EvalVar \thinspace
+		toBool(0) = false \thinspace
+		\frac{
+			y \in dom(\{x \rightarrow 3, y \rightarrow -2, b \rightarrow 0\})
+		}
+		{
+			env' \vdash y \Downarrow -2
+		} EvalVar
 	}
 	{
-		\{x \rightarrow 3, y \rightarrow -2\} \vdash y \Downarrow -2
-	} EvalVar \thinspace
+		\{x \rightarrow 3, y \rightarrow -2, b \rightarrow 0\} \vdash y \Downarrow -2
+	} EvalIfElse \thinspace
 }{
-	\{x \rightarrow 3, y \rightarrow -2\} \vdash b ? x : y \Downarrow -2
+	\{x \rightarrow 3, y \rightarrow -2\} \vdash const \thinspace b = 2 + y; b ? x : y \Downarrow -2
 } EvalIfThen
 $
 
