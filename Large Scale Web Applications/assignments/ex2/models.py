@@ -32,7 +32,7 @@ class Listing(models.Model):
 	user = models.ForeignKey(User, blank=False, null=False)
 	apartment = models.ForeignKey(Apartment)
 	start_date = models.DateTimeField("Start date and time")
-	number_of_days = models.IntegerField()
+	end_date = models.DateTimeField("End date and time")
 	price_per_night = models.DecimalField("Cost (in dollars)", max_digits=10, decimal_places=2)
 	is_booked = models.BooleanField(blank=False, null=False, default=False)
 
