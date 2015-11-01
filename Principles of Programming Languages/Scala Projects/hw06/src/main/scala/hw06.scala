@@ -136,7 +136,6 @@ object hw06 extends js.util.JsApp {
       case BinOp(Div, e1, e2) => Num(eToNum(e1) / eToNum(e2))
 
       case BinOp(bop @ (Eq | Ne), e1, e2) => {
-        // TODO: implement rules EvalEqual, EvalTypeErrorEqual1, and EvalTypeErrorEqual2
         def checkFunction(e: Expr): Bool = e match {
           case Function(_, _, _) => throw DynamicTypeError(e)
           case _ => return Bool(true)
@@ -175,10 +174,8 @@ object hw06 extends js.util.JsApp {
           case Function(p, x, e) =>
             val env1 = p match {
               case None =>
-                // update env according to rule EvalCall
                 extend(env, x, eToVal(e2))
               case Some(x1) =>
-                // update env according to rule EvalCallRec
                 extend(extend(env, x1, v1), x, eToVal(e2))
             }
             eval(env1, e)
@@ -260,63 +257,14 @@ object hw06 extends js.util.JsApp {
       case BinOp(And, v1: Val, e2) => {
         if (toBool(v1)) e2
         else v1
-        // if (toBool(v1)) {
-        //   e2 match {
-        //     case a: Val => e2 match {
-        //       case x @ Str(e2) => x
-        //       case y @ Num(e2) => y
-        //       case z @ Bool(e2) => z
-        //       case Undefined => Undefined
-        //     }
-        //     case _ => step(BinOp(And, v1, step(e2)))
-        //   }
-        // } else {
-        //   v1 match {
-        //     case x @ Str(e2) => x
-        //     case y @ Num(e2) => y
-        //     case z @ Bool(e2) => z
-        //     case Undefined => Undefined
-        //   }
-        // }
       }
       case BinOp(Or, v1: Val, e2) => {
         if (toBool(v1)) v1
         else e2
-        // if (toBool(v1)) {
-        //   v1 match {
-        //     case x @ Str(e2) => x
-        //     case y @ Num(e2) => y
-        //     case z @ Bool(e2) => z
-        //     case Undefined => Undefined
-        //   }
-        // } else {
-        //   e2 match {
-        //     case a: Val => {
-        //       e2 match {
-        //         case x @ Str(e2) => x
-        //         case y @ Num(e2) => y
-        //         case z @ Bool(e2) => z
-        //         case Undefined => Undefined
-        //       }
-        //     }
-        //     case b: Expr => step(BinOp(Or, v1, step(e2)))
-        //   }
-        // }
       }
       case If(v1: Val, e2, e3) => {
         if (toBool(v1)) e2
         else e3
-        // if (toBool(v1)) {
-        //   e2 match {
-        //     case a: Val => a
-        //     case b: Expr => step(b)
-        //   }
-        // } else {
-        //   e3 match {
-        //     case a: Val => a
-        //     case b: Expr => step(b)
-        //   }
-        // }
       }
       case ConstDecl(x, v1: Val, e1) => subst(e1, x, v1)
       case Call(v1: Val, v2: Val) => v1 match {
