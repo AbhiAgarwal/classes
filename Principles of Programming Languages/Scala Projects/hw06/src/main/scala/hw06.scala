@@ -214,7 +214,14 @@ object hw06 extends js.util.JsApp {
     e match {
       case Num(_) | Bool(_) | Undefined | Str(_) => e
       case Print(e1) => Print(substX(e1))
-      case _ => e
+      case UnOp(op, e1) => UnOp(op, substX(e1))
+      case BinOp(op, e1, e2) => BinOp(op, substX(e1), substX(e2))
+      case Call(e1, e2) => Call(substX(e1), substX(e2))
+      case If(e1, e2, e3) => If(substX(e1), substX(e2), substX(e3))
+      case ConstDecl(a, ed, eb) => ConstDecl(a, substX(ed), eb)
+      case Function(None, a, e1) => Function(None, a, substX(e1))
+      case Function(Some(b), a, e1) => Function(Some(b), a, substX(e1))
+      case Var(_) => v
     }
   }
 
