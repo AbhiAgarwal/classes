@@ -219,19 +219,15 @@ object hw06 extends js.util.JsApp {
       case UnOp(op, e1) => UnOp(op, substX(e1))
       case BinOp(op, e1, e2) => BinOp(op, substX(e1), substX(e2))
       case If(e1, e2, e3) => If(substX(e1), substX(e2), substX(e3))
+      case Var(a) => if (x == a) v else e
       case ConstDecl(a, ed, eb) => {
         val ebToReturn = if (a == x) eb else substX(eb)
         ConstDecl(a, substX(ed), ebToReturn)
       }
-      case Function(a, b, e1) => {
-        if ((b != x) && (a != x)) Function(a, b, substX(e1))
-        else Function(None, b, substX(e1))
-      }
+      case Function(None, b, e1) if (b != x) => Function(None, b, substX(e1))
+      case Function(Some(a), b, e1) if ((b != x) && (a != x)) => Function(Some(a), b, substX(e1))
       case Call(e1, e2) => Call(substX(e1), substX(e2))
-      case Var(a) => {
-        if (x == a) v
-        else e
-      }
+      case _ => e
     }
   }
 
