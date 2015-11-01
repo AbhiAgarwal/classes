@@ -147,6 +147,7 @@ object hw06 extends js.util.JsApp {
         bop match {
           case Eq => Bool(e1Value == e2Value)
           case Ne => Bool(e1Value != e2Value)
+          case _ => ???
         }
       }
 
@@ -172,14 +173,15 @@ object hw06 extends js.util.JsApp {
         v1 match {
           case Function(p, x, e) =>
             val env1 = p match {
-              case None =>
-                extend(env, x, eToVal(e2))
+              case None => extend(env, x, eToVal(e2))
               case Some(x1) =>
                 extend(extend(env, x1, v1), x, eToVal(e2))
             }
             eval(env1, e)
           case _ => throw DynamicTypeError(e)
         }
+
+      case _ => ???
     }
   }
 
@@ -216,12 +218,20 @@ object hw06 extends js.util.JsApp {
       case Print(e1) => Print(substX(e1))
       case UnOp(op, e1) => UnOp(op, substX(e1))
       case BinOp(op, e1, e2) => BinOp(op, substX(e1), substX(e2))
-      case Call(e1, e2) => Call(substX(e1), substX(e2))
       case If(e1, e2, e3) => If(substX(e1), substX(e2), substX(e3))
-      case ConstDecl(a, ed, eb) => ConstDecl(a, substX(ed), eb)
-      case Function(None, a, e1) => Function(None, a, substX(e1))
-      case Function(Some(b), a, e1) => Function(Some(b), a, substX(e1))
-      case Var(_) => v
+      case ConstDecl(a, ed, eb) => {
+        val ebToReturn = if (a == x) eb else substX(eb)
+        ConstDecl(a, substX(ed), ebToReturn)
+      }
+      case Function(a, b, e1) => {
+        if ((b != x) && (a != x)) Function(a, b, substX(e1))
+        else Function(None, b, substX(e1))
+      }
+      case Call(e1, e2) => Call(substX(e1), substX(e2))
+      case Var(a) => {
+        if (x == a) v
+        else e
+      }
     }
   }
 
@@ -249,6 +259,7 @@ object hw06 extends js.util.JsApp {
           case Minus => Num(v1Num - v2Num)
           case Times => Num(v1Num * v2Num)
           case Div => Num(v1Num / v2Num)
+          case _ => ???
         }
       }
       case BinOp(bop @ (Eq | Ne | Ge | Gt | Le | Lt), v1: Val, v2: Val) => (bop) match {
@@ -280,17 +291,19 @@ object hw06 extends js.util.JsApp {
       /* Inductive Cases: Search Rules */
       case Print(e) => Print(step(e))
       case UnOp(uop, e) => UnOp(uop, step(e))
-      case BinOp(op, v1: Val, e1) if ((v1 != Function) && ((op == Eq) || (op == Ne))) => BinOp(op, v1, step(e1))
-      case BinOp(op, v1: Val, e1) if ((op != And) && (op != Or) && (op != Eq) && (op != Ne) && (op != Seq)) => BinOp(op, v1, step(e1))
+      case BinOp(op, v1: Val, e2) if ((v1 != Function) && ((op == Eq) || (op == Ne))) => BinOp(op, v1, step(e2))
+      case BinOp(op, v1: Val, e2) if ((op != And) && (op != Or) && (op != Eq) && (op != Ne) && (op != Seq)) => BinOp(op, v1, step(e2))
       case BinOp(op, e1, e2) => BinOp(op, step(e1), e2)
       case If(e1, e2, e3) => If(step(e1), e2, e3)
       case ConstDecl(x, e1, e2) => ConstDecl(x, step(e1), e2)
+      case Call(v1: Val, e2) => Call(v1, step(e2))
       case Call(e1, e2) => Call(step(e1), e2)
-      case Call(v1: Val, e1) => Call(v1, step(e1))
 
       /* Cases that should never match. Your cases above should ensure this. */
       case Var(_) => throw new AssertionError("Gremlins: internal error, not a closed expression:\n%s".format(e))
       case v: Val => throw new AssertionError("Gremlins: internal error, step should not be called on values:\n%s".format(e));
+
+      case _ => ???
     }
   }
 
