@@ -168,7 +168,6 @@ object hw06 extends js.util.JsApp {
       case ConstDecl(x, ed, eb) => eval(extend(env, x, eToVal(ed)), eb)
 
       case Call(e1, e2) =>
-        // TODO: implement rules EvalCall, EvalCallRec, and EvalTypeErrorCall
         val v1 = eToVal(e1)
         v1 match {
           case Function(p, x, e) =>
@@ -208,7 +207,6 @@ object hw06 extends js.util.JsApp {
 
   def subst(e: Expr, x: String, v: Val): Expr = {
     require(closed(v))
-    // To do
     /* Simple helper that calls substitute on an expression
      * with the input value v and variable name x. */
     def substX(e: Expr): Expr = subst(e, x, v)
@@ -216,7 +214,7 @@ object hw06 extends js.util.JsApp {
     e match {
       case Num(_) | Bool(_) | Undefined | Str(_) => e
       case Print(e1) => Print(substX(e1))
-      case _ => ???
+      case _ => e
     }
   }
 
@@ -226,8 +224,6 @@ object hw06 extends js.util.JsApp {
       case Print(v: Val) =>
         println(v.prettyVal); Undefined
       case UnOp(UMinus, v: Val) => Num(-toNum(v))
-
-      // ****** Your cases here
       case UnOp(Not, v: Val) => Bool(!toBool(v))
       case BinOp(Seq, v1: Val, e2) => e2
       case BinOp(bop @ (Eq | Ne), v1: Val, Function(p, x, e)) =>
@@ -277,12 +273,9 @@ object hw06 extends js.util.JsApp {
       /* Inductive Cases: Search Rules */
       case Print(e) => Print(step(e))
       case UnOp(uop, e) => UnOp(uop, step(e))
-
-      // ****** Your cases here
       case BinOp(op, v1: Val, e1) if ((v1 != Function) && ((op == Eq) || (op == Ne))) => BinOp(op, v1, step(e1))
       case BinOp(op, v1: Val, e1) if ((op != And) && (op != Or) && (op != Eq) && (op != Ne) && (op != Seq)) => BinOp(op, v1, step(e1))
       case BinOp(op, e1, e2) => BinOp(op, step(e1), e2)
-
       case If(e1, e2, e3) => If(step(e1), e2, e3)
       case ConstDecl(x, e1, e2) => ConstDecl(x, step(e1), e2)
       case Call(e1, e2) => Call(step(e1), e2)
