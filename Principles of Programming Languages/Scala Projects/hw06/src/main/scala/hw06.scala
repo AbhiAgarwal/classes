@@ -137,7 +137,18 @@ object hw06 extends js.util.JsApp {
 
       case BinOp(bop @ (Eq | Ne), e1, e2) => {
         // TODO: implement rules EvalEqual, EvalTypeErrorEqual1, and EvalTypeErrorEqual2
-        
+        def checkFunction(e: Expr): Bool = e match {
+          case Function(_, _, _) => throw DynamicTypeError(e)
+          case _ => return Bool(true)
+        }
+        val e1Value = eToVal(e1)
+        checkFunction(e1Value)
+        val e2Value = eToVal(e2)
+        checkFunction(e2Value)
+        bop match {
+          case Eq => Bool(e1Value == e2Value)
+          case Ne => Bool(e1Value != e2Value)
+        }
       }
 
       case BinOp(bop @ (Lt | Le | Gt | Ge), e1, e2) =>
@@ -165,13 +176,13 @@ object hw06 extends js.util.JsApp {
             val env1 = p match {
               case None =>
                 // update env according to rule EvalCall
-                ???
+                extend(env, x, eToVal(e2))
               case Some(x1) =>
                 // update env according to rule EvalCallRec
-                ???
+                extend(extend(env, x1, v1), x, eToVal(e2))
             }
             eval(env1, e)
-          case _ => ???
+          case _ => throw DynamicTypeError(e)
         }
     }
   }
@@ -200,6 +211,7 @@ object hw06 extends js.util.JsApp {
 
   def subst(e: Expr, x: String, v: Val): Expr = {
     require(closed(v))
+    // To do
     /* Simple helper that calls substitute on an expression
      * with the input value v and variable name x. */
     def substX(e: Expr): Expr = subst(e, x, v)
@@ -219,14 +231,114 @@ object hw06 extends js.util.JsApp {
       case UnOp(UMinus, v: Val) => Num(-toNum(v))
 
       // ****** Your cases here
-      case UnOp(Not, v: Val) => ???
-      // ...
+      case UnOp(Not, v: Val) => Bool(!toBool(v))
+      case BinOp(Seq, v1: Val, e2) => e2
+      case BinOp(bop @ (Eq | Ne), v1: Val, Function(p, x, e)) =>
+        throw DynamicTypeError(Function(p, x, e))
+      case BinOp(bop @ (Eq | Ne), Function(p, x, e1), e2) =>
+        throw DynamicTypeError(Function(p, x, e1))
+      case BinOp(bop @ (Plus), v1: Val, v2: Val) => (v1, v2) match {
+        case (Str(v1), v2) => Str(v1 + toStr(v2))
+        case (v1, Str(v2)) => Str(toStr(v1) + v2)
+        case (v1, v2) => Num(toNum(v1) + toNum(v2))
+      }
+      case BinOp(bop @ (Minus | Times | Div), v1: Val, v2: Val) => {
+        val v1Num = toNum(v1)
+        val v2Num = toNum(v2)
+        bop match {
+          case Minus => Num(v1Num - v2Num)
+          case Times => Num(v1Num * v2Num)
+          case Div => Num(v1Num / v2Num)
+        }
+      }
+      case BinOp(bop @ (Eq | Ne | Ge | Gt | Le | Lt), v1: Val, v2: Val) => (bop) match {
+        // inequalityVal works with anything but Eq/Ne.
+        case Eq => Bool(v1 == v2)
+        case Ne => Bool(v1 != v2)
+        case bop => Bool(inequalityVal(bop, v1, v2))
+      }
+      case BinOp(And, v1: Val, e2) => {
+        if (toBool(v1)) e2
+        else v1
+        // if (toBool(v1)) {
+        //   e2 match {
+        //     case a: Val => e2 match {
+        //       case x @ Str(e2) => x
+        //       case y @ Num(e2) => y
+        //       case z @ Bool(e2) => z
+        //       case Undefined => Undefined
+        //     }
+        //     case _ => step(BinOp(And, v1, step(e2)))
+        //   }
+        // } else {
+        //   v1 match {
+        //     case x @ Str(e2) => x
+        //     case y @ Num(e2) => y
+        //     case z @ Bool(e2) => z
+        //     case Undefined => Undefined
+        //   }
+        // }
+      }
+      case BinOp(Or, v1: Val, e2) => {
+        if (toBool(v1)) v1
+        else e2
+        // if (toBool(v1)) {
+        //   v1 match {
+        //     case x @ Str(e2) => x
+        //     case y @ Num(e2) => y
+        //     case z @ Bool(e2) => z
+        //     case Undefined => Undefined
+        //   }
+        // } else {
+        //   e2 match {
+        //     case a: Val => {
+        //       e2 match {
+        //         case x @ Str(e2) => x
+        //         case y @ Num(e2) => y
+        //         case z @ Bool(e2) => z
+        //         case Undefined => Undefined
+        //       }
+        //     }
+        //     case b: Expr => step(BinOp(Or, v1, step(e2)))
+        //   }
+        // }
+      }
+      case If(v1: Val, e2, e3) => {
+        if (toBool(v1)) e2
+        else e3
+        // if (toBool(v1)) {
+        //   e2 match {
+        //     case a: Val => a
+        //     case b: Expr => step(b)
+        //   }
+        // } else {
+        //   e3 match {
+        //     case a: Val => a
+        //     case b: Expr => step(b)
+        //   }
+        // }
+      }
+      case ConstDecl(x, v1: Val, e1) => subst(e1, x, v1)
+      case Call(v1: Val, v2: Val) => v1 match {
+        case Function(None, x1, e1) => subst(e1, x1, v2)
+        case Function(Some(x1), x2, e1) =>
+          subst(subst(e1, x1, v1), x2, v2)
+        case _ => throw DynamicTypeError(e)
+      }
 
       /* Inductive Cases: Search Rules */
       case Print(e) => Print(step(e))
       case UnOp(uop, e) => UnOp(uop, step(e))
 
       // ****** Your cases here
+      case BinOp(op, v1: Val, e1) if ((v1 != Function) && ((op == Eq) || (op == Ne))) => BinOp(op, v1, step(e1))
+      case BinOp(op, v1: Val, e1) if ((op != And) && (op != Or) && (op != Eq) && (op != Ne) && (op != Seq)) => BinOp(op, v1, step(e1))
+      case BinOp(op, e1, e2) => BinOp(op, step(e1), e2)
+
+      case If(e1, e2, e3) => If(step(e1), e2, e3)
+      case ConstDecl(x, e1, e2) => ConstDecl(x, step(e1), e2)
+      case Call(e1, e2) => Call(step(e1), e2)
+      case Call(v1: Val, e1) => Call(v1, step(e1))
 
       /* Cases that should never match. Your cases above should ensure this. */
       case Var(_) => throw new AssertionError("Gremlins: internal error, not a closed expression:\n%s".format(e))
