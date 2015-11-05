@@ -34,12 +34,17 @@ object hw07 extends js.util.JsApp {
   /* Lists */
   
   def compressRec[A](l: List[A]): List[A] = l match {
-    case Nil | _ :: Nil => ???
-    case h1 :: (t1 @ (h2 :: _)) => ???
+    case Nil | _ :: Nil => l
+    case h1 :: (t1 @ (h2 :: _)) => 
+      if (h1 == h2) compressRec(t1)
+      else h1 :: compressRec(t1)
   }
   
   def compressFold[A](l: List[A]): List[A] = l.foldRight(Nil: List[A]){
-    (h, acc) => ???
+    (h, acc) => acc match {
+      case h1 :: _ if h1 == h => acc
+      case _ => h :: acc
+    }
   }
   
   def mapFirst[A](f: A => Option[A])(l: List[A]): List[A] = l match {
