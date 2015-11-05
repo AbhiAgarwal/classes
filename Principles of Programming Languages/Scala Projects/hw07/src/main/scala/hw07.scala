@@ -106,7 +106,18 @@ object hw07 extends js.util.JsApp {
   // As a client of your foldLeft method that checks whether the data values of t as an in-order traversal are in strictly ascending order (i.e., d1 < d2 < ... < dn).
   def strictlyOrdered(t: Tree): Boolean = {
     val (b, _) = t.foldLeft((true, None: Option[Int])) {
-      ???
+      (a, val1) =>
+        a match {
+          // Some(X) required since it is Option[Int]
+          case (false, _) => (false, Some(val1))
+          case (true, None) => (true, Some(val1))
+          case (true, Some(val2)) => {
+            if (val2 > val1) (true, Some(val1))
+            else (false, Some(val2))
+          }
+          case (true, _) => (false, Some(val1))
+          case _ => (false, None)
+        }
     }
     b
   }
@@ -270,7 +281,7 @@ object hw07 extends js.util.JsApp {
               case Some(x0) => subst(eb, x0, v0)
             }
             // evaluate es and extend result with Undefined values if es.size < xs.size
-            val vs_padded = ???
+            val vs_padded = ??? // es.forall(x => inequalityVal(Lt, x, Num(xs.size)))
             // compute common substitutions for EvalCall and EvalCallRec rules
             val ebpp = (xs, vs_padded).zipped.foldRight(ebp) {
               case ((xi, vi), ebpp) => ???
