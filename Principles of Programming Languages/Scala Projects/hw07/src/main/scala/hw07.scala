@@ -42,7 +42,7 @@ object hw07 extends js.util.JsApp {
   
   def compressFold[A](l: List[A]): List[A] = l.foldRight(Nil: List[A]){
     (h, acc) => acc match {
-      case h1 :: _ if h1 == h => acc
+      case h1 :: _ => if (h1 == h) acc else h :: acc
       case _ => h :: acc
     }
   }
