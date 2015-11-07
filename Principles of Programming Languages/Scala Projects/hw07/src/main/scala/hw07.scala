@@ -4,9 +4,9 @@ object hw07 extends js.util.JsApp {
   import scala.util.parsing.input.NoPosition
   /*
    * CSCI-UA.0480-003: Homework 7
-   * <Your Name>
+   * Abhi Agarwal
    * 
-   * Partner: <Your Partner's Name>
+   * Partner: Bob Gardner
    * Collaborators: <Any Collaborators>
    */
 
@@ -200,9 +200,11 @@ object hw07 extends js.util.JsApp {
       case If(b, e1, e2) => If(substX(b), substX(e1), substX(e2))
       case ConstDecl(y, ed, eb) =>
         ConstDecl(y, substX(ed), if (x == y) eb else substX(eb))
-      case Call(e0, es) => Call(substX(e0), es map substX)
-      case Function(p, ys, eb) =>
-        ???
+      case Call(e0, es) => Call(substX(e0), es.map(substX))
+      case Function(p, ys, eb) => {
+        if (ys.exists { _ == x } || Some(x) == p) Function(p, ys, eb)
+        else Function(p, ys, substX(eb))
+      }
     }
   }
 
@@ -280,11 +282,11 @@ object hw07 extends js.util.JsApp {
               case None => eb
               case Some(x0) => subst(eb, x0, v0)
             }
-            // evaluate es and extend result with Undefined values if es.size < xs.size
-            val vs_padded = ??? // es.forall(x => inequalityVal(Lt, x, Num(xs.size)))
+            // evaluate evaluates and extend result with Undefined values if es.size < xs.size
+            val vs_padded = es.forall(size => inequalityVal(Lt, eval(size), Num(xs.size)))
             // compute common substitutions for EvalCall and EvalCallRec rules
             val ebpp = (xs, vs_padded).zipped.foldRight(ebp) {
-              case ((xi, vi), ebpp) => ???
+              case ((xi, vi), ebpp) => subst(ebpp, xi, vi)
             }
             eval(ebpp)
           case _ => throw DynamicTypeError(e)
