@@ -80,7 +80,8 @@ object hw07 extends js.util.JsApp {
       def loop(acc: A, t: Tree): A = t match {
         case Empty => acc
         // left: Tree, d: Int, right: Tree
-        case Node(l, d, r) => f(loop(acc, r), d)
+        // there's another outer loop.
+        case Node(l, d, r) => loop(f(loop(acc, l), d), r)
       }
       loop(z, this)
     }
@@ -106,18 +107,8 @@ object hw07 extends js.util.JsApp {
   // As a client of your foldLeft method that checks whether the data values of t as an in-order traversal are in strictly ascending order (i.e., d1 < d2 < ... < dn).
   def strictlyOrdered(t: Tree): Boolean = {
     val (b, _) = t.foldLeft((true, None: Option[Int])) {
-      (a, val1) =>
-        a match {
-          // Some(X) required since it is Option[Int]
-          case (false, _) => (false, Some(val1))
-          case (true, None) => (true, Some(val1))
-          case (true, Some(val2)) => {
-            if (val2 > val1) (true, Some(val1))
-            else (false, Some(val2))
-          }
-          case (true, _) => (false, Some(val1))
-          case _ => (false, None)
-        }
+      case ((a, val1), curr) =>
+        (a && val1.fold(true)(_ < curr), Some(curr))
     }
     b
   }
