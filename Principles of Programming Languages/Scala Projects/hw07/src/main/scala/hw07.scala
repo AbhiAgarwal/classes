@@ -283,7 +283,7 @@ object hw07 extends js.util.JsApp {
               case Some(x0) => subst(eb, x0, v0)
             }
             // evaluate evaluates and extend result with Undefined values if es.size < xs.size
-            val vs_padded = es.forall(size => inequalityVal(Lt, eval(size), Num(xs.size)))
+            val vs_padded = es.map(eval).padTo(xs.size, Undefined)
             // compute common substitutions for EvalCall and EvalCallRec rules
             val ebpp = (xs, vs_padded).zipped.foldRight(ebp) {
               case ((xi, vi), ebpp) => subst(ebpp, xi, vi)
