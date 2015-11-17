@@ -1,0 +1,44 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[]{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[normalem]{ulem}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\forceindent}{\leavevmode{\parindent=1.5em\indent}}
+\newcommand{\forceindentx}{\leavevmode{\parindent=2em\indent}}
+\newcommand{\forceindenty}{\leavevmode{\parindent=1em\indent}}
+\usepackage{amsmath}
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+\title{Principles of Programming Languages - Homework 8}
+\author{Abhi Agarwal}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Problem 1}
+\subsection*{(a)}
+\forceindent \par (i): The expression is well typed. It will evaluate to a type number.
+\par (ii): The expression is not well typed. You cannot add a Number to a Boolean. This happens on Line 2. This is dictated by the TypeArith rule.
+\par (iii): The expression is well typed. It will evaluate to a type number =$>$ number.
+\par (iv): The expression is not well typed. Line 4 doesn't follow the TypeEqual rule. Line 4 tries to test equality of two functions. 
+\par (v): The expression is not well typed. The anonymous function does not define a return type. This is dictated by the TypeFunctionRec rule. However, if x $>$ y then this will return a Number, if x $<$ y then it will never return (infinite loop).
+
+\subsection*{(b)}
+\forceindent \par (i)
+\forceindent \par $t_1$: number =$>$ number
+\forceindent \par $t_2$: number =$>$ number
+\forceindent \par $t_3$: number
+\forceindent \par $f$: (number =$>$ number) =$>$ (number =$>$ number)
+
+\forceindent \par (ii) Kind of like the opposite of (i). Since $t_3$ can be anything, which implies that $t_1$ can be anything, which implies that $t_2$ can be anything. 
+\forceindent \par $t_1: t_3$: Any
+\forceindent \par $t_2: t_3$: Any
+\forceindent \par $t_3$: Any
+\par Let's take an example of $t_3$ being Boolean. Then $f$: (boolean =$>$ boolean) =$>$ (boolean =$>$ boolean). This is a universal rule to this program.
+
+\forceindent \par (iii) There exist no concrete types for the mission parameter types such that the given program is well-typed according to the rules. For it to be well-typed $t_2$ has to be both a Boolean and a Number as it needs to satisfy both f(g)(true) and f(h)(1). This isn't possible so it isn't possible for it to be well-typed.
+
+\end{document}  
