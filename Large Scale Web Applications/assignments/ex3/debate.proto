@@ -12,7 +12,6 @@ message AnswerRequest {
     optional uint32 timeout = 2;
 }
 
-// The retort to use.
 message AnswerReply {
     optional string answer = 1;
 }
@@ -22,7 +21,6 @@ message ElaborateRequest {
     repeated uint32 blah_run = 2;
 }
 
-// The retort to use.
 message ElaborateReply {
     optional string answer = 1;
 }

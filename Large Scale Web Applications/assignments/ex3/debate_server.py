@@ -7,15 +7,10 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 class Candidate(debate_pb2.BetaCandidateServicer):
 
     def Answer(self, request, context):
-        print 'x'
-        print request
-        print request.question
-        return debate_pb2.AnswerReply(message='Hello, %s!' % request.question)
+        return debate_pb2.AnswerReply(answer='Hello')
 
     def Elaborate(self, request, context):
-        print request
-        print request.question
-        return debate_pb2.ElaborateReply(message='Hello, %s!' % request.question)
+        return debate_pb2.ElaborateReply(answer='Hello')
 
 
 def serve():
