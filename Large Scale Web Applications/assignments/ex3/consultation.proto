@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package consultation;
+
+service CampaignManager {
+    // Gives a randomly chosen evasive answer.
+    rpc Retort (RetortRequest) returns (RetortReply) {}
+}
+
+// The request for an evasive retort.
+message RetortRequest {
+    // The original question that was posted to the candidate.
+    optional string original_question = 1;
+}
+
+// The retort to use.
+message RetortReply {
+    optional string retort = 1;
+}

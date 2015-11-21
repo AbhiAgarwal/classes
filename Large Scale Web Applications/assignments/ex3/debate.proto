@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package debate;
+
+service Candidate {
+    rpc Answer (AnswerRequest) returns (AnswerReply) {}
+    rpc Elaborate (ElaborateRequest) returns (ElaborateReply) {}
+}
+
+message AnswerRequest {
+    optional string question = 1;
+    optional uint32 timeout = 2;
+}
+
+// The retort to use.
+message AnswerReply {
+    optional string answer = 1;
+}
+
+message ElaborateRequest {
+    optional string topic = 1;
+    repeated uint32 blah_run = 2;
+}
+
+// The retort to use.
+message ElaborateReply {
+    optional string answer = 1;
+}
