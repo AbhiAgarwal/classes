@@ -99,8 +99,6 @@ object hw09 extends js.util.JsApp {
           case Seq =>
             typ(e1); typ(e2)
           case Assign =>
-            // Var
-            // checkTyp(Var, e1)
             ???
         }
       case If(e1, e2, e3) =>
@@ -137,7 +135,18 @@ object hw09 extends js.util.JsApp {
         case TFunction(txs, tret) if (txs.length == es.length) => {
           (txs, es).zipped.foreach {
             // Use PRef
-            ???
+            (p, es1) =>
+              p match {
+                case (pmode, t) => {
+                  if (pmode != PRef) {
+                    val es1Type = typ(es1)
+                    if (es1Type == t) es1Type
+                    else err(es1Type, es1)
+                  } else {
+                    err(t, es1)
+                  }
+                }
+              }
           }
           tret
         }
@@ -244,10 +253,12 @@ object hw09 extends js.util.JsApp {
         (mp, Num(-n))
 
       case UnOp(Not, e1) =>
-        ???
+        val (mp, n) = eToBool(m, e1)
+        (mp, Bool(!n))
 
-      case UnOp(Deref, a: Addr) =>
+      case UnOp(Deref, a: Addr) => {
         ???
+      }
 
       case BinOp(Plus, e1, e2) => {
         val (mp1, n1) = eToVal(e1)
@@ -285,25 +296,31 @@ object hw09 extends js.util.JsApp {
         eToVal(e2)
       }
 
-      case BinOp(Assign, UnOp(Deref, a: Addr), e2) => {
-        
-      }
+      case BinOp(Assign, UnOp(Deref, a: Addr), e2) =>
+        ???
 
       case BinOp(bop @ (Eq | Ne | Lt | Gt | Le | Ge), e1, e2) => {
         val (mp1, n1) = eToVal(e1)
         val (mp2, n2) = eToVal(e2)
-        (mp1, Bool(inequalityVal(bop, n1, n2)))
+        bop match {
+          case (Eq) =>(mp1, Bool(n1 == n2))
+          case (Ne) => (mp1, Bool(n1 != n2))
+          case (Lt | Gt | Le | Ge) => (mp1, Bool(inequalityVal(bop, n1, n2)))
+        }
       }
 
       case If(e1, e2, e3) =>
-        ???
+        val (mp1, n1) = eToBool(m, e1)
+        if (n1) eToVal(e2)
+        else eToVal(e3)
 
       case Decl(MConst, x, ed, eb) =>
         val (mp, vd) = eval(m, ed)
         eval(mp, subst(eb, x, vd))
 
-      case Decl(MVar, x, ed, eb) =>
+      case Decl(MVar, x, ed, eb) => {
         ???
+      }
 
       case Call(e0, es) =>
         val (mp, v0) = eval(m, e0)
@@ -316,8 +333,9 @@ object hw09 extends js.util.JsApp {
           case v0 @ Function(None, (x, (mode, _)) :: xs, tann, eb) =>
             (mode, es) match {
               /** EvalCallConst */
-              case (PConst, e :: es) =>
+              case (PConst, e :: es) => {
                 ???
+              }
               /** EvalCallName, EvalCallRef */
               case (PName | PRef, e :: es) =>
                 ???
