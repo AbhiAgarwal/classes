@@ -98,8 +98,15 @@ object hw09 extends js.util.JsApp {
             checkTyp(TBool, e2)
           case Seq =>
             typ(e1); typ(e2)
-          case Assign =>
-            ???
+          case Assign => {
+            e1 match {
+              case Var(a) =>
+                val (mp1, t1) = env(a)
+                if (mp1 == MVar) checkTyp(t1, e2)
+                else locerr(e1)
+              case _ => locerr(e1)
+            }
+          }
         }
       case If(e1, e2, e3) =>
         checkTyp(TBool, e1)
@@ -117,11 +124,8 @@ object hw09 extends js.util.JsApp {
         }
         // Bind to env2 an environment that extends env1 with bindings for xs.
         val bindxs = xs.map {
-          // Mut -> MConst, MVar
-          // MConst
-          case (pmode, ((PConst | PName), typ)) => pmode -> (MConst, typ)
-          // MVar
-          case (pmode, (_, typ)) => pmode -> (MVar, typ)
+          // Mut -> MVar
+          case (pmode, (_, typ)) => (pmode, (MVar, typ))
         }
         val env2 = env1 ++ bindxs
         // Infer the type of the body e1
@@ -134,18 +138,15 @@ object hw09 extends js.util.JsApp {
       case Call(e1, es) => typ(e1) match {
         case TFunction(txs, tret) if (txs.length == es.length) => {
           (txs, es).zipped.foreach {
-            // Use PRef
-            (p, es1) =>
-              p match {
-                case (pmode, t) => {
-                  if (pmode != PRef) {
-                    val es1Type = typ(es1)
-                    if (es1Type == t) es1Type
-                    else err(es1Type, es1)
-                  } else {
-                    err(t, es1)
-                  }
-                }
+            // Use MVar
+            case ((m1, t1), p) =>
+              // Unpack the arguments
+              (mut(m1), t1, p) match {
+                case (MVar, t1, p) =>
+                  if (p == MVar) checkTyp(t1, p)
+                  else locerr(e)
+                case (_, t1, p) =>
+                  checkTyp(t1, p)
               }
           }
           tret
@@ -256,22 +257,22 @@ object hw09 extends js.util.JsApp {
         val (mp, n) = eToBool(m, e1)
         (mp, Bool(!n))
 
-      case UnOp(Deref, a: Addr) => {
-        ???
-      }
+      case UnOp(Deref, a: Addr) => (m, m(a))
 
       case BinOp(Plus, e1, e2) => {
         val (mp1, n1) = eToVal(e1)
-        val (mp2, n2) = eToVal(e2)
-        (e1, e2) match {
-          case (Str(x), Str(y)) => (mp1, Str(x + y))
-          case (Num(x), Num(y)) => (mp1, Num(x + y))
+        val (mp2, n2) = eval(mp1, e2)
+        val a = (n1, n2) match {
+          case (Str(x), Str(y)) => Str(x + y)
+          case (Num(x), Num(y)) => Num(x + y)
+          case _ => throw StuckError(e)
         }
+        (mp2, a)
       }
 
       case BinOp(bop @ (Minus | Times | Div), e1, e2) => {
         val (mp1, n1) = eToNum(m, e1)
-        val (mp2, n2) = eToNum(m, e2)
+        val (mp2, n2) = eToNum(mp1, e2)
         bop match {
           case Minus => (mp1, Num(n1 - n2))
           case Times => (mp1, Num(n1 * n2))
@@ -281,8 +282,10 @@ object hw09 extends js.util.JsApp {
 
       case BinOp(And, e1, e2) => {
         val (mp1, n1) = eToBool(m, e1)
-        if (n1) eToVal(e2)
-        else (mp1, Bool(false))
+        if (n1) {
+          val (mp2, n2) = eToBool(mp1, e2)
+          (mp2, Bool(n2))
+        } else (mp1, Bool(n1))
       }
 
       case BinOp(Or, e1, e2) => {
@@ -293,17 +296,19 @@ object hw09 extends js.util.JsApp {
 
       case BinOp(Seq, e1, e2) => {
         val (mp1, n1) = eToVal(e1)
-        eToVal(e2)
+        eval(mp1, e2)
       }
 
-      case BinOp(Assign, UnOp(Deref, a: Addr), e2) =>
-        ???
+      case BinOp(Assign, UnOp(Deref, a: Addr), e2) => {
+        val (mp1, n1) = eToVal(e2)
+        (mp1 + (a -> n1), n1)
+      }
 
       case BinOp(bop @ (Eq | Ne | Lt | Gt | Le | Ge), e1, e2) => {
         val (mp1, n1) = eToVal(e1)
         val (mp2, n2) = eToVal(e2)
         bop match {
-          case (Eq) =>(mp1, Bool(n1 == n2))
+          case (Eq) => (mp1, Bool(n1 == n2))
           case (Ne) => (mp1, Bool(n1 != n2))
           case (Lt | Gt | Le | Ge) => (mp1, Bool(inequalityVal(bop, n1, n2)))
         }
@@ -319,7 +324,9 @@ object hw09 extends js.util.JsApp {
         eval(mp, subst(eb, x, vd))
 
       case Decl(MVar, x, ed, eb) => {
-        ???
+        val (mp, n1) = eToVal(ed)
+        val (mp1, a) = mp.alloc(n1)
+        eval(mp1, subst(eb, x, UnOp(Deref, a)))
       }
 
       case Call(e0, es) =>
@@ -334,14 +341,22 @@ object hw09 extends js.util.JsApp {
             (mode, es) match {
               /** EvalCallConst */
               case (PConst, e :: es) => {
-                ???
+                val (mp1, v1) = eval(mp, e)
+                val v0p = subst(v0.copy(xs = xs), x, v1)
+                eval(mp1, Call(v0p, es))
               }
               /** EvalCallName, EvalCallRef */
-              case (PName | PRef, e :: es) =>
-                ???
+              case (PName | PRef, e :: es) => {
+                val v0p = subst(v0.copy(xs = xs), x, e)
+                eval(mp, Call(v0p, es))
+              }
               /** EvalCallVar */
-              case (PVar, e :: es) =>
-                ???
+              case (PVar, e :: es) => {
+                val (mp1, v1) = eval(mp, e)
+                val (mp2, a) = mp1.alloc(v1)
+                val v0p = subst(v0.copy(xs = xs), x, UnOp(Deref, a))
+                eval(mp2, Call(v0p, es))
+              }
               case _ => throw StuckError(e)
             }
           /** EvalCall */
