@@ -336,7 +336,7 @@ object hw10 extends js.util.JsApp {
       case Call(v0 @ Function(None, (x1, _) :: xs, _, eb), e1 :: es) =>
         for {
           x0 <- eval(e1)
-          v <- eval(Call(v0.copy(xs=xs, e=subst(eb, x1, x0)), es))
+          v <- eval(Call(v0.copy(xs = xs, e = subst(eb, x1, x0)), es))
         } yield v
 
       /** EvalCallRec */
