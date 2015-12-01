@@ -245,10 +245,7 @@ object hw10 extends js.util.JsApp {
           b <- eToBool(e1)
         } yield Bool(!b)
 
-      case UnOp(Deref, a: Addr) =>
-        for {
-          m <- State.init[Mem]
-        } yield m(a)
+      case UnOp(Deref, a: Addr) => State.read(_(a))
 
       case BinOp(Plus, e1, e2) =>
         for {
@@ -258,6 +255,7 @@ object hw10 extends js.util.JsApp {
           (n1, n2) match {
             case (Str(x), Str(y)) => Str(x + y)
             case (Num(x), Num(y)) => Num(x + y)
+            case _ => throw StuckError(e)
           }
         }
 
@@ -270,6 +268,7 @@ object hw10 extends js.util.JsApp {
             case Minus => Num(n1 - n2)
             case Times => Num(n1 * n2)
             case Div => Num(n1 / n2)
+            case _ => throw StuckError(e)
           }
         }
 
@@ -292,12 +291,10 @@ object hw10 extends js.util.JsApp {
         } yield v
 
       case BinOp(Assign, UnOp(Deref, a: Addr), e2) =>
-        for (
-          b <- eval(e2);
-          v <- State.apply {
-            (m: Mem) => (m + (a -> b), b)
-          }
-        ) yield v
+        for {
+          v <- eval(e2)
+          _ <- State.write[Mem](_ + (a, v))
+        } yield v
 
       case BinOp(bop @ (Eq | Ne | Lt | Gt | Le | Ge), e1, e2) =>
         for {
@@ -308,6 +305,7 @@ object hw10 extends js.util.JsApp {
             case Eq => Bool(n1 == n2)
             case Ne => Bool(n1 != n2)
             case Lt | Gt | Le | Ge => Bool(inequalityVal(bop, n1, n2))
+            case _ => throw StuckError(e)
           }
         }
 
@@ -336,7 +334,10 @@ object hw10 extends js.util.JsApp {
 
       /** EvalCallConst */
       case Call(v0 @ Function(None, (x1, _) :: xs, _, eb), e1 :: es) =>
-        ???
+        for {
+          x0 <- eval(e1)
+          v <- eval(Call(v0.copy(xs=xs, e=subst(eb, x1, x0)), es))
+        } yield v
 
       /** EvalCallRec */
       case Call(e0, es) =>
