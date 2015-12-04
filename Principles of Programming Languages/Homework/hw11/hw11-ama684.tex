@@ -22,20 +22,20 @@
 \subsection*{(a)} 
 
 \indent \par $t_0 <: t_1$: type $t_0$ can be safely substituted by values of type $t_1$.
-\par (i) True: Number can safely be substituted by values of Number.
-\par (ii) True: Boolean can safely be substituted by values of Number. 
-\par (iii) True: Number can safely be substituted by values of Any.
-\par (iv) 
-\par (v) 
-\par (vi) False
+\par (i) True: Number can safely be substituted by values of Number. Follows the SubRefl rule.
+\par (ii) False.
+\par (iii) True: Number can safely be substituted by values of Any. Rule SubAny.
+\par (iv) True: Var to Const is permitted by rule SubObjMut, and Number to Any by rule SubAny.
+\par (v) False.
+\par (vi) False.
 \par (vii) True: since \{\} is a subtype of Any, and \{const f: \{\}\} is a subtype of \{const f: any, var g: bool\}.
-\par (viii) 
-\par (ix) True
+\par (viii) False.
+\par (ix) True.
 
 \subsection*{(b)} 
 \par I'm gonna assume for all of these y actually equals x. Or the variable at the top is supposed to be called y.
-\par (i) 
-\par (ii)  
+\par (i) (1): It will safely evaluate. It will produce a value. The value that fun(y).f would return would be 4. (2): TypeCall requires that the type of the argument in a call expression precisely matches the type of the function parameter that it is passed to. So it will not be well-typed with subtyping since that is not the case. The const y is missing the field g (which is a boolean). 
+\par (ii) (1) It will safely evaluate. It will produce a value. The value that fun(y).f would return would be 3. (2): TypeCall requires that the type of the argument in a call expression precisely matches the type of the function parameter that it is passed to. So it will not be well-typed with subtyping since that is not the case. The parameters are missing the field g (which is a boolean).
 \par (iii) 
 \par (iv) 
 
