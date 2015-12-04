@@ -28,15 +28,14 @@
 \par (iv) True: Var to Const is permitted by rule SubObjMut, and Number to Any by rule SubAny.
 \par (v) False.
 \par (vi) False.
-\par (vii) True: since \{\} is a subtype of Any, and \{const f: \{\}\} is a subtype of \{const f: any, var g: bool\}.
-\par (viii) False.
-\par (ix) True.
+\par (vii) False.
+\par (viii) True.
+\par (ix) False.
 
 \subsection*{(b)} 
-\par I'm gonna assume for all of these y actually equals x. Or the variable at the top is supposed to be called y.
-\par (i) (1): It will safely evaluate. It will produce a value. The value that fun(y).f would return would be 4. (2): TypeCall requires that the type of the argument in a call expression precisely matches the type of the function parameter that it is passed to. So it will not be well-typed with subtyping since that is not the case. The const y is missing the field g (which is a boolean). 
-\par (ii) (1) It will safely evaluate. It will produce a value. The value that fun(y).f would return would be 3. (2): TypeCall requires that the type of the argument in a call expression precisely matches the type of the function parameter that it is passed to. So it will not be well-typed with subtyping since that is not the case. The parameters are missing the field g (which is a boolean).
-\par (iii) 
-\par (iv) 
+\par (i) (1): It will safely evaluate. It will produce a value. The value that fun(x).f would return would be 4. (2): TypeCall requires that the type of the argument in a call expression precisely matches the type of the function parameter that it is passed to. So it will not be well-typed with subtyping since that is not the case. The const x is missing the field g (which is a boolean). Also, x (declared on line 1) is not a subtype of y (in the parameter declared on line 2).
+\par (ii) (1): It will safely evaluate. It will produce a value. The value that fun(x).f would return would be 3. (2): It is well-typed with subtype since x (declared on line 1) is a subtype of the parameter y (declared on line 2).
+\par (iii) (1): It will not safely evaluate. It will get stuck or throw an error because we use static typing, and not dynamic typing so the field g is not present to y on line 3, and so would return with only the field f inside that object. When the field g is looked on line 5 it won't be able to find it. (2): It is well-typed with subtype since x (declared on line 1) is a subtype of the parameter y (declared on line 2).
+\par (iv) (1): It will safely evaluate. It will produce a value. The value would be 1. (2):	It is well-typed. Both of the branches x and y can be resolved to any common supertype \{f: any, g: any\}.
 
 \end{document}  
