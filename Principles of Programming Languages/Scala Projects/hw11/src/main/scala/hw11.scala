@@ -238,9 +238,9 @@ object hw11 extends js.util.JsApp {
       case Function(p, ys, tann, eb) => 
         if (p == Some(x) || (ys exists (_._1 == x))) e 
         else Function(p, ys, tann, substX(eb))
-      case Obj(fes) => ???
+      case Obj(fes) =>
         // Hint: use the mapValues method of fes
-        // Obj(fes mapValues (substX(_)))
+        Obj(fes mapValues (a => (a._1, substX(a._2))))
     }
   }
 
