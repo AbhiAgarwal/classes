@@ -5,9 +5,9 @@ object hw11 extends js.util.JsApp {
   import scala.util.parsing.input.NoPosition
   /*
    * CSCI-UA.0480-003: Homework 11
-   * <Your Name>
+   * Abhi Agarwal
    * 
-   * Partner: <Your Partner's Name>
+   * Partner: Bob Gardner
    * Collaborators: <Any Collaborators>
    */
 
@@ -66,8 +66,10 @@ object hw11 extends js.util.JsApp {
         checkTyp(TBool, e1)
       
       /** TypeDerefFld */
-      case UnOp(FldDeref(f), e) => 
-         ???
+      case UnOp(FldDeref(f), e) => typ(e) match {
+        case TObj(a) if (a.contains(f)) => a(f)._2
+        case tgot => err(tgot, e)
+      } 
         
       case BinOp(bop, e1, e2) =>
         bop match {
@@ -105,8 +107,14 @@ object hw11 extends js.util.JsApp {
                   case _ => locerr(e1)
                 }
               /** TypeAssignFld */
-              case UnOp(FldDeref(f), e11) =>
-                ???
+              case UnOp(FldDeref(f), e11) => typ(e11) match {
+                case TObj(a) => a.get(f) match {
+                  case Some((MVar, t)) => checkTyp(t, e2)
+                  case Some((MConst, t)) => locerr(e11)
+                  case None => err(TUndefined, e11)
+                }
+                case tgot => err(tgot, e11)
+              }
               case _ => locerr(e1)
             }
         }
@@ -153,7 +161,7 @@ object hw11 extends js.util.JsApp {
       /** TypeObj */
       case Obj(fes) => 
         // Hint: use the map method of fes to construct a Map[Fld,Typ]
-        ???
+        TObj(fes map { case (f, (a, b)) => (f, (a, typ(b))) })
         
       case Addr(_) | UnOp(Deref, _) =>
         throw new IllegalArgumentException("Gremlins: Encountered unexpected expression %s.".format(e))
@@ -230,9 +238,9 @@ object hw11 extends js.util.JsApp {
       case Function(p, ys, tann, eb) => 
         if (p == Some(x) || (ys exists (_._1 == x))) e 
         else Function(p, ys, tann, substX(eb))
-      case Obj(fes) => 
+      case Obj(fes) => ???
         // Hint: use the mapValues method of fes
-        ???
+        // Obj(fes mapValues (substX(_)))
     }
   }
 
@@ -330,7 +338,10 @@ object hw11 extends js.util.JsApp {
         } yield v2
       
       case BinOp(Assign, UnOp(Deref, a: Addr), e2) =>
-        ???
+        for {
+          v <- eval(e2)
+          _ <- State.write[Mem](_ + (a, v))
+        } yield v
       
       /** EvalAssignFld */
       case BinOp(Assign, UnOp(FldDeref(f), e1), e2) =>
@@ -359,7 +370,11 @@ object hw11 extends js.util.JsApp {
         } yield v
       
       case Decl(MVar, x, ed, eb) =>
-        ???
+        for {
+          b <- eval(ed)
+          vd <- Mem.alloc(b)
+          v <- eval(subst(eb, x, UnOp(Deref, vd)))
+        } yield v
         
       /** EvalCall */
       case Call(Function(None, Nil, _, eb), Nil) =>
@@ -367,7 +382,10 @@ object hw11 extends js.util.JsApp {
         
       /** EvalCallConst */
       case Call(v0@Function(None, (x1, _) :: xs, _, eb), e1 :: es) =>
-        ???
+        for {
+          x0 <- eval(e1)
+          v <- eval(Call(v0.copy(xs = xs, e = subst(eb, x1, x0)), es))
+        } yield v
       
       /** EvalCallRec */
       case Call(e0, es) =>
