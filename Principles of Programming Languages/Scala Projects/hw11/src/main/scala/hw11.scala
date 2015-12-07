@@ -297,7 +297,10 @@ object hw11 extends js.util.JsApp {
       
       /** EvalDerefFld */
       case UnOp(FldDeref(f), e) =>
-        ???
+        for {
+            a <- eToAddr(e)
+            v <- readObj(a)
+        } yield v(f)
         
       case BinOp(Plus, e1, e2) =>
         for {
@@ -345,7 +348,12 @@ object hw11 extends js.util.JsApp {
       
       /** EvalAssignFld */
       case BinOp(Assign, UnOp(FldDeref(f), e1), e2) =>
-        ???
+        for {
+          v <- eval(e2)
+          a <- eToAddr(e1)
+          b <- readObj(a)
+          _ <- State.write[Mem](_ + (a, ObjVal(b + (f -> v))))
+        } yield v
         
       case BinOp(bop@(Eq|Ne|Lt|Gt|Le|Ge), e1, e2) =>
         for {
