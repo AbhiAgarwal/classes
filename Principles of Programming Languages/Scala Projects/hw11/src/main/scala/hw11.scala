@@ -415,10 +415,10 @@ object hw11 extends js.util.JsApp {
           case (state, (fi, (_, ei))) =>
             for {
               vi <- eval(ei)
-              single <- state
-            } yield single + (fi -> vi)
+              fvs <- state
+            } yield fvs + (fi -> vi)
         } flatMap {
-          fvs => 
+          fvs => Mem.alloc(ObjVal(fvs))
         }
 
       case Var(_) | UnOp(Deref, _) | BinOp(_, _, _) =>
