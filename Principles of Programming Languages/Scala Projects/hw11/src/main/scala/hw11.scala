@@ -414,17 +414,13 @@ object hw11 extends js.util.JsApp {
         fes.foldLeft(state0) {
           case (state, (fi, (_, ei))) =>
             for {
-              a <- eToAddr(ei)
-              v <- readObj(a)
+              vi <- eval(ei)
               single <- state
-            } yield {
-              v.get(fi) match {
-                case Some(b) => single + (fi -> b)
-                case None => single
-              }
-            }
+            } yield single + (fi -> vi)
         } flatMap {
-          fvs => ???
+          fvs => for { ufs <- state0 } yield {
+          TObj(ufs)
+        }
         }
 
       case Var(_) | UnOp(Deref, _) | BinOp(_, _, _) =>
