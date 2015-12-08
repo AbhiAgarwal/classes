@@ -418,9 +418,7 @@ object hw11 extends js.util.JsApp {
               single <- state
             } yield single + (fi -> vi)
         } flatMap {
-          fvs => for { ufs <- state0 } yield {
-          TObj(ufs)
-        }
+          fvs => 
         }
 
       case Var(_) | UnOp(Deref, _) | BinOp(_, _, _) =>
