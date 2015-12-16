@@ -88,12 +88,13 @@ object hw12 extends js.util.JsApp {
       // of t1 and t2 if the join is a function type (rule JoinFunMeet).
       // If the join is 'any', then tsopt should be None (rule JoinFunAny).
       val tsopt = (ts1, ts2).zipped.foldRight(Some(Nil): Option[List[Typ]]) {
-        case ((t1, t2), tsopt) => join(t1, t2) match {
-          case TFunction(a, b) => tsopt
-          case TAny => None
+        case ((t1, t2), tsopt) => meet(t1, t2) match {
+          case Some(a) => tsopt map (_ :+ a)
+          case None => None
         }
       }
-      tsopt map({ case a => TObj(a)}) getOrElse TAny
+      val joinResult = join(tret1, tret2)
+      tsopt map(a => TFunction(a, joinResult)) getOrElse TAny
 
     /** JoinBasic_=, JoinAny_1, JoinAny_2, JoinObjFun, JoinFunObj */
     case _ => if (t1 == t2) t1 else TAny
@@ -113,7 +114,7 @@ object hw12 extends js.util.JsApp {
           case (fts_common_opt, (h, (mut_h, t_h))) =>
             fts2.get(h) match {
                /** MeetObjNO, MeetObjVar_=, MeetObjMut_!=, MeetObjConst */
-              case None => ???
+              case None => fts_common_opt map(_ + (h -> (mut_h, t_h)))
               case Some((mutp_h, tp_h)) => ???
             }
         }
@@ -123,7 +124,8 @@ object hw12 extends js.util.JsApp {
 
     /** MeetFunJoin */
     case (TFunction (ts1, tret1), TFunction (ts2, tret2)) if ts1.size == ts2.size =>
-      ???
+      val ts = (ts1, ts2).zipped map(join(_, _))
+      meet(tret1, tret2) map(TFunction(ts, _))
 
     /** MeetAny_1 */
     case (t1, TAny) => Some(t1)
@@ -214,14 +216,16 @@ object hw12 extends js.util.JsApp {
             checkTyp(TNumber, e2)
 
           /** TypeEqual */
-          case Eq | Ne => ???
-            // typ(e1) match {
-            //   case t1 if (!hasFunctionTyp(t1) && !hasFunctionTyp(typ(e2))) =>
-            //   join(t1, typ(e2)) match {
-            //     case a => TBool
-            //     case tgot => err(tgot, e1)
-            //   }
-            // }
+          case Eq | Ne =>
+            (typ(e1), typ(e2)) match {
+              case (t1, _) 
+                if (hasFunctionTyp(t1)) => err(t1, e1)
+              case (_, t2)
+                if (hasFunctionTyp(t2)) => err(t2, e2)
+              case (t1, t2)
+                if (join(t1, t2) == TAny) => err(t1, e1)
+              case _ => TBool
+            }
 
           /** TypeInequal */
           case Lt | Le | Gt | Ge =>
@@ -244,8 +248,10 @@ object hw12 extends js.util.JsApp {
           case Assign =>
             e1 match {
               /** TypeAssignVar */
-              case Var(x) =>
-                ???
+              case Var(x) => env(x) match {
+                case (MVar, t1) => checkSubtyp(t1, e2)
+                case _ => locerr(e1)
+              }
 
               /** TypeAssignFld */
               case UnOp(FldDeref(f), e11) =>
