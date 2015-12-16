@@ -73,11 +73,11 @@ object hw12 extends js.util.JsApp {
             fts2.get(h) match {
               /** JoinObjNO, JoinObjVar, JoinObjMut_!= */
               case None => fts
-              case Some((mutp_h, tp_h)) => ??? /*{
-                for (ft <- fts) yield {
-
+              case Some((mutp_h, tp_h)) => join(t_h, tp_h) match {
+                case typ => (mut_h, mutp_h) match {
+                  case (MConst|MVar, MConst|MVar) => fts + (h -> (MConst, typ))
                 }
-              }*/
+              }
             }
         }
       TObj(fts)
@@ -212,8 +212,14 @@ object hw12 extends js.util.JsApp {
             checkTyp(TNumber, e2)
             
           /** TypeEqual */
-          case Eq | Ne => 
-            ???
+          case Eq | Ne => ???
+            // typ(e1) match {
+            //   case t1 if (!hasFunctionTyp(t1) && !hasFunctionTyp(typ(e2))) =>
+            //   join(t1, typ(e2)) match {
+            //     case a => TBool
+            //     case tgot => err(tgot, e1)
+            //   }
+            // }
           
           /** TypeInequal */
           case Lt | Le | Gt | Ge =>
