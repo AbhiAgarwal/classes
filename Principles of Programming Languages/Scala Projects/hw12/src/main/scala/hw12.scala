@@ -115,7 +115,14 @@ object hw12 extends js.util.JsApp {
             fts2.get(h) match {
                /** MeetObjNO, MeetObjVar_=, MeetObjMut_!=, MeetObjConst */
               case None => fts_common_opt map(_ + (h -> (mut_h, t_h)))
-              case Some((mutp_h, tp_h)) => ???
+              case Some((mutp_h, tp_h)) => (mut_h, mutp_h) match {
+                case (MVar, MVar) =>
+                  if (tp_h == t_h)
+                    fts_common_opt map(_ + (h -> (MVar, t_h)))
+                  else None
+                case (MConst, MConst) => ???
+                case _ => ???
+              }
             }
         }
       for {
