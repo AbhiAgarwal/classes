@@ -119,9 +119,16 @@ object hw12 extends js.util.JsApp {
                 case (MVar, MVar) =>
                   if (tp_h == t_h)
                     fts_common_opt map(_ + (h -> (MVar, t_h)))
-                  else None
-                case (MConst, MConst) => ???
-                case _ => ???
+                  else
+                    None
+                case (MConst, MConst) =>
+                  meet(t_h, tp_h) flatMap (
+                    t1 => fts_common_opt map (_ + (h -> (MConst, t1)))
+                  )
+                case _ =>
+                  meet(t_h, tp_h) flatMap (
+                    t1 => fts_common_opt map (_ + (h -> (MVar, t1)))
+                  )
               }
             }
         }
