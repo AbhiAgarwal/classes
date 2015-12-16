@@ -41,19 +41,17 @@ object hw12 extends js.util.JsApp {
       fts2 forall { 
         case (gj, (mutj, tj)) =>
           fts1.get(gj) match {
-            case Some((_, t3)) => {
-              subtype(t3, t1)
-            }
+            case Some((muti, ti)) => mutj == MConst && subtype(ti, tj) || muti == mutj && ti == tj
             case None => false
           }
       }
       
     /** SubFun */
     case (TFunction (ts1, tret1), TFunction (ts2, tret2)) =>
-      if (!subtype(tret1, tret2)) false
+      if (ts1.length < ts2.length || !subtype(tret1, tret2)) false
       else {
         (ts1, ts2).zipped forall {
-          case (a, b) => subtype(a, b)
+          case (a, b) => subtype(b, a)
         }
       }
       
