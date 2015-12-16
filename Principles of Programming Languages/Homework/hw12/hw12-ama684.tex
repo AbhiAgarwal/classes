@@ -1,0 +1,46 @@
+\documentclass[11pt, oneside]{article}
+\usepackage[]{geometry}
+\geometry{letterpaper}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[normalem]{ulem}
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\newcommand{\forceindent}{\leavevmode{\parindent=1.5em\indent}}
+\newcommand{\forceindentx}{\leavevmode{\parindent=2em\indent}}
+\newcommand{\forceindenty}{\leavevmode{\parindent=1em\indent}}
+\usepackage{amsmath}
+\newcommand{\xRightarrow}[2][]{\ext@arrow 0359\Rightarrowfill@{#1}{#2}}
+\makeatother
+\title{Principles of Programming Languages - Homework 12}
+\author{Abhi Agarwal}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Problem 1}
+\subsection*{(a)} 
+\indent \par $t_1 \sqcup t_2$ = Any
+\par $t_1 \sqcap t_2$ = $\bot$
+
+\subsection*{(b)}
+\indent \par $t_1 \sqcup t_2$ = \{\}
+\par $t_1 \sqcap t_2$ = \{var f: number, const g: bool\}
+
+\subsection*{(c)}
+\indent \par $t_1 \sqcup t_2$ = \{\}
+\par $t_1 \sqcap t_2$ = \{var f: number, const g: bool\}
+
+\subsection*{(d)}
+\indent \par $t_1 \sqcup t_2$ = \{var f: number, const g: \{const h: any\}\}
+\par $t_1 \sqcap t_2$ = \{var f: number, const g: \{var h: bool\}\}
+
+\subsection*{(e)}
+\indent \par $t_1 \sqcup t_2$ = bool $=>$ any
+\par $t_1 \sqcap t_2$ = bool $=>$ bool
+
+\subsection*{(f)}
+\indent \par $t_1 \sqcup t_2$ = any $=>$ any
+\par $t_1 \sqcap t_2$ =  $\bot$ % any $=>$ any
+
+\end{document}  

@@ -40,12 +40,22 @@ object hw12 extends js.util.JsApp {
     case (TObj(fts1), TObj(fts2)) =>
       fts2 forall { 
         case (gj, (mutj, tj)) =>
-          ???
+          fts1.get(gj) match {
+            case Some((_, t3)) => {
+              subtype(t3, t1)
+            }
+            case None => false
+          }
       }
       
     /** SubFun */
     case (TFunction (ts1, tret1), TFunction (ts2, tret2)) =>
-      ???
+      if (!subtype(tret1, tret2)) false
+      else {
+        (ts1, ts2).zipped forall {
+          case (a, b) => subtype(a, b)
+        }
+      }
       
     /** SubRefl, SubAny */
     case (t1, t2) =>
@@ -64,8 +74,12 @@ object hw12 extends js.util.JsApp {
           case (fts, (h, (mut_h, t_h))) =>
             fts2.get(h) match {
               /** JoinObjNO, JoinObjVar, JoinObjMut_!= */
-              case None => ???
-              case Some((mutp_h, tp_h)) => ???
+              case None => fts
+              case Some((mutp_h, tp_h)) => ??? /*{
+                for (ft <- fts) yield {
+
+                }
+              }*/
             }
         }
       TObj(fts)
