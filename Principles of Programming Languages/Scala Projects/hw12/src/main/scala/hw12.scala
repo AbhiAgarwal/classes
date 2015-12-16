@@ -218,7 +218,7 @@ object hw12 extends js.util.JsApp {
           /** TypeEqual */
           case Eq | Ne =>
             (typ(e1), typ(e2)) match {
-              case (t1, _) 
+              case (t1, _)
                 if (hasFunctionTyp(t1)) => err(t1, e1)
               case (_, t2)
                 if (hasFunctionTyp(t2)) => err(t2, e2)
@@ -254,16 +254,21 @@ object hw12 extends js.util.JsApp {
               }
 
               /** TypeAssignFld */
-              case UnOp(FldDeref(f), e11) =>
-                ???
+              case UnOp(FldDeref(f), e11) => typ(e11) match {
+                case TObj(a) => a.get(f) match {
+                  case Some((MVar, t)) => checkSubtyp(t, e2)
+                  case Some(_) => locerr(e1)
+                  case None => err(TUndefined, e11)
+                }
+                case tgot => err(tgot, e11)
+              }
 
               case _ => locerr(e1)
             }
         }
 
       /** TypeIf */
-      case If(e1, e2, e3) =>
-        ???
+      case If(e1, e2, e3) => checkTyp(TBool, e1); join(typ(e2), typ(e3))
 
       /** TypeFun, TypeFunAnn, TypeFunRec */
       case Function(p, xs, tann, e1) => {
@@ -285,7 +290,7 @@ object hw12 extends js.util.JsApp {
           case None => TFunction(xs map (_._2), typeInfer(env2, e1))
           case Some(tret) =>
             typeInfer(env2, e1) match {
-              case tbody if ??? =>
+              case tbody if subtype(tbody, tret) =>
                 TFunction(xs map (_._2), tret)
               case tbody => err(tbody, e1)
             }
@@ -295,7 +300,7 @@ object hw12 extends js.util.JsApp {
       /** TypeCall */
       case Call(e1, es) => typ(e1) match {
         case TFunction(txs, tret) if (txs.length == es.length) => {
-          (txs, es).zipped.foreach(???)
+          (txs, es).zipped.foreach(checkSubtyp(_, _))
           tret
         }
         case tgot => err(tgot, e1)
@@ -444,8 +449,9 @@ object hw12 extends js.util.JsApp {
         for { v <- readVal(a) } yield v
 
       /** EvalDerefFld */
-      case UnOp(FldDeref(f), e) =>
-        ???
+      case UnOp(FldDeref(f), e) => for {
+        a <- eToAddr(e); m <- readObj(a)
+      } yield m(f)
 
       /** EvalPlusNum, EvalPlusStr */
       case BinOp(Plus, e1, e2) =>
@@ -499,7 +505,12 @@ object hw12 extends js.util.JsApp {
 
       /** EvalAssignFld */
       case BinOp(Assign, UnOp(FldDeref(f), e1), e2) =>
-        ???
+        for {
+          v <- eval(e2)
+          a <- eToAddr(e1)
+          b <- readObj(a)
+          _ <- State.write[Mem](_ + (a, ObjVal(b + (f -> v))))
+        } yield v
 
       /** EvalInequalNum, EvalInequalStr */
       case BinOp(bop@(Eq|Ne|Lt|Gt|Le|Ge), e1, e2) =>
@@ -563,9 +574,12 @@ object hw12 extends js.util.JsApp {
         val state0 = State.insert[Mem, Map[String, Val]](Map.empty)
         fes.foldLeft(state0) {
           case (state, (fi, (_, ei))) =>
-            ???
+            for {
+              vi <- eval(ei)
+              fvs <- state
+            } yield fvs + (fi -> vi)
         } flatMap {
-          fvs => ???
+          fvs => Mem.alloc(ObjVal(fvs))
         }
 
       case Var(_) | UnOp(Deref, _) | BinOp(_, _, _) =>
